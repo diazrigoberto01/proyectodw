@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Equipo 1</title>
+  </head>
+  <body align="center">
+    <form action="factura-creada.html" method="POST">
+      <table align="center">
+        <th colspan="6">
+          <center>
+            <h3>
+              Crea tu Factura
+            </h3>
+          </center>
+          
+        </th>
+
+        <tr>
+          <td><p>RFC de la empresa:</p></td>
+          <td>
+            <select name="rfc-Emisor" id="">
+              <option value="RFCEMP2309SLF">RFCEMP2309SLF</option>
+              <option value="EMPRFC1234SL">EMPRFC1234SL</option>
+              <option value="ROMA980547sl4">ROMA980547sl4</option>
+            </select>
+          </td>
+          <td><p>Nombre Empresa:</p></td>
+          <td><input type="text" name="nombre" /></td>
+          <td><p>Régimen fiscal:</p></td>
+          <td><input type="text" name="regimen-fiscal" /></td>
+        </tr>
+        <tr>
+          <td><p>RFC del cliente:</p></td>
+          <td>
+            <select name="rfc-cliente" id="">
+              <option value="GBDP2012758FJ">GBDP2012758FJ</option>
+              <option value="JPA45692GT9">JPA45692GT9</option>
+              <option value="ARLO457689SL6">ARLO457689SL6</option>
+            </select>
+          </td>
+          <td>Nombre Cliente</td>
+          <td><input type="text" name="nombre_cliente" /></td>
+          <td>Uso de CFDI</td>
+          <td>
+            <input type="text" name="cfdi" id="" placeholder="CFDI" />
+          </td>
+        </tr>
+        <tr>
+          <td><p>Fecha:</p></td>
+          <td><input type="date" name="fecha" /></td>
+          <td><p>Lugar:</p></td>
+          <td><input type="text" name="lugar" /></td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+      </table>
+
+      <br /><br />
+      <table align="center">
+        <tr>
+          <td>Clave Producto</td>
+          <td>Cantidad</td>
+          <td>Unidad de medida</td>
+          <td>Descripción</td>
+          <td>Valor unitario</td>
+        </tr>
+        <tr>
+          <td>
+            <select name="clave-producto" id="">
+              <option value="72151302">72151302</option>
+              <option value="721523">721523</option>
+              <option value="5648293">5648293</option>
+            </select>
+          </td>
+          <td><input type="number" name="cantidad1" /></td>
+          <td><input type="text" name="unidad1" /></td>
+          <td><textarea name="descipcion1" rows="1" cols="30"></textarea></td>
+          <td><input type="number" name="monto1" value="0.0" /></td>
+        </tr>
+        <tr>
+          <td>
+            <select name="clave-producto" id="">
+              <option value="72151302">72151302</option>
+              <option value="721523">721523</option>
+              <option value="5648293">5648293</option>
+            </select>
+          </td>
+          <td><input type="number" name="cantidad2" /></td>
+          <td><input type="text" name="unidad2" /></td>
+          <td><textarea name="descipcion2" rows="1" cols="30"></textarea></td>
+          <td><input type="number" name="monto2" value="0.0" /></td>
+        </tr>
+        <tr>
+          <td>
+            <select name="clave-producto" id="">
+              <option value="72151302">72151302</option>
+              <option value="721523">721523</option>
+              <option value="5648293">5648293</option>
+            </select>
+          </td>
+          <td><input type="number" name="cantidad3" /></td>
+          <td><input type="text" name="unidad3" /></td>
+          <td><textarea name="descipcion3" rows="1" cols="30"></textarea></td>
+          <td><input type="number" name="monto3" value="0.0" /></td>
+        </tr>
+      </table>
+
+      <p>Método de pago:</p>
+      <input type="radio" name="pago" /> Efectivo
+      <input type="radio" name="pago" /> Débito
+      <input type="radio" name="pago" /> Crédito <br />
+      <p>Condición de pago:</p>
+      <select name="cantidad-pagos">
+        <option value="una">Una exhibición</option>
+        <option value="varias">Varias exhibiciones</option>
+        <option value="msi">Meses sin intereses</option>
+      </select>
+      <br /><br />
+      <input type="submit" value="Crear Factura" />
+      <input type="reset" value="Reiniciar" />
+   
+    </form>
+  </body>
+</html>
