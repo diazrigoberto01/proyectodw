@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Equipo 1</title>
+
+    <script>
+        function Agregar() {
+        var contraseña = prompt("Ingresa tu contraseña");
+        if (contraseña) {
+          var val = valida();
+          if (val) {
+            var modificar = window.confirm("Generar?");
+            if (modificar) {
+              alert("Generada con exito");
+            } else {
+              return 0;
+            }
+          } else {
+            return 0;
+          }
+        } else {
+          alert("Contraseña Equivocada");
+          return 0;
+        }
+      }
+        function valida() {
+        if(document.factura.rfc-Emisor.selectedIndex== 0){
+          alert("Selecciona un Rfc Emisor")
+          document.factura.rfc-Emisor.focus();
+          return false;
+        };
+        if(document.factura.rfc-cliente.selectedIndex == 0){
+          alert("Selecciona un Rfc Receptor")
+          document.factura.rfc-cliente.focus();
+          return false;
+        };
+        if(document.factura.contacto_nombre.value.length == 0){
+          document.factura.contacto_nombre.focus();
+          return false;
+        };
+        if(document.factura.fecha.value.length == 0 ){
+          document.factura.fecha.focus();
+          return false;
+        };
+        if(document.factura.lugar.value.length == 0){
+          document.factura.lugar.focus();
+          return false;
+        };
+        if(document.factura.clave_producto.selectedIndex == 0){
+          alert("Selecciona una clave")
+          document.factura.clave_producto.focus();
+          return false;
+        };
+        if(document.factura.cantidad1.value.length == 0){
+          document.factura.cantidad1.focus();
+          return false;
+        };
+        if(document.factura.unidad1.value.length == 0){
+          document.factura.unidad1.focus();
+          return false;
+        };
+        if(document.factura.descripcion1.value.length == 0){
+          document.factura.descripcion1.focus();
+          return false;
+        };
+        if(document.factura.monto1.value.length == 0){
+          document.factura.monto1.focus();
+          return false;
+        };
+        if(document.factura.tipo-pagos.selectedIndex == 0){
+          alert("Selecciona un metodo de pago")
+          document.factura.tipo-pagos.focus();
+          return false;
+        };
+       
+
+        return true;
+
+      }
+    </script>
+  </head>
+  <body align="center">
+    <form action="" method="POST" name="factura">
+      <table align="center">
+        <th colspan="6">
+          <center>
+            <h3>
+              Crea tu Factura
+            </h3>
+          </center>
+          
+        </th>
+
+        <tr>
+          <td><p>RFC de la empresa:</p></td>
+          <td>
+            <select name="rfc-Emisor" id="">
+              <option value="Elegir">Elegir</option>
+              <option value="RFCEMP2309SLF">RFCEMP2309SLF</option>
+              <option value="EMPRFC1234SL">EMPRFC1234SL</option>
+              <option value="ROMA980547sl4">ROMA980547sl4</option>
+            </select>
+          </td>
+          <td><p>Nombre Empresa:</p></td>
+          <td><input type="text" name="nombre" /></td>
+          <td><p>Régimen fiscal:</p></td>
+          <td><input type="text" name="regimen-fiscal" /></td>
+        </tr>
+        <tr>
+          <td><p>RFC del cliente:</p></td>
+          <td>
+            <select name="rfc-cliente" id="">
+              <option value="Elegir">Elegir</option>
+              <option value="GBDP2012758FJ">GBDP2012758FJ</option>
+              <option value="JPA45692GT9">JPA45692GT9</option>
+              <option value="ARLO457689SL6">ARLO457689SL6</option>
+            </select>
+          </td>
+          <td>Nombre Cliente</td>
+          <td><input type="text" name="nombre_cliente" /></td>
+          <td>Uso de CFDI</td>
+          <td>
+            <input type="text" name="cfdi" id="" placeholder="CFDI" />
+          </td>
+        </tr>
+        <tr>
+          <td><p>Fecha:</p></td>
+          <td><input type="date" name="fecha" /></td>
+          <td><p>Lugar:</p></td>
+          <td><input type="text" name="lugar" /></td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+      </table>
+
+      <br /><br />
+      <table align="center">
+        <tr>
+          <td>Clave Producto</td>
+          <td>Cantidad</td>
+          <td>Unidad de medida</td>
+          <td>Descripción</td>
+          <td>Valor unitario</td>
+        </tr>
+        <tr>
+          <td>
+            <select name="clave-producto" id="">
+              <option value="Elegir">Elegir</option>
+              <option value="72151302">72151302</option>
+              <option value="721523">721523</option>
+              <option value="5648293">5648293</option>
+            </select>
+          </td>
+          <td><input type="number" name="cantidad1" /></td>
+          <td><input type="text" name="unidad1" /></td>
+          <td><textarea name="descipcion1" rows="1" cols="30"></textarea></td>
+          <td><input type="number" name="monto1" value="0.0" /></td>
+        </tr>
+        <tr>
+          <td>
+            <select name="clave-producto" id="">
+              <option value="72151302">72151302</option>
+              <option value="721523">721523</option>
+              <option value="5648293">5648293</option>
+            </select>
+          </td>
+          <td><input type="number" name="cantidad2" /></td>
+          <td><input type="text" name="unidad2" /></td>
+          <td><textarea name="descipcion2" rows="1" cols="30"></textarea></td>
+          <td><input type="number" name="monto2" value="0.0" /></td>
+        </tr>
+        <tr>
+          <td>
+            <select name="clave-producto" id="">
+              <option value="72151302">72151302</option>
+              <option value="721523">721523</option>
+              <option value="5648293">5648293</option>
+            </select>
+          </td>
+          <td><input type="number" name="cantidad3" /></td>
+          <td><input type="text" name="unidad3" /></td>
+          <td><textarea name="descipcion3" rows="1" cols="30"></textarea></td>
+          <td><input type="number" name="monto3" value="0.0" /></td>
+        </tr>
+      </table>
+
+      <p>Método de pago:</p>
+      <input type="radio" name="pago" /> Efectivo
+      <input type="radio" name="pago" /> Débito
+      <input type="radio" name="pago" /> Crédito <br />
+      <p>Condición de pago:</p>
+      <select name="tipo-pagos">
+        <option value="Elegir">Elegir</option>
+        <option value="una">Una exhibición</option>
+        <option value="varias">Varias exhibiciones</option>
+        <option value="msi">Meses sin intereses</option>
+      </select>
+      <br /><br />
+  
+      <input type="submit" value="Crear Factura"  onclick="Agregar()"/>
+    
+      <input type="reset" value="Reiniciar" />
+      <input type="button" value="Regresar" onclick="history.go(-1)">
+   
+    </form>
+  </body>
+</html>

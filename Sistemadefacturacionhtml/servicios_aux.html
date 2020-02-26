@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Servicios-Admin</title>
+    <script>
+      function confirmarEliminar() {
+        var contraseña = prompt("Ingresa tu contraseña");
+        if (contraseña) {
+          var confirmar = window.confirm(
+            "Seguro que desea eliminar este registro?"
+          );
+          if (confirmar) {
+            alert("Eliminado con exito");
+          } else {
+            return 0;
+          }
+        } else {
+          alert("Contraseña Equivocada");
+          return 0;
+        }
+      }
+      
+    </script>
+  </head>
+  <body>
+    <h1>Administra tus Servicios Aux</h1>
+    <a href="agregarServicioaux.html">Agregar Servicio</a>
+
+    <table align="center">
+      <tr>
+        <td colspan="5">
+          <center>
+            <h3>
+              Servicios
+            </h3>
+          </center>
+        </td>
+      </tr>
+      <tr>
+        <th>Clave Unidad SAT &nbsp;</th>
+        <th>Clave Producto/Servicio &nbsp;</th>
+        <th>Nombre de Identificacion &nbsp;</th>
+        <th>Descripcion &nbsp;</th>
+        <th>Total &nbsp;</th>
+      </tr>
+      <tr>
+        <td>E48</td>
+        <td>72151302</td>
+        <td>TRAPIN</td>
+        <td>PINTURA EN MUROS INTERIORES Y PLAFONES</td>
+        <td>$1500</td>
+        <td>
+          <a href="modificaServiciosaux.html">
+            <input type="button" value="Modificar" />
+          </a>
+
+          <input type="button" value="Eliminar" onclick="confirmarEliminar()" />
+        </td>
+      </tr>
+      <tr>
+        <td>E50</td>
+        <td>721523</td>
+        <td>RECAAS</td>
+        <td>RECUPERADO DE CARPETA ASFALTICA</td>
+        <td>$3000</td>
+        <td>
+          <a href="modificaServiciosaux.html">
+            <input type="button" value="Modificar" />
+          </a>
+          <input type="button" value="Eliminar" onclick="confirmarEliminar()" />
+        </td>
+      </tr>
+      <tr>
+        <td>C120</td>
+        <td>5648293</td>
+        <td>TRAALG</td>
+        <td>TRABAJOS DE ALBAÑILERIA EN GENERAL</td>
+        <td>$5000</td>
+        <td>
+          <a href="modificaServiciosaux.html">
+            <input type="button" value="Modificar" />
+          </a>
+          <input type="button" value="Eliminar" onclick="confirmarEliminar()" />
+        </td>
+      </tr>
+    </table>
+
+    <a href="generar_facturaaux.html">Inicio</a>
+  </body>
+</html>

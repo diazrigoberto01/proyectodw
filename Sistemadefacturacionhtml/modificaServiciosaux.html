@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modificar Servicio</title>
+    <script>
+      
+      function modificar() {
+        var contraseña = prompt("Ingresa tu contraseña");
+        if (contraseña) {
+          var modificar = window.confirm("¿Seguro que desea modificar?");
+          if (modificar) {
+            alert("modificado con exito");
+          } else {
+            return 0;
+          }
+        } else {
+          alert("Contraseña Equivocada");
+          return 0;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Modificar Servicio</h3>
+
+    <table>
+      <form action="" method="POST">
+        <tr>
+          <td>
+            Clave Unidad SAT
+          </td>
+          <td>
+            <input
+              type="text"
+              name="clave_unidad"
+              placeholder="Clave Unidad SAT"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Clave Producto Servicio</td>
+          <td>
+            <input
+              type="text"
+              name="clave_producto"
+              placeholder="Clave del producto"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Nombre de Identificacion:</td>
+          <td>
+            <input
+              type="text"
+              name="identificador"
+              id=""
+              placeholder="Nombre de Identificacion"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Descripcion:</td>
+          <td>
+            <textarea
+              name="descripcion"
+              id=""
+              cols="20"
+              rows="5"
+              noresize
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>Precio Unitario</td>
+          <td>
+            <input
+              type="number"
+              name="pu"
+              id=""
+              placeholder="Precio Unitario"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <center>
+              <input type="button" value="Modificar" onclick="modificar()" />
+            </center>
+          </td>
+        </tr>
+      </form>
+    </table>
+    <input type="button" value="Regresar" onclick="history.go(-1)" />
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agregar Servicio</title>
+    <script>
+      function Agregar() {
+        var contraseña = prompt("Ingresa tu contraseña");
+        if (contraseña) {
+          var val = valida();
+          if (val) {
+            var modificar = window.confirm("¿Agregar?");
+            if (modificar) {
+              alert("Agregado con exito");
+            } else {
+              return 0;
+            }
+          } else {
+            return 0;
+          }
+        } else {
+          alert("Contraseña Equivocada");
+          return 0;
+        }
+      }
+      function valida() {
+        if(document.servicio.clave_unidad.value.length == 0){
+          document.servicio.clave_unidad.focus();
+          return false;
+        };
+        if(document.servicio.clave_producto.value.length == 0){
+          document.servicio.clave_producto.focus();
+          return false;
+        };
+        if(document.servicio.identificador.value.length == 0){
+          document.servicio.identificador.focus();
+          return false;
+        };
+        if(document.servicio.descripcion.value.length == 0 ){
+          document.servicio.descripcion.focus();
+          return false;
+        };
+        if(document.servicio.pu.value.length == 0){
+          document.servicio.pu.focus();
+          return false;
+        };
+        return true;
+
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Agregar Servicio</h3>
+
+    <table>
+      <form action="" method="POST" name="servicio">
+        <tr>
+          <td>
+            Clave Unidad SAT
+          </td>
+          <td>
+            <input
+              type="text"
+              name="clave_unidad"
+              placeholder="Clave Unidad SAT"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Clave Producto Servicio</td>
+          <td>
+            <input
+              type="text"
+              name="clave_producto"
+              placeholder="Clave del producto"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Nombre de Identificacion:</td>
+          <td>
+            <input
+              type="text"
+              name="identificador"
+              id=""
+              placeholder="Nombre de Identificacion"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Descripcion:</td>
+          <td>
+            <textarea
+              name="descripcion"
+              id=""
+              cols="20"
+              rows="5"
+              noresize
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>Precio Unitario</td>
+          <td>
+            <input
+              type="number"
+              name="pu"
+              id=""
+              placeholder="Precio Unitario"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <center>
+              <input type="button" value="Agregar" onclick="Agregar()" />
+            </center>
+          </td>
+        </tr>
+      </form>
+    </table>
+
+    <input type="button" value="Regresar" onclick="history.go(-1)" />
+  </body>
+</html>
