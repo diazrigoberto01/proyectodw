@@ -6,8 +6,89 @@
     <title>Agregar Empresa</title>
     <script type="text/javascript">
       function empresaCreada() {
-        alert("La empresa ha sido creada con éxito.");
-        history.go(-1);
+        if (valida()) {
+          alert("La empresa ha sida creado con éxito.");
+          history.go(-1);
+        } else {
+          alert("Hubo un error creando la empresa.");
+        }
+      }
+    </script>
+    <script>
+     function Agregar() {
+        var contraseña = prompt("Ingresa tu contraseña");
+        if (contraseña) {
+          var val = valida();
+          if (val) {
+            var modificar = window.confirm("¿Agregar?");
+            if (modificar) {
+              alert("Agregado con exito");
+              history.go(-1);
+            } else {
+              return 0;
+            }
+          } else {
+            return 0;
+          }
+        } else {
+          alert("Contraseña Equivocada");
+          return 0;
+        }
+      }
+        function valida() {
+        if(document.empresa.razon_social.value.length == 0){
+          document.empresa.razon_social.focus();
+          return false;
+        };
+        if(document.empresa.nombre_comercial.value.length == 0){
+          document.empresa.nombre_comercial.focus();
+          return false;
+        };
+        if(document.empresa.contacto_nombre.value.length == 0){
+          document.empresa.contacto_nombre.focus();
+          return false;
+        };
+        if(document.empresa.telefono.value.length == 0 ){
+          document.empresa.telefono.focus();
+          return false;
+        };
+        if(document.empresa.email.value.length == 0){
+          document.empresa.email.focus();
+          return false;
+        };
+        if(document.empresa.pais.value.length == 0){
+          document.empresa.pais.focus();
+          return false;
+        };
+        if(document.empresa.estado.value.length == 0){
+          document.empresa.estado.focus();
+          return false;
+        };
+        if(document.empresa.municipio.value.length == 0){
+          document.empresa.municipio.focus();
+          return false;
+        };
+        if(document.empresa.localidad.value.length == 0){
+          document.empresa.localidad.focus();
+          return false;
+        };
+        if(document.empresa.calle.value.length == 0){
+          document.empresa.calle.focus();
+          return false;
+        };
+        if(document.empresa.n_ext.value.length == 0){
+          document.empresa.n_ext.focus();
+          return false;
+        };
+        if(verificarCp(document.empresa.cp.value)){
+          document.empresa.cp.focus();
+          return false;
+        };
+        if(document.empresa.referencia.value.length == 0){
+          document.empresa.referencia.focus();
+          return false;
+        };
+        return true;
       }
     </script>
   </head>

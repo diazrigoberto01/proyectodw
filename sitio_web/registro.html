@@ -5,23 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="img/logoemp/favicon.ico" />
     <link rel="icon" type="image/gif" href="img/logoemp/animated_favicon1.gif" />
+    <script type="text/javascript" src="js/scriptVerificacion.js"></script>
+    <script type="text/javascript">
+      function verificar() {
+        var boolUsuario = verificarUsuario(document.nuevoUsuario.usuario.value);
+        var boolPass = verificarContrasena(document.nuevoUsuario.passwd.value);
+        var boolCoincidencia = verificarCoincidenciaContrasena(document.nuevoUsuario.passwd.value, document.nuevoUsuario.passwd1.value);
+        var bool = boolUsuario && boolPass && boolCoincidencia;
+        if (bool == true) {
+          alert("Usuario creado, debe ser verificado por el administrador.");
+          location.href="inicio.html";
+          return 0;
+        } else {
+          alert("Hubo un error creando el usuario.")
+          return 1;
+        }
+      }
+    </script>
     <title>Equipo 1</title>
   </head>
   <body>
-    <form action="usuario-creado.html" method="post">
+    <form action="" method="post" name="nuevoUsuario" onsubmit="verificar()">
       <p>Usuario: </p>
-      <input type="text" name="usuario" value="John">
+      <input type="text" name="usuario" value="John" required>
       <p>Contraseña: </p>
-      <input type="password" name="passwd" value="Doe">
+      <input type="password" name="passwd" value="" required>
       <p>Confirme su contraseña: </p>
-      <input type="password" name="passwd" value="">
+      <input type="password" name="passwd1" value="" required>
       <p>Dirección de correo: </p>
-      <input type="email" name="correo" value="john.doe@email.com">
+      <input type="email" name="correo" value="" required/>
       <p>Tipo de usuario: </p>
-      <select name="tipo-usuario">
-        <option value="una">Empresa</option>
-        <option value="msi">Usuario</option>
-        <option value="varias">Administrador</option>
+      <select name="tipo-usuario" required>
+        <option value="auxiliar">Auxiliar administrativo</option>
+        <option value="administrador">Administrador</option>
       </select>
       <br><br>
       <input type="submit" value="Crear Usuario">

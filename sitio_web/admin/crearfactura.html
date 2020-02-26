@@ -2,10 +2,90 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <script>
+      function agregar() {
+        var contraseña = prompt("Ingresa tu contraseña");
+        if (contraseña) {
+          var val = valida();
+          if (val) {
+            var modificar = window.confirm("¿Generar?");
+            if (modificar) {
+              alert("Generada con exito");
+              location.href = "factura_ver.html";
+            } else {
+              return 0;
+            }
+          } else {
+            return 0;
+          }
+        } else {
+          alert("Contraseña Equivocada");
+          return 0;
+        }
+      }
+      function valida() {
+        if(document.factura.rfcEmisor.selectedIndex == 0){
+          alert("Selecciona un RFC Emisor");
+          document.factura.rfcEmisor.focus();
+          return false;
+        };
+        if(document.factura.rfcCliente.selectedIndex == 0){
+          alert("Selecciona un RFC Receptor");
+          document.factura.rfcCliente.focus();
+          return false;
+        };
+        if(document.factura.nombreCliente.value.length == 0){
+          alert("Introduzca una persona de contacto.");
+          document.factura.contactoNombre.focus();
+          return false;
+        };
+        if(document.factura.fecha.value.length == 0 ){
+          alert("Introduzca una fecha válida.")
+          document.factura.fecha.focus();
+          return false;
+        };
+        if(document.factura.lugar.value.length == 0){
+          alert("Introduzca un lugar.")
+          document.factura.lugar.focus();
+          return false;
+        };
+        if(document.factura.claveProducto.selectedIndex == 0){
+          alert("Selecciona una clave")
+          document.factura.claveProducto.focus();
+          return false;
+        };
+        if(document.factura.cantidad1.value.length == 0){
+          alert("Introduzca una cantidad");
+          document.factura.cantidad1.focus();
+          return false;
+        };
+        if(document.factura.unidad1.value.length == 0){
+          alert("Introduzca una unidad.")
+          document.factura.unidad1.focus();
+          return false;
+        };
+        if(document.factura.descripcion1.value.length == 0){
+          alert("Introduzca una descipción")
+          document.factura.descripcion1.focus();
+          return false;
+        };
+        if(document.factura.monto1.value.length == 0){
+          alert("Introduzca un monto de pago");
+          document.factura.monto1.focus();
+          return false;
+        };
+        if(document.factura.tipoPagos.selectedIndex == 0){
+          alert("Selecciona un metodo de pago")
+          document.factura.tipoPagos.focus();
+          return false;
+        };
+        return true;
+      }
+    </script>
     <title>Equipo 1</title>
   </head>
   <body align="center">
-    <form action="factura-creada.html" method="POST">
+    <form action="factura-creada.html" method="POST" onsubmit="valida()">
       <table align="center">
         <tr>
           <th colspan="6">
@@ -20,7 +100,7 @@
         <tr>
           <td><p>RFC de la empresa:</p></td>
           <td>
-            <select name="rfc-Emisor">
+            <select name="rfcEmisor">
               <option value="RFCEMP2309SLF">RFCEMP2309SLF</option>
               <option value="EMPRFC1234SL">EMPRFC1234SL</option>
               <option value="ROMA980547sl4">ROMA980547sl4</option>
@@ -34,14 +114,14 @@
         <tr>
           <td><p>RFC del cliente:</p></td>
           <td>
-            <select name="rfc-cliente">
+            <select name="rfcCliente">
               <option value="GBDP2012758FJ">GBDP2012758FJ</option>
               <option value="JPA45692GT9">JPA45692GT9</option>
               <option value="ARLO457689SL6">ARLO457689SL6</option>
             </select>
           </td>
           <td>Nombre Cliente</td>
-          <td><input type="text" name="nombre_cliente" /></td>
+          <td><input type="text" name="nombreCliente" /></td>
           <td>Uso de CFDI</td>
           <td>
             <input type="text" name="cfdi" placeholder="CFDI" />
@@ -66,7 +146,7 @@
         </tr>
         <tr>
           <td>
-            <select name="clave-producto">
+            <select name="claveProducto">
               <option value="72151302">72151302</option>
               <option value="721523">721523</option>
               <option value="5648293">5648293</option>
@@ -79,7 +159,7 @@
         </tr>
         <tr>
           <td>
-            <select name="clave-producto">
+            <select name="claveProducto">
               <option value="72151302">72151302</option>
               <option value="721523">721523</option>
               <option value="5648293">5648293</option>
@@ -92,7 +172,7 @@
         </tr>
         <tr>
           <td>
-            <select name="clave-producto">
+            <select name="claveProducto">
               <option value="72151302">72151302</option>
               <option value="721523">721523</option>
               <option value="5648293">5648293</option>

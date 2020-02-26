@@ -6,9 +6,83 @@
     <title>Agregar Clientes</title>
     <script type="text/javascript">
       function usuarioCreado() {
-        alert("El usuario ha sido creado con éxito.");
-        history.go(-1);
+        if (valida()) {
+          alert("El usuario ha sido creado con éxito.");
+          history.go(-1);
+        } else {
+          alert("Hubo un error creando el usuario.");
+        }
       }
+    </script>
+    <script>
+         function Agregar() {
+        var contraseña = prompt("Ingresa tu contraseña");
+        if (contraseña) {
+          var val = valida();
+          if (val) {
+            var modificar = window.confirm("¿Agregar?");
+            if (modificar) {
+              alert("Agregado con exito");
+              history.go(-1);
+            } else {
+              return 0;
+            }
+          } else {
+            return 0;
+          }
+        } else {
+          alert("Contraseña Equivocada");
+          return 0;
+        }
+      }
+      function valida() {
+        if(verificarRfc(document.cliente.rfcCliente.value)){
+          document.cliente.rfcCliente.focus();
+          return false;
+        };
+        if(document.cliente.rSocial.value.length == 0){
+          document.cliente.rSocial.focus();
+          return false;
+        };
+        if(document.cliente.contacto.value.length == 0 ){
+          document.cliente.contacto.focus();
+          return false;
+        };
+        if(document.cliente.email.value.length == 0){
+          document.cliente.email.focus();
+          return false;
+
+        };
+        if(document.cliente.tel.value.length == 0){
+          document.cliente.tel.focus();
+          return false;
+        };
+        if(document.cliente.calle.value.length == 0){
+          document.cliente.calle.focus();
+          return false;
+
+        };
+        if(document.cliente.nExt.value.length == 0 ){
+          document.cliente.nExt.focus();
+          return false;
+
+        };
+        if(document.cliente.localidad.value.length == 0){
+          document.cliente.localidad.focus();
+          return false;
+
+        };
+        if(document.cliente.municipio.value.length == 0 ){
+          document.cliente.municipio.focus();
+          return false;
+        };
+        if(document.cliente.estado.value.length == 0){
+          document.cliente.estado.focus();
+          return false;
+
+        };
+        return true;
+        }
     </script>
   </head>
   <body>
@@ -18,13 +92,13 @@
         <tr>
           <td>RFC:</td>
           <td>
-            <input type="text" name="rfc_cliente" placeholder="RFC" />
+            <input type="text" name="rfcCliente" placeholder="RFC" />
           </td>
         </tr>
         <tr>
           <td>Razon Social:</td>
           <td>
-            <input type="text" name="r_social" placeholder="Razon Social" />
+            <input type="text" name="rSocial" placeholder="Razon Social" />
           </td>
         </tr>
         <tr>

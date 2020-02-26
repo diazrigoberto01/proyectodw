@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="img/logoemp/favicon.ico" />
     <link rel="icon" type="image/gif" href="img/logoemp/animated_favicon1.gif" />
+    <script type="text/javascript">
+      function verificar() {
+        var usuario = document.sesion.usuario.value;
+        var contrasena = document.sesion.passwd.value;
+        if (usuario == 'Admin' && contrasena == 'admin') {
+          // Magic
+          return 0;
+        }
+        if (usuario == 'Auxiliar' && contrasena == 'auxiliar') {
+          // Magic
+          return 0;
+        }
+        alert('Combinación de usuario y contraseña no reconocidos.');
+      }
+    </script>
     <title>Equipo 1</title>
   </head>
   <body>
-    <form action="sesion.html" method="post">
+    <form action="" method="post" name="sesion" onsubmit="verificar()">
       <p>Usuario: </p>
       <input type="text" name="usuario" value="John">
       <p>Contraseña: </p>

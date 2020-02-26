@@ -26,12 +26,12 @@
         }
       }
       function valida() {
-        if(document.cliente.rfc_cliente.value.length == 0 ){
-          document.cliente.rfc_cliente.focus();
+        if(verificarRfc(document.cliente.rfcCliente.value)){
+          document.cliente.rfcCliente.focus();
           return false;
         };
-        if(document.cliente.r_social.value.length == 0){
-          document.cliente.r_social.focus();
+        if(document.cliente.rSocial.value.length == 0){
+          document.cliente.rSocial.focus();
           return false;
         };
         if(document.cliente.contacto.value.length == 0 ){
@@ -52,8 +52,8 @@
           return false;
 
         };
-        if(document.cliente.n_ext.value.length == 0 ){
-          document.cliente.n_ext.focus();
+        if(document.cliente.nExt.value.length == 0 ){
+          document.cliente.nExt.focus();
           return false;
 
         };
@@ -72,7 +72,6 @@
 
         };
         return true;
-
         }
     </script>
   </head>
@@ -84,13 +83,13 @@
         <tr>
           <td>RFC (*):</td>
           <td>
-            <input type="text" name="rfc_cliente" placeholder="RFC" required/>
+            <input type="text" name="rfcCliente" placeholder="RFC" required/>
           </td>
         </tr>
         <tr>
           <td>Razon Social (*):</td>
           <td>
-            <input type="text" name="r_social" placeholder="Razon Social" required/>
+            <input type="text" name="rSocial" placeholder="Razon Social" required/>
           </td>
         </tr>
         <tr>
@@ -121,7 +120,7 @@
         <tr>
           <td>Nº Exterior (*):</td>
           <td>
-            <input type="number" name="n_ext" placeholder="Nº Exterior" required/>
+            <input type="number" name="nExt" placeholder="Nº Exterior" required/>
           </td>
         </tr>
         <tr>

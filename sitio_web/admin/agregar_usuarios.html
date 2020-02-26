@@ -3,18 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="../js/scriptVerificacion.js"></script>
     <title>Document</title>
     <script type="text/javascript">
       function usuarioCreado() {
-        alert("El usuario ha sido creado con éxito.");
-        history.go(-1);
+        var bool = true;
+        bool = bool && verificarApellido(document.nuevo.apellido.value);
+        bool = bool && verificarRfc(document.nuevo.rfc.value);
+        bool = bool && verificarCoincidenciaContrasena(document.nuevo.contra.value, document.nuevo.cContra.value);
+        if (bool) {
+          alert("El usuario ha sido creado con éxito.");
+          history.go(-1);
+        } else {
+          alert("Hubo un error al crear el usuario.");
+          return 0;
+        }
       }
     </script>
   </head>
   <body>
     <h3>Agregar Usuarios</h3>
 
-    <form action="">
+    <form action="" name="nuevo" onsubmit="usuarioCreado()">
       <table align="center">
         <tr>
           <th colspan="3">
@@ -28,18 +38,17 @@
           <td>
             <input
               type="text"
-              name="nombre_cliente"
-              id=""
+              name="nombre"
               placeholder="Nombre"
-            />
+            required/>
           </td>
           <td>
             <input
               type="text"
-              name="apellido_cliente"
+              name="apellido"
               id=""
               placeholder="Apellidos"
-            />
+            required/>
           </td>
         </tr>
         <tr>
@@ -52,27 +61,27 @@
               name="email_usuario"
               id=""
               placeholder="algo@empresa.com"
-            />
+            required/>
           </td>
         </tr>
         <tr>
           <td>
             RFC
           </td>
-          <td><input type="text" name="rfc_usuario" id="" placeholder="RFC"></td>
+          <td><input type="text" name="rfc" id="" placeholder="RFC" required></td>
         </tr>
         <tr>
             <td>
                 Celular
             </td>
             <td>
-                <input type="text" name="cel_usuario" id="" placeholder="Celular">
+                <input type="text" name="cel_usuario" id="" placeholder="Celular" required>
             </td>
         </tr>
         <tr>
             <td>Tipo</td>
             <td>
-                <select name="tipo_usuario" id="">
+                <select name="tipo_usuario" id=_usuario"">
                     <option value="Elegir">Elegir</option>
                     <option value="Admin">Administrador</option>
                     <option value="Aux">Auxiliar</option>
@@ -82,20 +91,20 @@
         <tr>
             <td>Contraseña</td>
             <td>
-                <input type="password" name="contra" id="">
+                <input type="password" name="contra" required>
             </td>
         </tr>
         <tr>
             <td>Confirmar Contraseña</td>
             <td>
-                <input type="password" name="confirmacion_contra" id="">
+                <input type="password" name="cContra" required>
             </td>
         </tr>
         <tr>
             <td colspan="3">
                 <center>
                   <br><br>
-                  <input type="button" value="Agregar" onclick="usuarioCreado()">
+                  <input type="submit" value="Agregar">
                   <input type="button" value="Cancelar" onclick="history.go(-1)">
                 </center>
             </td>

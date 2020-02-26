@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="js/scriptVerificacion.js"></script>
     <title>Agregar Empresa</title>
     <script>
      function Agregar() {
@@ -70,7 +71,7 @@
           document.empresa.n_ext.focus();
           return false;
         };
-        if(document.empresa.cp.value.length == 0){
+        if(verificarCp(document.empresa.cp.value)){
           document.empresa.cp.focus();
           return false;
         };
