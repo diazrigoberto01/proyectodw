@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="lgo_emp" directorySegmentName="seg_0" id="A3E95EEC-3BAC-7108-36A1-3DF5E1C891E0">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:10:40 UTC</createdTime>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<engineerTo>
+<item key="D548AFAE-BE96-8B46-AA1A-E1C828AE125E" value="true"/>
+</engineerTo>
+<sourcePk>59AC36A2-CB0F-9D69-2D25-4222B1C6DD6C</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>es representada</nameOnSource>
+<nameOnTarget>representa</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A002D827-C6CA-7D6E-0DE3-7482E55CC681</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>35E22072-8399-481F-8CEC-447073D9421D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

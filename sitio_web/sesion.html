@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Equipo 1</title>
+  </head>
+  <body>
+    <h2>Crear factura</h2>
+    <hr>
+    <form action="factura-creada.html" method="post">
+      <p>RFC de la empresa: </p>
+      <input type="text" name="rfc-empresa">
+      <p>Régimen fiscal: </p>
+      <input type="text" name="regimen-fiscal">
+      <p>Dirección de la empresa: </p>
+      <input type="text" name="direccion">
+      <p>Folio: </p>
+      <input type="number" name="folio">
+      <p>Lugar: </p>
+      <input type="text" name="lugar">
+      <p>Fecha: </p>
+      <input type="date" name="fecha">
+      <p>RFC del cliente: </p>
+      <input type="text" name="rfc-cliente">
+      <br><br>
+      <table>
+        <tr>
+          <td>Producto</td>
+          <td>Cantidad</td>
+          <td>Unidad de medida</td>
+          <td>Descripción</td>
+          <td>Valor unitario</td>
+        </tr>
+        <tr>
+          <td><input type="text" name="producto1"></td>
+          <td><input type="text" name="cantidad1"></td>
+          <td><input type="text" name="unidad1"></td>
+          <td><textarea name="descipcion1" rows="1" cols="30"></textarea></td>
+          <td><input type="number" name="monto1" value="0.0"></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="producto2"></td>
+          <td><input type="text" name="cantidad2"></td>
+          <td><input type="text" name="unidad2"></td>
+          <td><textarea name="descipcion2" rows="1" cols="30"></textarea></td>
+          <td><input type="number" name="monto2" value="0.0"></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="producto3"></td>
+          <td><input type="text" name="cantidad3"></td>
+          <td><input type="text" name="unidad3"></td>
+          <td><textarea name="descipcion3" rows="1" cols="30"></textarea></td>
+          <td><input type="number" name="monto3" value="0.0"></td>
+        </tr>
+      </table>
+      <p>Método de pago: </p>
+      <input type="radio" name="pago"> Efectivo
+      <input type="radio" name="pago"> Débito
+      <input type="radio" name="pago"> Crédito <br>
+      <p>Condición de pago: </p>
+      <select name="cantidad-pagos">
+        <option value="una">Una exhibición</option>
+        <option value="varias">Varias exhibiciones</option>
+        <option value="msi">Meses sin intereses</option>
+      </select>
+      <br><br>
+      <input type="submit" value="Crear Factura">
+      <input type="reset" value="Reiniciar">
+    </form>
+  </body>
+</html>

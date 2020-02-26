@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="emp_fta" directorySegmentName="seg_0" id="E4F54942-1C5E-0202-592D-41689B769C94">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 13:57:41 UTC</createdTime>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<engineerTo>
+<item key="D548AFAE-BE96-8B46-AA1A-E1C828AE125E" value="true"/>
+</engineerTo>
+<sourcePk>59AC36A2-CB0F-9D69-2D25-4222B1C6DD6C</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>genera</nameOnSource>
+<nameOnTarget>es generada</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A002D827-C6CA-7D6E-0DE3-7482E55CC681</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F26C727C-4606-FE49-E7EA-51C2ADBCDCEB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="123B658B-83CA-DE80-A943-34D4AEB5745D" name="Concepto">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>2F0583FD-87C4-57E5-F732-797B18AB871B</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<abbreviation>Cpto</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="clave" id="E6D681AD-DA2B-6129-70CA-66F412349CC6">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>79605FE9-2779-5E3E-4AEE-427980EEA165</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Id" id="0829FDD0-E18B-CA62-455F-D71A664338F1">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>CF6986D7-12D7-E0D4-9195-706DD8612096</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cescripcion" id="A0A22005-5E77-18CC-7A2F-80547DF6996D">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>80775D5F-3174-5599-AE7D-6ED7629A5485</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="unidad_medida" id="805BD2B4-6C33-0DF2-C0AF-34CFD0E7BFC5">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>B10EB627-29A3-BDC3-B04E-893C594F63D5</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="precio" id="34CE33B8-D7D0-55ED-261B-FDA860C7F8DB">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>73F88F7A-D4C6-45C3-5449-0A68B25CAE4A</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D3B97ECC-E402-E8EF-28C0-67E0C8DB9D31" name="Concepto_PK">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>C8F92440-72DF-183F-17D2-F84F279C75CF</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E6D681AD-DA2B-6129-70CA-66F412349CC6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

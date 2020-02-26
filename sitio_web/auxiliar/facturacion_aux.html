@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facturacion-Admin</title>
+    <script>
+      function Reimprimir(){
+
+        var contraseña=prompt("Ingresa tu contraseña para poder reimprimir");
+        if (contraseña) {
+          alert("En unos segundos tu factura se descargara para su reimpresion")
+
+
+        } else {
+            alert("Contraseña Equivocada")
+          return 0;
+
+
+      }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Administra tus Facturas</h1>
+    <a href="generar_facturaaux.html">Generar Nueva Factura</a>
+    <br />
+
+    <table align="center">
+      <tr>
+        <td>
+          <input type="text" name="buscar" id="" placeholder="Buscar Factura" />
+        </td>
+      </tr>
+    </table>
+
+    <table align="center">
+      <tr>
+        <th colspan="6">
+          <h3>
+            Ultimas Facturas
+          </h3>
+        </th>
+      </tr>
+      <tr>
+        <th>Fecha</th>
+        <th>Folio</th>
+        <th>Cliente RFC</th>
+        <th>Emisor RFC</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td>20/01/2020</td>
+        <td>0905</td>
+        <td>GBDP2012758FJ &nbsp;</td>
+        <td>RFCEMP2309SLF &nbsp;</td>
+        <td>$50,000 &nbsp;</td>
+        <td>
+          <a href="factura_ver.html">
+            <input type="button" value="Ver" />
+          </a>
+
+          <input type="button" value="Reimprimir" onclick="Reimprimir()" />
+        </td>
+      </tr>
+      <tr>
+        <td>20/11/2019</td>
+        <td>0127</td>
+        <td>ARLO457689SL6 &nbsp;</td>
+        <td>RFCEMP2309SLF &nbsp;</td>
+        <td>$126,000 &nbsp;</td>
+        <td>
+          <a href="factura_ver.html">
+            <input type="button" value="Ver" />
+          </a>
+          <input type="button" value="Reimprimir" onclick="Reimprimir()" />
+        </td>
+      </tr>
+      <tr>
+        <td>30/10/2019</td>
+        <td>0057</td>
+        <td>JPA45692GT9 &nbsp;</td>
+        <td>RFCEMP2309SLF &nbsp;</td>
+        <td>$1,000,000 &nbsp;</td>
+        <td>
+          <a href="factura_ver.html">
+            <input type="button" value="Ver">
+         </a>
+          <input
+            type="button"
+            value="Reimprimir"
+            onclick="Reimprimir()"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <a href="generar_facturaaux.html">Inicio</a>
+  </body>
+</html>

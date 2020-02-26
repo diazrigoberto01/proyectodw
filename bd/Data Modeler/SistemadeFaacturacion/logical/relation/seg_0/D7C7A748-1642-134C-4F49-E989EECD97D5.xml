@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="cpto_cpto_fta" directorySegmentName="seg_0" id="D7C7A748-1642-134C-4F49-E989EECD97D5">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 13:59:56 UTC</createdTime>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<engineerTo>
+<item key="D548AFAE-BE96-8B46-AA1A-E1C828AE125E" value="true"/>
+</engineerTo>
+<sourcePk>C8F92440-72DF-183F-17D2-F84F279C75CF</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>es contenido</nameOnSource>
+<nameOnTarget>contiene</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>2F0583FD-87C4-57E5-F732-797B18AB871B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FAFC32F8-14A6-9258-8212-7E0268822090</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,279 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="37C61496-8360-B6D9-2922-8E221578DDF5" name="Factura">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>F26C727C-4606-FE49-E7EA-51C2ADBCDCEB</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<abbreviation>fta</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="folio" id="AAFBD042-C640-AB9D-609B-09149505BBF3">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>A94A122A-10BA-DC3C-B03B-A3C0663341D6</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Rfc_Emisor" id="3A695144-072B-8A89-C85A-67B5030C47F4">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>0ACEE36F-2514-1004-3482-9F53CADD7196</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Direccion_Emisor" id="38B9C4CF-343B-F9B0-CABD-CDE6463AA3C5">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>3F8E11A8-54E0-5368-D0A1-CF04FA3D7EF7</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Lugar_Expedicion" id="5E334214-C936-2D8E-C0FB-7AA08AB2F4DB">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>F191BBC9-86AC-F646-F9E8-0C1BDFB995E6</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_emision" id="95D7494A-982A-A55D-26EB-2FFCE3EA194D">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>E1657580-5884-1BEA-CB08-AF29C6B4E236</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Rfc_Receptor" id="5F3593D3-CC0B-23A5-E99B-1F77EDC643D1">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>4B1B0ED0-949E-33E9-AA13-D34ADD8D9D89</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="metodo_pago" id="4BFAE776-D586-5F01-63EA-D6B61A2FCF02">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>33BB1AAD-BADE-0DCD-9E99-CE986A01F4FA</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cantidad" id="4FDF866D-12CC-33C2-C965-23343D3BFCF3">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>4181BE02-D829-DB09-BEFE-14441746FDB3</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Unidad_Medida" id="7AACB1F8-F5C7-572B-8311-99406CF0C3E1">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>B156EE78-4D8C-900C-0A74-8D90013BF48A</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="EAE01625-8473-0B91-AB06-BF56CA074E38">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>5574E4E1-AE19-C5EB-7C93-437A37A5AA30</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="isr" id="3C202073-BB93-B61B-A268-74F635025C94">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>10DF8C53-333F-F822-7BB7-E40D048D7B3D</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,2,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Valor_unitario" id="A438A3ED-639C-12AC-8BA6-C00D1A14597E">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>5FDDD656-2369-86DD-65A0-9FDC2D1EDD45</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,2,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="importe_total" id="F21CA4A2-28BC-619B-14A9-4574DE776CD8">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>7D08DF46-F923-7624-D6E9-9F7CC81ADF2B</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,3,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Empresa_Rfc" id="C99DED61-F548-0939-2134-4E24278E05F2">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>C0D213B7-7272-FD5A-0B93-BA56F7579F2C</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E6D28395-19E1-7315-DFEA-D502D875BE1D" referredColumn="3BC147BE-8917-06D2-2DD3-098194AD9FDD"/>
+</associations>
+</Column>
+<Column name="Empresa_Usuario_RFC" id="B3D92F19-7965-A037-BCEA-F23EC0533E01">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>4431FA03-0547-E99E-ABDF-9E52DE6E9D2D</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E6D28395-19E1-7315-DFEA-D502D875BE1D" referredColumn="F1C5F5EB-9097-C423-F974-4EA1ED8DE82F"/>
+</associations>
+</Column>
+<Column name="Cliente_Rfc" id="B6ABF213-6134-BACD-4BFA-4640798E80A8">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>37F93D78-CA90-DA44-56F2-9DDFA79BE8BD</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8F625DD6-E06A-8298-8588-02500E89B916" referredColumn="687E3C3E-E4FA-BCBA-8FF9-F189F7C16E3D"/>
+</associations>
+</Column>
+<Column name="Cliente_Usuario_RFC" id="696B3C09-CAA8-A2B7-4091-5E7B4F154720">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>E7313CBA-D6CE-10E8-AEF1-7811B6157315</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8F625DD6-E06A-8298-8588-02500E89B916" referredColumn="82B52FAA-9D5B-49AB-D40A-448DFC1E4274"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A2F2BAB7-1BA3-B161-762A-58BC8121D2A1" name="Factura_PK">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>FB396379-8731-F9BC-7284-95E81F1D30D3</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AAFBD042-C640-AB9D-609B-09149505BBF3"/>
+<colUsage columnID="C99DED61-F548-0939-2134-4E24278E05F2"/>
+<colUsage columnID="B3D92F19-7965-A037-BCEA-F23EC0533E01"/>
+<colUsage columnID="B6ABF213-6134-BACD-4BFA-4640798E80A8"/>
+<colUsage columnID="696B3C09-CAA8-A2B7-4091-5E7B4F154720"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8144F700-7062-1C01-1CD9-18FDD012C1B0" name="Factura_Cliente_FK">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>477B87B2-9F7A-DA87-3AE6-85A3F2984312</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6ABF213-6134-BACD-4BFA-4640798E80A8"/>
+<colUsage columnID="696B3C09-CAA8-A2B7-4091-5E7B4F154720"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DA6F5BC5-B801-29A6-753D-894AB5B33983" name="Factura_Empresa_FK">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>E4F54942-1C5E-0202-592D-41689B769C94</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C99DED61-F548-0939-2134-4E24278E05F2"/>
+<colUsage columnID="B3D92F19-7965-A037-BCEA-F23EC0533E01"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

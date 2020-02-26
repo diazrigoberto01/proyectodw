@@ -1,0 +1,194 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="38D3DF22-37DC-3642-34CE-BDE8107B64C4" name="Dirección_Empresa">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>E17CFD96-4395-7ED8-C282-B3E557EA3962</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="932D6D45-BADB-F0A1-823B-9E0E5F9E681D">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>873D5281-AFAB-1115-DAEC-905ED75EC6AB</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<ownDataTypeParameters>,4,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pais" id="5EC5B0AD-7977-7473-E234-1E36A294E9A9">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>AF90F3A1-9EA2-77AC-69A0-0A68D0844E94</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="estado" id="F1CC9548-CC18-731A-D540-344A9A7E30A4">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>56A1E1B8-8855-318F-01A9-8E39B781998A</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="municipio" id="C10ECEA9-7EF0-C258-02D6-3B9B7E2D1CB3">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>987E6A1B-7750-8893-57E9-EF50534D00DC</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="localidad" id="3A9416D4-E77E-6013-EE86-12E1244D2026">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>CF7CED31-2102-3065-B751-92E05B51F869</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cp" id="75291317-50FC-2DC1-F5F6-95CB1C57FA13">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>AA15F086-5F16-6EE9-3056-8076D1296F68</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="colonia" id="6F9FF846-809F-8B61-5493-4E78552D492C">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>E1BF6CE9-C977-C7BF-66D3-87BE093B740C</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="calle" id="DCEE2A7E-222B-A1D7-B82D-675D754AAF35">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>25E4A26C-1586-78B4-16F0-473D0178F1A9</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="n_exterior" id="C90DBF9D-FE6E-2BB4-C005-250D75957E6F">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>F90309F7-DFEA-D31D-58B3-1AFBE2AEB658</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="n_interior" id="20C50C01-1063-3C82-7859-5F87A0DFAAD1">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>58AEA0AE-322B-831F-169E-1E758F748143</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Empresa_Rfc" id="5B7FD5CE-571B-1F41-F828-748F7CBEA6EF">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>90794F5E-5DBF-FF9B-0B30-436A80B824BF</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="86A96B15-75ED-69A1-EAB9-E4CCE75618BD" referredColumn="3BC147BE-8917-06D2-2DD3-098194AD9FDD"/>
+</associations>
+</Column>
+<Column name="Empresa_Usuario_RFC" id="0222489A-011A-9950-A9D2-308B23E34CFC">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>2EEAAC6E-55DB-2CFB-8366-11CCC3059270</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="86A96B15-75ED-69A1-EAB9-E4CCE75618BD" referredColumn="F1C5F5EB-9097-C423-F974-4EA1ED8DE82F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="59F713BC-9755-1A65-67AC-4F3EB7BA9A19" name="Dirección_Empresa_PK">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>06DC6E5D-4BB2-07DB-F33D-7FD724D0AA50</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="932D6D45-BADB-F0A1-823B-9E0E5F9E681D"/>
+<colUsage columnID="5B7FD5CE-571B-1F41-F828-748F7CBEA6EF"/>
+<colUsage columnID="0222489A-011A-9950-A9D2-308B23E34CFC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FE67B6D9-A703-74E7-47C0-970CC34B9A32" name="Dirección_Empresa_Empresa_FK">
+<createdBy>Mariano Rodríguez</createdBy>
+<createdTime>2020-02-01 16:02:51 UTC</createdTime>
+<generatorID>557F4A11-6EF9-5179-4C27-4EDF306CDB09</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5B7FD5CE-571B-1F41-F828-748F7CBEA6EF"/>
+<colUsage columnID="0222489A-011A-9950-A9D2-308B23E34CFC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

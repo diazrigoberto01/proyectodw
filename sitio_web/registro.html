@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/logoemp/favicon.ico" />
+    <link rel="icon" type="image/gif" href="img/logoemp/animated_favicon1.gif" />
+    <title>Equipo 1</title>
+  </head>
+  <body>
+    <form action="usuario-creado.html" method="post">
+      <p>Usuario: </p>
+      <input type="text" name="usuario" value="John">
+      <p>Contraseña: </p>
+      <input type="password" name="passwd" value="Doe">
+      <p>Confirme su contraseña: </p>
+      <input type="password" name="passwd" value="">
+      <p>Dirección de correo: </p>
+      <input type="email" name="correo" value="john.doe@email.com">
+      <p>Tipo de usuario: </p>
+      <select name="tipo-usuario">
+        <option value="una">Empresa</option>
+        <option value="msi">Usuario</option>
+        <option value="varias">Administrador</option>
+      </select>
+      <br><br>
+      <input type="submit" value="Crear Usuario">
+      <input type="reset" value="Reiniciar">
+      <input type="button" value="Regresar" onclick="history.go(-1)">
+    </form>
+  </body>
+</html>

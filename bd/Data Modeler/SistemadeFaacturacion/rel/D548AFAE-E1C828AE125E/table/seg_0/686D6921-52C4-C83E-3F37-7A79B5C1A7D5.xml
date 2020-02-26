@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="686D6921-52C4-C83E-3F37-7A79B5C1A7D5" name="Logo">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>35E22072-8399-481F-8CEC-447073D9421D</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<abbreviation>Lgo</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="0EDCE61A-1337-9789-3448-1BB322F0E059">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>1CC26C8F-D4A6-9EBC-A219-7F580E0FB9E8</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="imagen" id="38C53080-909C-E61B-5759-C55FC5538C1A">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>946AAA41-2D5F-E16D-7C2B-BCF24D64A9FA</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="A0148334-A88A-3123-91FB-B5C689E01DAC">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>9477726E-087B-C59A-B291-ACF010AA98B7</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha" id="27AE9795-23D6-2335-1F00-3EBA2F46D777">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:11:27 UTC</createdTime>
+<generatorID>AB593026-D530-25AB-D4C3-372B11CDD0AE</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Empresa_Rfc" id="80C95F2D-3CFF-B1FA-EDE2-253F58F6A8DB">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:11:27 UTC</createdTime>
+<generatorID>C3F2E948-D287-1395-4ABC-63E5577F54A6</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F8EE3008-9C8F-8852-C377-1B206F8455D8" referredColumn="3BC147BE-8917-06D2-2DD3-098194AD9FDD"/>
+</associations>
+</Column>
+<Column name="Empresa_Usuario_RFC" id="CBD8A82E-91DC-4659-10DA-F49904BAEEF9">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:11:27 UTC</createdTime>
+<generatorID>CFF702D6-D8BB-B0ED-EF7A-237F3DE142F2</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F8EE3008-9C8F-8852-C377-1B206F8455D8" referredColumn="F1C5F5EB-9097-C423-F974-4EA1ED8DE82F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="97B9A181-BE99-7BC7-63C8-7753A6D27C3C" name="Logo_PK">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:49 UTC</createdTime>
+<generatorID>C62CB58A-4874-F548-2BD7-F6C4F105619E</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0EDCE61A-1337-9789-3448-1BB322F0E059"/>
+<colUsage columnID="80C95F2D-3CFF-B1FA-EDE2-253F58F6A8DB"/>
+<colUsage columnID="CBD8A82E-91DC-4659-10DA-F49904BAEEF9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A07B556B-75DE-5262-B7FF-78A2AE9B33E0" name="Logo__IDX">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:05:50 UTC</createdTime>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>A0CA47A8-594F-D33A-FFA8-01D6DA669274</relationGeneratorID>
+</ind_PK_UK>
+<ind_PK_UK id="86DADB45-4A13-F2FC-C9B9-8D886E9C1F9C" name="Logo_Empresa_FK">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 14:11:27 UTC</createdTime>
+<generatorID>A3E95EEC-3BAC-7108-36A1-3DF5E1C891E0</generatorID>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="80C95F2D-3CFF-B1FA-EDE2-253F58F6A8DB"/>
+<colUsage columnID="CBD8A82E-91DC-4659-10DA-F49904BAEEF9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

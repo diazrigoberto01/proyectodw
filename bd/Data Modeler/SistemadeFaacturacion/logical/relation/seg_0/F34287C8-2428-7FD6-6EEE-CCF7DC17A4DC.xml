@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="usr_cte" directorySegmentName="seg_0" id="F34287C8-2428-7FD6-6EEE-CCF7DC17A4DC">
+<createdBy>rigobertomartinezdiaz</createdBy>
+<createdTime>2020-02-01 13:55:15 UTC</createdTime>
+<ownerDesignName>SistemadeFaacturacion</ownerDesignName>
+<engineerTo>
+<item key="D548AFAE-BE96-8B46-AA1A-E1C828AE125E" value="true"/>
+</engineerTo>
+<sourcePk>003A7A91-BE34-4FA6-4553-EAC3BBBCBFCD</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>ingresa</nameOnSource>
+<nameOnTarget>es ingresado</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>17E5DAC2-46AB-5FCA-262E-09E129295BBD</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>180E7606-ECA3-E616-59AF-48F97244DC40</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
