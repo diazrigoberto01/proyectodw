@@ -7,19 +7,20 @@
   <body align="center">
     <form action="factura-creada.html" method="POST">
       <table align="center">
-        <th colspan="6">
-          <center>
-            <h3>
-              Crea tu Factura
-            </h3>
-          </center>
-          
-        </th>
+        <tr>
+          <th colspan="6">
+            <center>
+              <h3>
+                Crea tu Factura
+              </h3>
+            </center>
+          </th>
+        </tr>
 
         <tr>
           <td><p>RFC de la empresa:</p></td>
           <td>
-            <select name="rfc-Emisor" id="">
+            <select name="rfc-Emisor">
               <option value="RFCEMP2309SLF">RFCEMP2309SLF</option>
               <option value="EMPRFC1234SL">EMPRFC1234SL</option>
               <option value="ROMA980547sl4">ROMA980547sl4</option>
@@ -33,7 +34,7 @@
         <tr>
           <td><p>RFC del cliente:</p></td>
           <td>
-            <select name="rfc-cliente" id="">
+            <select name="rfc-cliente">
               <option value="GBDP2012758FJ">GBDP2012758FJ</option>
               <option value="JPA45692GT9">JPA45692GT9</option>
               <option value="ARLO457689SL6">ARLO457689SL6</option>
@@ -43,17 +44,15 @@
           <td><input type="text" name="nombre_cliente" /></td>
           <td>Uso de CFDI</td>
           <td>
-            <input type="text" name="cfdi" id="" placeholder="CFDI" />
+            <input type="text" name="cfdi" placeholder="CFDI" />
           </td>
         </tr>
         <tr>
           <td><p>Fecha:</p></td>
-          <td><input type="date" name="fecha" /></td>
+          <td><input type="date" name="fecha"/></td>
           <td><p>Lugar:</p></td>
-          <td><input type="text" name="lugar" /></td>
+          <td><input type="text" name="lugar"/></td>
         </tr>
-        <tr></tr>
-        <tr></tr>
       </table>
 
       <br /><br />
@@ -67,7 +66,7 @@
         </tr>
         <tr>
           <td>
-            <select name="clave-producto" id="">
+            <select name="clave-producto">
               <option value="72151302">72151302</option>
               <option value="721523">721523</option>
               <option value="5648293">5648293</option>
@@ -75,12 +74,12 @@
           </td>
           <td><input type="number" name="cantidad1" /></td>
           <td><input type="text" name="unidad1" /></td>
-          <td><textarea name="descipcion1" rows="1" cols="30"></textarea></td>
+          <td><textarea name="descripcion1" rows="1" cols="30"></textarea></td>
           <td><input type="number" name="monto1" value="0.0" /></td>
         </tr>
         <tr>
           <td>
-            <select name="clave-producto" id="">
+            <select name="clave-producto">
               <option value="72151302">72151302</option>
               <option value="721523">721523</option>
               <option value="5648293">5648293</option>
@@ -88,12 +87,12 @@
           </td>
           <td><input type="number" name="cantidad2" /></td>
           <td><input type="text" name="unidad2" /></td>
-          <td><textarea name="descipcion2" rows="1" cols="30"></textarea></td>
+          <td><textarea name="descripcion2" rows="1" cols="30"></textarea></td>
           <td><input type="number" name="monto2" value="0.0" /></td>
         </tr>
         <tr>
           <td>
-            <select name="clave-producto" id="">
+            <select name="clave-producto">
               <option value="72151302">72151302</option>
               <option value="721523">721523</option>
               <option value="5648293">5648293</option>
@@ -101,7 +100,7 @@
           </td>
           <td><input type="number" name="cantidad3" /></td>
           <td><input type="text" name="unidad3" /></td>
-          <td><textarea name="descipcion3" rows="1" cols="30"></textarea></td>
+          <td><textarea name="descripcion3" rows="1" cols="30"></textarea></td>
           <td><input type="number" name="monto3" value="0.0" /></td>
         </tr>
       </table>
@@ -119,7 +118,6 @@
       <br /><br />
       <input type="submit" value="Crear Factura" />
       <input type="reset" value="Reiniciar" />
-   
     </form>
   </body>
 </html>

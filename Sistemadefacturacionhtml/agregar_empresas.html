@@ -7,15 +7,14 @@
   </head>
   <body>
     <h1>Agregar Empresa</h1>
-    <table>
-      <form action="" method="POST">
+    <form action="" method="POST">
+      <table>
         <tr>
           <td>Nombre o Razon Social</td>
           <td colspan="2">
             <input
               type="text"
               name="razon_social"
-              id=""
               placeholder="Ingresa la razon social"
               size="43"
             />
@@ -28,7 +27,6 @@
             <input
               type="text"
               name="nombre_comercial"
-              id=""
               placeholder="Ingresa el nombre Comercial"
               size="43"
             />
@@ -39,16 +37,14 @@
           <td>
             <input
               type="text"
-              name="contacto_nombre"
-              id=""
+              name="nombre"
               placeholder="Nombre"
             />
           </td>
           <td>
             <input
               type="text"
-              name="contacto_apellido"
-              id=""
+              name="apellido"
               placeholder="Apellido"
             />
           </td>
@@ -57,64 +53,63 @@
           <td>Telefono:</td>
           <td colspan="2" >
             <input
-              type="text"
+              type="tel"
               name="telefono"
-              id=""
               placeholder="Telefono fijo"
             />
           </td>
         </tr>
         <tr>
           <td>Email:</td>
-          <td><input type="text" name="email" id="" placeholder="Email" /></td>
+          <td><input type="email" name="email" placeholder="Email" required/></td>
         </tr>
         <tr>
           <td>Pais</td>
-          <td><input type="text" name="pais" id="" placeholder="Pais" /></td>
+          <td><input type="text" name="pais" placeholder="Pais" /></td>
         </tr>
         <tr>
           <td>Estado</td>
           <td>
-            <input type="text" name="estado" id="" placeholder="Estado" />
+            <input type="text" name="estado" placeholder="Estado" />
           </td>
         </tr>
         <tr>
           <td>Municipio</td>
           <td>
-            <input type="text" name="municipio" id="" placeholder="Municipio" />
+            <input type="text" name="municipio" placeholder="Municipio" />
           </td>
         </tr>
         <tr>
           <td>Localidad</td>
           <td>
-            <input type="text" name="localidad" id="" placeholder="Localidad" />
+            <input type="text" name="localidad" placeholder="Localidad" />
           </td>
         </tr>
         <tr>
           <td>Calle</td>
-          <td><input type="text" name="calle" id="" placeholder="Calle" /></td>
+          <td><input type="text" name="calle" placeholder="Calle" /></td>
         </tr>
         <tr>
           <td>Nº Exterior</td>
           <td>
-            <input type="text" name="n_ext" id="" placeholder="Nº Exterior" />
+            <input type="text" name="n_ext" placeholder="Nº Exterior" />
           </td>
         </tr>
         <tr>
           <td>Nº Interior</td>
           <td>
-            <input type="text" name="n_int" id="" placeholder="Nº Interior" />
+            <input type="text" name="n_int" placeholder="Nº Interior" />
           </td>
         </tr>
         <tr>
           <td>Localidad</td>
           <td>
-            <input type="text" name="localidad" id="" placeholder="Localidad" />
+            <input type="text" name="localidad" placeholder="Localidad" />
           </td>
         </tr>
         <tr>
           <td>CP</td>
-          <td><input type="text" name="cp" id="" placeholder="CP" /></td>
+          <td><input type="text" name="cp" placeholder="CP" maxlength="5"/></td>
         </tr>
         <tr>
           <td>Referencia</td>
@@ -122,7 +117,6 @@
             <input
               type="text"
               name="referencia"
-              id=""
               placeholder="Entre que calle y que calle"
               size=42
             />
@@ -131,18 +125,18 @@
         <tr>
           <td>Imagen:</td>
           <td colspan="2">
-            <input type="file" name="imagen" id="" placeholder="Sube aqui el logo">
+            <input type="file" name="imagen" placeholder="Sube aqui el logo">
           </td>
         </tr>
-      
+
 
       <tr>
         <td colspan="2"><center>
             <input type="submit" value="Agregar" /></td>
         </center>
       </tr>
+      </table>
     </form>
-    </table>
 
     <a href="empresas_admin.html" target="principal">Regresar</a>
   </body>
