@@ -13,8 +13,6 @@
         var boolCoincidencia = verificarCoincidenciaContrasena(document.nuevoUsuario.passwd.value, document.nuevoUsuario.passwd1.value);
         var bool = boolUsuario && boolPass && boolCoincidencia;
         if (bool == true) {
-          alert("Usuario creado, debe ser verificado por el administrador.");
-          location.href="inicio.html";
           return 0;
         } else {
           alert("Hubo un error creando el usuario.")
@@ -25,7 +23,7 @@
     <title>Equipo 1</title>
   </head>
   <body>
-    <form action="" method="post" name="nuevoUsuario" onsubmit="verificar()">
+    <form action="comun/registro.php" method="post" name="nuevoUsuario" onsubmit="return verificar()">
       <p>Usuario: </p>
       <input type="text" name="usuario" value="John" required>
       <p>Contraseña: </p>

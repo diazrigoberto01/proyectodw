@@ -8,37 +8,26 @@
     <script type="text/javascript">
       function verificar() {
         var usuario = document.sesion.usuario.value;
-        var contrasena = document.sesion.passwd.value;
-        if (usuario == 'Admin' && contrasena == 'admin') {
-          // Magic
+        var contrasena = document.sesion.clave.value;
+        if (document.sesion.usuario.value.length > 8 && document.sesion.clave.value.length > 3) {
           return 0;
         }
-        if (usuario == 'Auxiliar' && contrasena == 'auxiliar') {
-          // Magic
-          return 0;
-        }
-        alert('Combinación de usuario y contraseña no reconocidos.');
+        alert('Por favor introduzca un correo y contraseña válidos.');
       }
     </script>
     <title>Equipo 1</title>
   </head>
   <body>
-    <form action="" method="post" name="sesion" onsubmit="verificar()">
+    <form action="comun/autenticacion.php" method="post" name="sesion" onsubmit="return verificar()">
       <p>Usuario: </p>
-      <input type="text" name="usuario" value="John">
+      <input type="email" name="usuario" value="" required>
       <p>Contraseña: </p>
-      <input type="password" name="passwd" value="">
+      <input type="password" name="clave" value="" required>
       <br>
       <br>
       <br>
       <input type="submit" value="Iniciar Sesión">
       <input type="button" value="Regresar" onclick="history.go(-1)">
-      <!-- Temporal -->
-      <br>
-      <br>
-      <a href="admin/principal.html" target="_top">Administrador</a>
-      <a href="auxiliar/principal.html" target="_top">Auxiliar</a>
-      <!-- Fin Temporal -->
     </form>
   </body>
 </html>
