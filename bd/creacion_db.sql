@@ -8,7 +8,6 @@ CREATE TABLE f_cliente (
   email         VARCHAR(120) NOT NULL,
   usuario_rfc   VARCHAR(30) NOT NULL,
   PRIMARY KEY(id)
-  FOREIGN KEY(usuario_rfc) REFERENCES f_usuario(rfc)
 );
 
 CREATE TABLE f_concepto (
@@ -28,7 +27,6 @@ CREATE TABLE f_concepto_facturado (
   factura_cliente_rfc          VARCHAR(255) NOT NULL,
   factura_cliente_usuario_rfc  VARCHAR(255) NOT NULL,
   fecha                        DATE NOT NULL
-  CONSTRAINT pk_concepto_facturado PRIMARY KEY (factura_folio, factura_empresa_rfc)
 );
 
 CREATE TABLE f_empresa (
@@ -60,7 +58,7 @@ CREATE TABLE f_direccion_empresa (
   estado               VARCHAR(30) NOT NULL,
   municipio            VARCHAR(50) NOT NULL,
   localidad            VARCHAR(50),
-  cp                   NUMBER(5) NOT NULL,
+  cp                   NUMERIC(5) NOT NULL,
   colonia              VARCHAR(50) NOT NULL,
   calle                VARCHAR(30) NOT NULL,
   n_exterior           VARCHAR(50) NOT NULL,
@@ -68,7 +66,6 @@ CREATE TABLE f_direccion_empresa (
   empresa_rfc          VARCHAR(255) NOT NULL,
   empresa_usuario_rfc  VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
-  FOREIGN KEY(empresa_rfc) REFERENCES f_empresa(rfc)
 );
 
 CREATE TABLE f_logo (
@@ -78,7 +75,6 @@ CREATE TABLE f_logo (
   fecha                DATE NOT NULL,
   empresa_rfc          VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
-  FOREIGN KEY(empresa_rfc) REFERENCES f_empresa(rfc)
 );
 
 CREATE TABLE f_factura (
@@ -100,9 +96,7 @@ CREATE TABLE f_factura (
   empresa_usuario_rfc  VARCHAR(255) NOT NULL,
   cliente_rfc          VARCHAR(255) NOT NULL,
   cliente_usuario_rfc  VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY(empresa_rfc) REFERENCES f_empresa(rfc),
-  FOREIGN KEY(cliente_rfc) REFERENCES f_cliente(rfc)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE f_usuario (
@@ -114,7 +108,7 @@ CREATE TABLE f_usuario (
   password     VARCHAR(255) NOT NULL,
   celular      VARCHAR(255) NOT NULL,
   tel_fijo     VARCHAR(255),
-  tipo         VARCHAR(15) NOT NULL,
-  usuario_rfc  VARCHAR(255) NOT NULL,
+  tipo         VARCHAR(15),
+  usuario_rfc  VARCHAR(255),
   PRIMARY KEY (id)
 );

@@ -7,20 +7,19 @@
     <link rel="icon" type="image/gif" href="img/logoemp/animated_favicon1.gif" />
     <script type="text/javascript">
       function verificar() {
-        var usuario = document.sesion.usuario.value;
-        var contrasena = document.sesion.clave.value;
-        if (document.sesion.usuario.value.length > 8 && document.sesion.clave.value.length > 3) {
+        if (document.sesion.email.value.length > 8 && document.sesion.clave.value.length > 3) {
           return 0;
         }
         alert('Por favor introduzca un correo y contraseña válidos.');
+        return 1;
       }
     </script>
     <title>Equipo 1</title>
   </head>
   <body>
-    <form action="comun/autenticacion.php" method="post" name="sesion" onsubmit="return verificar()">
+    <form action="comun/autenticacion.php" method="post" name="sesion" onsubmit="return verificar()" target="_parent">
       <p>Usuario: </p>
-      <input type="email" name="usuario" value="" required>
+      <input type="email" name="email" value="" required>
       <p>Contraseña: </p>
       <input type="password" name="clave" value="" required>
       <br>
