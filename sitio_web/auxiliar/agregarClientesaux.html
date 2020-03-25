@@ -78,7 +78,7 @@
   <body>
     <h1>Agregar Clientes</h1>
 
-    <form action="" method="POST" name="cliente">
+    <form name="cliente" action="../comun/add_cliente.php" method="post" onsubmit="return Agregar()" target="_parent">
       <table>
         <tr>
           <td>RFC (*):</td>
@@ -90,14 +90,6 @@
           <td>Razon Social (*):</td>
           <td>
             <input type="text" name="rSocial" placeholder="Razon Social" required/>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Contacto (*):
-          </td>
-          <td>
-            <input type="text" name="contacto" placeholder="Contacto" required/>
           </td>
         </tr>
         <tr>
@@ -144,7 +136,8 @@
             Imagen:
           </td>
           <td>
-            <input type="file" name="imagen" placeholder="Sube aqui el logo">
+            <input type="file" name="imagen" placeholder="Sube aqui el logo" disabled>
+            <input type="hidden" name="tipo" value="auxiliar">
           </td>
         </tr>
 

@@ -1,4 +1,3 @@
-
 CREATE TABLE f_usuario (
   id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
   rfc          VARCHAR(255) NOT NULL,
@@ -19,14 +18,13 @@ CREATE TABLE f_cliente (
   calle         VARCHAR(50) NOT NULL,
   cp            VARCHAR(5) NOT NULL,
   estado        VARCHAR(30) NOT NULL,
-  municipio   VARCHAR(30) NOT NULL,
-  no_exterior varchar(30) not null,
+  municipio     VARCHAR(30) NOT NULL,
+  no_exterior   varchar(30) not null,
   email         VARCHAR(120) NOT NULL,
-  telefono   VARCHAR(30) NOT NULL,
-  usuario_rfc   VARCHAR(30) NOT NULL,
+  telefono      VARCHAR(30) NOT NULL,
+  usuario_rfc   VARCHAR(30),
   PRIMARY KEY(id)
 );
-
 
 CREATE TABLE f_empresas (
   id                INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -35,13 +33,14 @@ CREATE TABLE f_empresas (
   nombre_comercial  VARCHAR(255) NOT NULL,
   contacto          VARCHAR(255) NOT NULL,
   telefono          VARCHAR(255) NOT NULL,
-  celular           VARCHAR(255) NOT NULL,
+  celular           VARCHAR(255),
   email             VARCHAR(255) NOT NULL,
-  status            CHAR(1) NOT NULL,
-  usuario_rfc       VARCHAR(255) NOT NULL,
-  regimen_fiscal    VARCHAR(255) NOT NULL,
+  status            CHAR(1),
+  usuario_rfc       VARCHAR(255),
+  regimen_fiscal    VARCHAR(255),
   PRIMARY KEY (id)
 );
+
 CREATE TABLE f_direccion_empresa (
   id                   INT UNSIGNED NOT NULL AUTO_INCREMENT,
   pais                 VARCHAR(20) NOT NULL,
@@ -109,7 +108,8 @@ CREATE TABLE f_concepto (
   precio         FLOAT(7,2) NOT NULL,
   PRIMARY KEY (id)
 );
---insercion datos USuario
+
+--insercion datos Usuario
 INSERT INTO f_usuario(rfc, nombre, apellidos, email, pass, celular, tel_fijo, tipo)
 VALUES ('132asd', 'Testy', 'McTest', 'admin@test.com', 'test123', '222-1234567', '222-1234567', 'admin');
 INSERT INTO f_usuario(rfc, nombre, apellidos, email, pass, celular, tel_fijo, tipo)
@@ -118,9 +118,9 @@ VALUES ('132asd', 'Testy Aux', 'McTest', 'aux@test.com', 'test123', '222-1234567
 --INSERCION DE DATOS CLIENTES
 insert into f_cliente(rfc,razon_social,calle,cp,estado,municipio,email,no_exterior,telefono,usuario_rfc)
 values ('GBDP2012758FJ','Gobierno Estatal del Puebla','30 Oriente 3098','72160','Puebla','Puebla','gobpue@gmail.com','9','3456789876','132asd');
-insert into f_cliente(rfc,razon_social,calle,cp,estado,municipio,email,telefono,usuario_rfc)
+insert into f_cliente(rfc,razon_social,calle,cp,estado,municipio,email,no_exterior,telefono,usuario_rfc)
 values ('cli456593gb5','Asfaltos de mexico SA de CV','benito juarez norte 53','95160','Pachuca','Hidalgo','asfmex@gmail.com','10','6667778889','132asd');
-insert into f_cliente(rfc,razon_social,calle,cp,estado,municipio,email,telefono,usuario_rfc)
+insert into f_cliente(rfc,razon_social,calle,cp,estado,municipio,email,no_exterior,telefono,usuario_rfc)
 values ('HUA8956049FG','URBANIZADORA SAN JUAN','2 Oriente 507','72160','Puebla','Puebla','URBASJ@gmail.com','11','4569871234','132asd');
 
 --INSERCION DE DATOS EMPRESA
@@ -177,5 +177,3 @@ insert into f_concepto (clave,descripcion,unidad_medida,precio)
 values ('COLALO','COLADO DE LOSA EN PRIMER NIVEL','M2','2000');
 insert into f_concepto (clave,descripcion,unidad_medida,precio)
 values ('RECAAS','RECUPERADO DE CARPETA ASFALTICA','M2','3000');
-
-

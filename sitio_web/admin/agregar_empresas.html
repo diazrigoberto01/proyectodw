@@ -7,8 +7,7 @@
     <script type="text/javascript">
       function empresaCreada() {
         if (valida()) {
-          alert("La empresa ha sida creado con éxito.");
-          history.go(-1);
+          return 0;
         } else {
           alert("Hubo un error creando la empresa.");
         }
@@ -84,32 +83,42 @@
           document.empresa.cp.focus();
           return false;
         };
-        if(document.empresa.referencia.value.length == 0){
+        /*if(document.empresa.referencia.value.length == 0){
           document.empresa.referencia.focus();
           return false;
-        };
+        };*/
         return true;
       }
     </script>
   </head>
   <body>
     <h1>Agregar Empresa</h1>
-    <form action="" method="POST">
+    <form name="empresa" action="../comun/add_empresa.php" method="POST" onsubmit="return empresaCreada()">
       <table>
         <tr>
-          <td>Nombre o Razon Social</td>
+          <td>RFC: </td>
           <td colspan="2">
             <input
               type="text"
-              name="razon_social"
+              name="rfc"
+              placeholder="RFC"
+              size="43"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Nombre o Razon Social: </td>
+          <td colspan="2">
+            <input
+              type="text"
+              name="rSocial"
               placeholder="Ingresa la razon social"
               size="43"
             />
           </td>
-          <td></td>
         </tr>
         <tr>
-          <td>Nombre Comercial</td>
+          <td>Nombre Comercial: </td>
           <td colspan="2">
             <input
               type="text"
@@ -120,7 +129,7 @@
           </td>
         </tr>
         <tr>
-          <td>Contacto Nombre Completo</td>
+          <td>Contacto Nombre Completo: </td>
           <td>
             <input
               type="text"
@@ -137,7 +146,7 @@
           </td>
         </tr>
         <tr>
-          <td>Telefono:</td>
+          <td>Telefono: </td>
           <td colspan="2" >
             <input
               type="tel"
@@ -147,51 +156,45 @@
           </td>
         </tr>
         <tr>
-          <td>Email:</td>
+          <td>Email: </td>
           <td><input type="email" name="email" placeholder="Email" required/></td>
         </tr>
         <tr>
-          <td>Pais</td>
+          <td>Pais: </td>
           <td><input type="text" name="pais" placeholder="Pais" /></td>
         </tr>
         <tr>
-          <td>Estado</td>
+          <td>Estado: </td>
           <td>
             <input type="text" name="estado" placeholder="Estado" />
           </td>
         </tr>
         <tr>
-          <td>Municipio</td>
+          <td>Municipio: </td>
           <td>
             <input type="text" name="municipio" placeholder="Municipio" />
           </td>
         </tr>
         <tr>
-          <td>Localidad</td>
+          <td>Localidad: </td>
           <td>
             <input type="text" name="localidad" placeholder="Localidad" />
           </td>
         </tr>
         <tr>
-          <td>Calle</td>
+          <td>Calle: </td>
           <td><input type="text" name="calle" placeholder="Calle" /></td>
         </tr>
         <tr>
-          <td>Nº Exterior</td>
+          <td>Nº Exterior: </td>
           <td>
             <input type="text" name="n_ext" placeholder="Nº Exterior" />
           </td>
         </tr>
         <tr>
-          <td>Nº Interior</td>
+          <td>Nº Interior: </td>
           <td>
-            <input type="text" name="n_int" placeholder="Nº Interior" />
-          </td>
-        </tr>
-        <tr>
-          <td>Localidad</td>
-          <td>
-            <input type="text" name="localidad" placeholder="Localidad" />
+            <input type="text" name="n_int" placeholder="Nº Interior" disabled/>
           </td>
         </tr>
         <tr>
@@ -199,33 +202,34 @@
           <td><input type="text" name="cp" placeholder="CP" maxlength="5"/></td>
         </tr>
         <tr>
-          <td>Referencia</td>
+          <td>Referencia: </td>
           <td colspan="2">
             <input
               type="text"
               name="referencia"
               placeholder="Entre que calle y que calle"
               size=42
+              disabled
             />
           </td>
         </tr>
         <tr>
           <td>Imagen:</td>
           <td colspan="2">
-            <input type="file" name="imagen" placeholder="Sube aqui el logo">
+            <input type="file" name="imagen" placeholder="Sube aqui el logo" disabled>
+            <input type="hidden" name="tipo" value="admin">
           </td>
         </tr>
-
-
       <tr>
         <td colspan="2">
           <br><br>
           <center>
-            <input type="button" value="Agregar" onclick="empresaCreada()">
+            <input type="submit" value="Agregar">
             <input type="button" value="Cancelar" onclick="history.go(-1)">
         </center>
       </tr>
       </table>
     </form>
+    <br><br><p>Todos los campos son obligatorios.</p>
   </body>
 </html>

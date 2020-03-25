@@ -88,7 +88,7 @@
   </head>
   <body>
     <h1>Agregar Empresa</h1>
-    <form action="" method="POST" name="empresa">
+    <form name="empresa" action="../comun/add_empresa.php" method="POST" onsubmit="return Agregar()">
       <table>
         <tr>
           <td>Nombre o Razon Social(*)</td>
@@ -200,11 +200,10 @@
         <tr>
           <td>Imagen:(*)</td>
           <td colspan="2">
-            <input type="file" name="imagen" placeholder="Sube aqui el logo" required/>
+            <input type="file" name="imagen" placeholder="Sube aqui el logo" disabled/>
+            <input type="hidden" name="tipo" value="auxiliar">
           </td>
         </tr>
-
-
       <tr>
         <td colspan="2"><center>
             <input type="button" value="Agregar" onclick="Agregar()"/>

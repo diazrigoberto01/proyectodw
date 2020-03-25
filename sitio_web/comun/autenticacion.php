@@ -1,16 +1,10 @@
 <?php
-  function Conectarse() {
-    if (!($link = mysqli_connect("localhost", "proydweb_p2020", "Dw3bp@020", "proydweb_P2020"))) {
-      die('Error conectando: ' . mysqli_connect_error());
-      exit();
-    }
-    return $link;
-  }
+  include "conexion.php";
   $email = $_POST['email'];
   $clave = $_POST['clave'];
   $link = Conectarse();
   echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
-  $resultado = mysqli_query($link, "SELECT * FROM f_usuario WHERE email = '$email' AND password = '$clave'");
+  $resultado = mysqli_query($link, "SELECT * FROM f_usuario WHERE email = '$email' AND pass = '$clave'");
   if ($error = mysqli_error($link)) {
     echo 'Error con la Base de Datos: '.$error;
     ?>
@@ -32,6 +26,6 @@
       header("location: ../auxiliar/principal.html");
     }
   } else {
-    printf("<script>alert('Hubo un error iniciando sesión. No pudimos conseguir la combinación de usuario y contraseña.'); location.href = '../inicio-sesion.html';</script>");
+    printf("<script>alert('Hubo un error iniciando sesión. No pudimos conseguir la combinación de usuario y contraseña.'); location.href = '../index.html';</script>");
   }
 ?>

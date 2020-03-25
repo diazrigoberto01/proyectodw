@@ -7,8 +7,7 @@
     <script type="text/javascript">
       function usuarioCreado() {
         if (valida()) {
-          alert("El usuario ha sido creado con éxito.");
-          history.go(-1);
+          return 0;
         } else {
           alert("Hubo un error creando el usuario.");
         }
@@ -87,34 +86,26 @@
   </head>
   <body>
     <h1>Agregar Clientes</h1>
-    <form action="">
+    <form name="cliente" action="../comun/add_cliente.php" method="post" onsubmit="return usuarioCreado()">
       <table>
         <tr>
-          <td>RFC:</td>
+          <td>RFC: (*)</td>
           <td>
             <input type="text" name="rfcCliente" placeholder="RFC" />
           </td>
         </tr>
         <tr>
-          <td>Razon Social:</td>
+          <td>Razon Social: (*)</td>
           <td>
             <input type="text" name="rSocial" placeholder="Razon Social" />
           </td>
         </tr>
         <tr>
-          <td>
-            Contacto:
-          </td>
-          <td>
-            <input type="text" name="contacto" placeholder="Contacto" />
-          </td>
-        </tr>
-        <tr>
-          <td>Email:</td>
+          <td>Email: (*)</td>
           <td><input type="text" name="email" placeholder="Email" /></td>
         </tr>
         <tr>
-          <td>Telefono:</td>
+          <td>Telefono: (*)</td>
           <td><input type="text" name="tel" placeholder="Telefono" /></td>
         </tr>
         <tr>
@@ -123,37 +114,42 @@
           </td>
         </tr>
         <tr>
-          <td>Calle:</td>
+          <td>Calle: (*)</td>
           <td><input type="text" name="calle" placeholder="Calle" /></td>
         </tr>
         <tr>
-          <td>Nº Exterior</td>
+          <td>Nº Exterior: (*)</td>
           <td>
             <input type="text" name="n_ext" placeholder="Nº Exterior" />
           </td>
         </tr>
         <tr>
-          <td>Localidad:</td>
+          <td>Localidad: (*)</td>
           <td>
             <input type="text" name="localidad" placeholder="Localidad" />
           </td>
         </tr>
         <tr>
           <td>
-            Municipio:
+            Municipio: (*)
           </td>
           <td><input type="text" name="municipio" placeholder="Municipio"></td>
         </tr>
         <tr>
-          <td>Estado:</td>
+          <td>Estado: (*)</td>
           <td><input type="text" name="estado" placeholder="Estado"></td>
         </tr>
         <tr>
+          <td>Código Postal: (*)</td>
+          <td><input type="text" name="cp" placeholder="55110"></td>
+        </tr>
+        <tr>
           <td>
-            Imagen:
+            Imagen: (*)
           </td>
           <td>
-            <input type="file" name="imagen" placeholder="Sube aqui el logo">
+            <input type="file" name="imagen" placeholder="Sube aqui el logo" disabled>
+            <input type="hidden" name="tipo" value="admin">
           </td>
         </tr>
 
@@ -161,12 +157,13 @@
             <td colspan="2" >
                 <br><br>
                 <center>
-                    <input type="button" value="Agregar" onclick="usuarioCreado()">
+                    <input type="submit" value="Agregar">
                     <input type="button" value="Cancelar" onclick="history.go(-1)">
                 </center>
             </td>
         </tr>
     </table>
   </form>
+  <br><br><p>Los campos con (*) son obligatorios.</p>
   </body>
 </html>
