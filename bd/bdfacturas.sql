@@ -9,7 +9,7 @@ CREATE TABLE f_usuario (
   tel_fijo     VARCHAR(255),
   tipo         VARCHAR(15),
   PRIMARY KEY (id)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE f_cliente (
   id            INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -24,7 +24,7 @@ CREATE TABLE f_cliente (
   telefono      VARCHAR(30) NOT NULL,
   usuario_rfc   VARCHAR(30),
   PRIMARY KEY(id)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE f_empresas (
   id                INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -39,7 +39,7 @@ CREATE TABLE f_empresas (
   usuario_rfc       VARCHAR(255),
   regimen_fiscal    VARCHAR(255),
   PRIMARY KEY (id)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE f_direccion_empresa (
   id                   INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -55,7 +55,7 @@ CREATE TABLE f_direccion_empresa (
   empresa_rfc          VARCHAR(255) NOT NULL,
   empresa_usuario_rfc  VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE f_logo (
@@ -65,7 +65,7 @@ CREATE TABLE f_logo (
   fecha                varchar(20) NOT NULL,
   empresa_rfc          VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE f_factura (
@@ -85,7 +85,7 @@ CREATE TABLE f_factura (
   importe_total        FLOAT(3),
   empresa_usuario_rfc  VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -96,7 +96,7 @@ CREATE TABLE f_concepto_facturado (
   concepto_clave               VARCHAR(255) NOT NULL,
   factura_cliente_rfc          VARCHAR(255) NOT NULL,
   fecha                        varchar(255) NOT NULL
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -107,7 +107,7 @@ CREATE TABLE f_concepto (
   unidad_medida  VARCHAR(255) NOT NULL,
   precio         FLOAT(7,2) NOT NULL,
   PRIMARY KEY (id)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --insercion datos Usuario
 INSERT INTO f_usuario(rfc, nombre, apellidos, email, pass, celular, tel_fijo, tipo)
