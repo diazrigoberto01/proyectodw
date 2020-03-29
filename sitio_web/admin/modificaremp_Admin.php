@@ -18,6 +18,16 @@
     </script>
   </head>
   <body>
+    <?php
+    include '../comun/conexion.php';
+    $link = Conectarse();
+    $id_empresa = $_POST['id'];
+    $consulta = mysqli_query($link, "SELECT * FROM f_empresas WHERE id = '$id_empresa'");
+    $datos_empresa = mysqli_fetch_array($consulta);
+    $rfc_empresa = $datos_empresa['rfc'];
+    $consulta_direccion = mysqli_query($link, "SELECT * FROM f_direccion_empresa WHERE empresa_rfc = '$rfc_empresa'");
+    $datos_direccion = mysqli_fetch_array($consulta_direccion);
+    ?>
     <h1>Modificar Empresa</h1>
     <form action="" method="POST">
       <table>
@@ -27,8 +37,7 @@
             <input
               type="text"
               name="razon_social"
-              id=""
-              placeholder="Ingresa la razon social"
+              value="<?php echo $datos_empresa['razon_social']; ?>"
               size="43"
             />
           </td>
@@ -40,8 +49,7 @@
             <input
               type="text"
               name="nombre_comercial"
-              id=""
-              placeholder="Ingresa el nombre Comercial"
+              value="<?php echo $datos_empresa['nombre_comercial']; ?>"
               size="43"
             />
           </td>
@@ -52,16 +60,7 @@
             <input
               type="text"
               name="contacto_nombre"
-              id=""
-              placeholder="Nombre"
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              name="contacto_apellido"
-              id=""
-              placeholder="Apellido"
+              value="<?php echo $datos_empresa['contacto']; ?>"
             />
           </td>
         </tr>
@@ -71,83 +70,62 @@
             <input
               type="text"
               name="telefono"
-              id=""
-              placeholder="Telefono fijo"
+              value="<?php echo $datos_empresa['telefono']; ?>"
             />
           </td>
         </tr>
         <tr>
           <td>Email:</td>
-          <td><input type="text" name="email" id="" placeholder="Email" /></td>
+          <td><input type="text" name="email" value="<?php echo $datos_empresa['email']; ?>" /></td>
         </tr>
         <tr>
           <td>Pais</td>
-          <td><input type="text" name="pais" id="" placeholder="Pais" /></td>
+          <td><input type="text" name="pais" value="<?php echo $datos_direccion['pais']; ?>" /></td>
         </tr>
         <tr>
           <td>Estado</td>
           <td>
-            <input type="text" name="estado" id="" placeholder="Estado" />
+            <input type="text" name="estado" value="<?php echo $datos_direccion['estado']; ?>" />
           </td>
         </tr>
         <tr>
           <td>Municipio</td>
           <td>
-            <input type="text" name="municipio" id="" placeholder="Municipio" />
+            <input type="text" name="municipio" value="<?php echo $datos_direccion['municipio']; ?>" />
           </td>
         </tr>
         <tr>
           <td>Localidad</td>
           <td>
-            <input type="text" name="localidad" id="" placeholder="Localidad" />
+            <input type="text" name="localidad" value="<?php echo $datos_direccion['localidad']; ?>" />
           </td>
         </tr>
         <tr>
           <td>Calle</td>
-          <td><input type="text" name="calle" id="" placeholder="Calle" /></td>
+          <td><input type="text" name="calle" value="<?php echo $datos_direccion['calle']; ?>" /></td>
         </tr>
         <tr>
           <td>Nº Exterior</td>
           <td>
-            <input type="text" name="n_ext" id="" placeholder="Nº Exterior" />
+            <input type="text" name="n_ext" value="<?php echo $datos_direccion['n_exterior']; ?>" />
           </td>
         </tr>
         <tr>
           <td>Nº Interior</td>
           <td>
-            <input type="text" name="n_int" id="" placeholder="Nº Interior" />
-          </td>
-        </tr>
-        <tr>
-          <td>Localidad</td>
-          <td>
-            <input type="text" name="localidad" id="" placeholder="Localidad" />
+            <input type="text" name="n_int" value="<?php echo $datos_direccion['n_interior']; ?>" />
           </td>
         </tr>
         <tr>
           <td>CP</td>
-          <td><input type="text" name="cp" id="" placeholder="CP" /></td>
-        </tr>
-        <tr>
-          <td>Referencia</td>
-          <td colspan="2">
-            <input
-              type="text"
-              name="referencia"
-              id=""
-              placeholder="Entre que calle y que calle"
-              size=42
-            />
-          </td>
+          <td><input type="text" name="cp" value="<?php echo $datos_direccion['cp']; ?>" /></td>
         </tr>
         <tr>
           <td>Imagen:</td>
           <td colspan="2">
-            <input type="file" name="imagen" id="" placeholder="Sube aqui el logo">
+            <input type="file" name="imagen" placeholder="Sube aqui el logo" disabled>
           </td>
         </tr>
-
-
       <tr>
         <td colspan="2">
           <center>
