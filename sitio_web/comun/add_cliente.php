@@ -10,10 +10,11 @@
   $municipio = $_POST['municipio'];
   $cp = $_POST['cp'];
   $estado = $_POST['estado'];
+  $user_rfc = $_POST['usuario_rfc'];
   // Conexión
   $link = Conectarse();
   echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
-  $resultado = mysqli_query($link, "INSERT INTO f_cliente(rfc, razon_social, email, telefono, calle, no_exterior, municipio, cp, estado) VALUES('$rfc', '$razon', '$email', '$telefono', '$calle', '$numero_exterior', '$municipio', '$cp', '$estado')");
+  $resultado = mysqli_query($link, "INSERT INTO f_cliente(rfc, razon_social, email, telefono, calle, no_exterior, municipio, cp, estado,usuario_rfc) VALUES('$rfc', '$razon', '$email', '$telefono', '$calle', '$numero_exterior', '$municipio', '$cp', '$estado','$user_rfc')");
   if ($error = mysqli_error($link)) {
     echo 'Error agregando los datos a la Base de Datos: '.$error;
     ?>
