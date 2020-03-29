@@ -13,10 +13,16 @@
   $numero_exterior = $_POST['n_ext'];
   $localidad = $_POST['localidad'];
   $cp = $_POST['cp'];
+  $rfc_user = $_POST['rfc_usuario'];
   // Conexión
   $link = Conectarse();
   echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
-  $resultado = mysqli_query($link, "INSERT INTO f_empresas(rfc, razon_social, nombre_comercial, contacto, telefono, email) VALUES('$rfc', '$razon', '$nombre_comercial', '$contacto', '$telefono', '$email')");
+  $resultado = mysqli_query($link, "INSERT INTO f_empresas(rfc, razon_social, nombre_comercial, contacto, telefono, email,usuario_rfc) VALUES('$rfc', '$razon', '$nombre_comercial', '$contacto', '$telefono', '$email','$rfc_user')");
+  
+  $resultado1=mysqli_query($link,"INSERT INTO f_direccion_empresa(calle,colonia,municipio,estado,pais,n_exterior,cp,empresa_rfc,empresa_usuario_rfc)
+values ('$calle','$localidad','$municipio','$estado','$pais','$numero_exterior','$cp','$rfc','$rfc_user')") or die(mysqli_error($link));
+
+  
   if ($error = mysqli_error($link)) {
     echo 'Error agregando los datos a la Base de Datos: '.$error;
     ?>
