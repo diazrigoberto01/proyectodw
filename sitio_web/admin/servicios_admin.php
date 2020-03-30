@@ -1,5 +1,5 @@
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,7 +63,7 @@
         </tr>',$row[0], $row[1], $row[2],$row[3]);
       }
 
-      
+
       ?>
 
 <!-- Aqui la parte dinamica de la tabla-->
