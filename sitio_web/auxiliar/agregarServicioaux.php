@@ -53,7 +53,34 @@
   </head>
   <body>
     <h3>Agregar Servicio</h3>
+    <?php
+    include include'../comun/conexion.php';
+        if($_POST){
+        $clave=$_POST['clave_producto'];
+        $descripcion=$_POST['descripcion'];
+        $um=$_POST['um'];
+        $pu=$_POST['pu'];
 
+        $link=Conectarse();
+        $resultado = mysqli_query($link, "INSERT INTO f_concepto(clave,descripcion,unidad_medida,precio)
+         VALUES('$clave', '$descripcion', '$um', '$pu')");
+         //echo $resultado;
+      if ($error = mysqli_error($link)) {
+        echo 'Error agregando los datos a la Base de Datos: '.$error;
+        ?>
+        <br>
+        <br>
+        <?php
+          printf("<script>alert('Algo salio mal')</script>");
+
+        die();
+      }
+      if ($resultado) {
+          printf("<script>alert('El servicio ha sido insertado'); location.href ='servicios_aux.php';</script>");
+    }
+
+        }
+    ?>
     <form action="" method="POST" name="servicio">
     <table>
         <tr>

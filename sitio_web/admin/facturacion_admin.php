@@ -33,7 +33,6 @@
         </td>
       </tr>
     </table>
-
     <table align="center">
       <tr>
         <th colspan="6">
@@ -75,10 +74,7 @@
         </td>
         </tr>',$row[0], $row[1], $row[2], $row[3], $row[4],$row[1]);
       }
-
-
       ?>
-
 <!-- Aqui la parte dinamica de la tabla-->
     </table>
   </body>

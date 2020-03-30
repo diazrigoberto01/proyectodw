@@ -25,15 +25,13 @@
       <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
     </a>
     <br />
-
     <table align="center">
       <tr>
         <td>
-          <input type="text" name="buscar" placeholder="Buscar Factura" />
+          <input type="text" name="buscar" id="" placeholder="Buscar Factura" />
         </td>
       </tr>
     </table>
-
     <table align="center">
       <tr>
         <th colspan="6">
@@ -49,50 +47,34 @@
         <th>Emisor RFC</th>
         <th>Total</th>
       </tr>
-      <tr>
-        <td>20/01/2020</td>
-        <td>0905</td>
-        <td>GBDP2012758FJ &nbsp;</td>
-        <td>RFCEMP2309SLF &nbsp;</td>
-        <td>$50,000 &nbsp;</td>
+<!-- Aqui comienza la parte dinamica de la tabla-->
+      <?php
+      include('../comun/conexion.php'); //conectarse.php ;para el servidor propio
+      $link=Conectarse();
+      $consulta=mysqli_query($link,"Select fecha_emision,folio,rfc_receptor,rfc_emisor,importe_total from f_factura");
+      if($error = mysqli_error($link)){
+        echo "Error buscando los datos en la base de datos: '$error'";
+        ?>
+        <br>
+        <br>
+        <?php
+        die();
+      }
+      while ($row = mysqli_fetch_array($consulta)) {
+        printf('<tr>
+        <td>%s</td>
+        <td>%s</td>
+        <td>%s</td>
+        <td>%s</td>
+        <td>%d</td>
         <td>
-          <a href="factura_ver.html">
-            <input type="button" value="Ver" />
-          </a>
-
-          <input type="button" value="Reimprimir" onclick="Reimprimir()" />
+          <input type="button" value="Ver">
+          <input type="button" value="Cancelar" onclick="cancelarFactura(%s)">
         </td>
-      </tr>
-      <tr>
-        <td>20/11/2019</td>
-        <td>0127</td>
-        <td>ARLO457689SL6 &nbsp;</td>
-        <td>RFCEMP2309SLF &nbsp;</td>
-        <td>$126,000 &nbsp;</td>
-        <td>
-          <a href="factura_ver.html">
-            <input type="button" value="Ver" />
-          </a>
-          <input type="button" value="Reimprimir" onclick="Reimprimir()" />
-        </td>
-      </tr>
-      <tr>
-        <td>30/10/2019</td>
-        <td>0057</td>
-        <td>JPA45692GT9 &nbsp;</td>
-        <td>RFCEMP2309SLF &nbsp;</td>
-        <td>$1,000,000 &nbsp;</td>
-        <td>
-          <a href="factura_ver.html">
-            <input type="button" value="Ver">
-         </a>
-          <input
-            type="button"
-            value="Reimprimir"
-            onclick="Reimprimir()"
-          />
-        </td>
-      </tr>
+        </tr>',$row[0], $row[1], $row[2], $row[3], $row[4],$row[1]);
+      }
+      ?>
+<!-- Aqui la parte dinamica de la tabla-->
     </table>
   </body>
 </html>

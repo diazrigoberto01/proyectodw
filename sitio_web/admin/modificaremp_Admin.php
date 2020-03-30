@@ -4,13 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modificar Empresa</title>
+    <script type="text/javascript">
+    function valida() {
+    if(document.empresa.razon_social.value.length == 0){
+      document.empresa.razon_social.focus();
+      return false;
+    };
+    if(document.empresa.nombre_comercial.value.length == 0){
+      document.empresa.nombre_comercial.focus();
+      return false;
+    };
+    if(document.empresa.contacto_nombre.value.length == 0){
+      document.empresa.contacto_nombre.focus();
+      return false;
+    };
+    if(document.empresa.telefono.value.length == 0 ){
+      document.empresa.telefono.focus();
+      return false;
+    };
+    if(document.empresa.email.value.length == 0){
+      document.empresa.email.focus();
+      return false;
+    };
+    if(document.empresa.pais.value.length == 0){
+      document.empresa.pais.focus();
+      return false;
+    };
+    if(document.empresa.estado.value.length == 0){
+      document.empresa.estado.focus();
+      return false;
+    };
+    if(document.empresa.municipio.value.length == 0){
+      document.empresa.municipio.focus();
+      return false;
+    };
+    if(document.empresa.localidad.value.length == 0){
+      document.empresa.localidad.focus();
+      return false;
+    };
+    if(document.empresa.calle.value.length == 0){
+      document.empresa.calle.focus();
+      return false;
+    };
+    if(document.empresa.n_ext.value.length == 0){
+      document.empresa.n_ext.focus();
+      return false;
+    };
+    if(verificarCp(document.empresa.cp.value)){
+      document.empresa.cp.focus();
+      return false;
+    };
+    if(document.empresa.referencia.value.length == 0){
+      document.empresa.referencia.focus();
+      return false;
+    };
+
+    return true;
+
+  }
+    </script>
   </head>
   <body>
     <h1>Modificar Empresa</h1>
-
     <?php
     if($_GET["id"]){
-      
       $id=$_GET["id"];
       include '../comun/conexion.php';//
       $link = Conectarse();
@@ -34,27 +91,22 @@
         $n_int=$_POST["n_int"];
         $localidad=$_POST["localidad"];
         $cp=$_POST["cp"];
-        
+
         $imagen=$_POST["imagen"];
 
         $update1=mysqli_query($link, "UPDATE f_empresas SET nombre_comercial='$nombreComercial', contacto='$contacto', rfc='$rfc', telefono='$telefono',email='$email' where id='$id'");
         $update2=mysqli_query($link, "UPDATE f_direccion_empresa set calle='$calle',colonia='$localidad',municipio='$municipio',estado='$estado',pais='$pais',n_exterior='$n_ext',cp=$cp,localidad='$localidad'  where empresa_rfc='$row[2]'");
-        if($update1 and $update2){
+        if($update1 and $update2) {
           echo "<script>alert('Actualizacion correcta');
           location.href=empresas_admin.php;
           </script>";
-         
-        }else{
+
+        } else{
           echo "<script> alert('Algo salio mal')</script>";
         }
-
       }
-       
-
-
-  
     ?>
-    <form action="" method="POST">
+    <form action="modificaremp_Admin.php" method="POST" onsubmit="return valida()">
       <table>
         <tr>
           <td>RFC</td>
@@ -152,20 +204,18 @@
           <td>CP</td>
           <td><input type="text" name="cp" id="" placeholder="CP" value="<?php echo $row[11]?>"/></td>
         </tr>
-        
+
         <tr>
           <td>Imagen:</td>
           <td colspan="2">
             <input type="file" name="imagen" id="" placeholder="Sube aqui el logo">
           </td>
         </tr>
-
-
       <tr>
         <td colspan="2">
           <center>
             <br><br>
-            <input type="submit" value="Actualizar" onclick="modificar()"/>
+            <input type="submit" value="Actualizar"/>
             <input type="button" value="Cancelar" onclick="history.go(-1)">
           </center>
         </td>

@@ -8,7 +8,7 @@
   <body>
     <h1>Administra tus Clientes</h1>
 
-    <a href="agregarClientesaux.html">
+    <a href="agregarClientesaux.php">
       <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
     </a>
     <a href="generar_facturaaux.html">
@@ -27,7 +27,7 @@
       <?php
       include '../comun/conexion.php';
       $link = Conectarse();
-      $consulta = mysqli_query($link, "SELECT razon_social, rfc, municipio, telefono FROM f_cliente");
+      $consulta = mysqli_query($link, "SELECT razon_social, rfc, municipio, telefono, id FROM f_cliente");
       if ($error = mysqli_error($link)) {
         echo 'Error buscando los datos en la Base de Datos: '.$error;
         ?>
@@ -38,7 +38,7 @@
       }
       // Éxito
       while ($row = mysqli_fetch_array($consulta)) {
-        printf('<tr><td>Imagen</td><td> %s </td><td> %s </td><td> %s </td><td> %s </td><td><a href="modificarCliente_aux.html"><input type="button" value="Modificar"></a><a href="generar_facturaaux.html"><input type="button" value="Generar Factura"></a></td></tr>', $row[0], $row[1], $row[2], $row[3]);
+        printf('<tr><td>Imagen</td><td> %s </td><td> %s </td><td> %s </td><td> %s </td><td><a href="modificarCliente_aux.php?id='.$row[4].'"><input type="button" value="Modificar"></a><a href="generar_facturaaux.html"><input type="button" value="Generar Factura"></a></td></tr>', $row[0], $row[1], $row[2], $row[3]);
       }
       ?>
     </table>
