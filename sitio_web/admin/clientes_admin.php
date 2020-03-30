@@ -54,7 +54,7 @@
         <td> %s </td>
         <td> %s </td>
         <td>
-        <a href="modificar_cliente.php?id='.$row[4].' target="principal">
+        <a href="modificar_cliente.php?id='.$row[4].'">
         <input type="button" value="Modificar">
         </a><a href="generar_facturaaux.html"><input type="button" value="Generar Factura"></a></td></tr>', $row[0], $row[1], $row[2], $row[3]);
       }

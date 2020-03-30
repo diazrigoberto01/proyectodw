@@ -59,7 +59,6 @@
     <h1>Modificar Clientes</h1>
     <?php
     if($_GET["id"]){
-
       $id=$_GET["id"];
       include '../comun/conexion.php';//
       $link = Conectarse();
@@ -69,7 +68,6 @@
     }else{
       header("Location: clientes_admin.php");
     }
-
     if($_POST){
       echo "voy";
       $rfc = $_POST['rfcCliente'];
@@ -82,16 +80,12 @@
       $municipio = $_POST['municipio'];
       $cp = $_POST['cp'];
       $estado = $_POST['estado'];
-
-
-        $imagen=$_POST["imagen"];
-
-        $update1=mysqli_query($link, "UPDATE f_cliente SET rfc='$rfc', razon_social='$razon', email='$email', telefono='$telefono', calle='$calle', no_exterior='$numero_exterior', municipio='$municipio', cp='$cp', estado='$estado' where id='$id'");
+      $imagen=$_POST["imagen"];
+      $update1=mysqli_query($link, "UPDATE f_cliente SET rfc='$rfc', razon_social='$razon', email='$email', telefono='$telefono', calle='$calle', no_exterior='$numero_exterior', municipio='$municipio', cp='$cp', estado='$estado' where id='$id'");
         if($update1) {
           echo "<script>alert('Actualizacion correcta');
           location.href='clientes_admin.php';
           </script>";
-
         } else {
           echo "<script> alert('Algo salio mal')</script>";
         }
