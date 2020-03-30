@@ -19,7 +19,12 @@
   </head>
   <body>
     <h1>Administra los usuarios</h1>
-    <a href="agregar_usuarios.html">Agregar Usuario</a>
+    <a href="agregar_usuarios.html">
+      <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
+    </a>
+    <a href="crearfactura.html">
+      <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
+    </a>
     <table align="center" border=1>
       <tr>
         <td colspan="6">
@@ -63,11 +68,10 @@
         </tr>',$row[0], $row[1], $row[2],$row[3]);
       }
 
-      
+
       ?>
 
 <!-- Aqui la parte dinamica de la tabla-->
     </table>
-    <a href="crearfactura.html">Inicio</a>
   </body>
 </html>

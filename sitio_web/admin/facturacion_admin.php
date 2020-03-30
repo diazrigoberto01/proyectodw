@@ -27,7 +27,12 @@
   </head>
   <body>
     <h1>Administra tus Facturas</h1>
-    <a href="crearfactura.html">Generar Nueva Factura</a>
+    <a href="crearfactura.html">
+      <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
+    </a>
+    <a href="crearfactura.html">
+      <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
+    </a>
     <br />
 
     <form name="busqueda" action="facturacion_admin.php" method="post">
@@ -87,6 +92,5 @@
       ?>
 <!-- Aqui la parte dinamica de la tabla-->
     </table>
-    <a href="crearfactura.html">Inicio</a>
   </body>
 </html>
