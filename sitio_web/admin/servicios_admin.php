@@ -17,7 +17,12 @@
   </head>
   <body>
     <h1>Administra tus Servicios</h1>
-    <a href="agregar_servicio.php">Agregar Servicio</a>
+    <a href="agregar_servicio.html">
+     <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
+   </a>
+   <a href="crearfactura.html">
+     <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
+   </a>
 
     <table align="center" border=1>
       <tr>
@@ -68,7 +73,5 @@
 
 <!-- Aqui la parte dinamica de la tabla-->
     </table>
-
-    <a href="crearfactura.html">Inicio</a>
   </body>
 </html>
