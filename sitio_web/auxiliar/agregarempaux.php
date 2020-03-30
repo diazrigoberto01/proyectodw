@@ -206,7 +206,7 @@
         </tr>
       <tr>
         <td colspan="2"><center>
-            <input type="button" value="Agregar" onclick="Agregar()"/>
+            <input type="submit" value="Agregar"/>
             <input type="button" value="Cancelar" onclick="history.go(-1)"/>
         </center>
         </td>

@@ -8,12 +8,29 @@
       function modificar(){
         var modificar=window.confirm("¿Seguro que desea modificar?")
         if (modificar) {
-          
-          
+          return valida();
         } else {
           return 0;
-          
         }
+      }
+      function valida() {
+        if(document.servicio.clave_producto.value.length == 0){
+          document.servicio.clave_producto.focus();
+          return false;
+        };
+        if(document.servicio.um.value.length == 0){
+          document.servicio.um.focus();
+          return false;
+        };
+        if(document.servicio.descripcion.value.length == 0 ){
+          document.servicio.descripcion.focus();
+          return false;
+        };
+        if(document.servicio.pu.value.length == 0){
+          document.servicio.pu.focus();
+          return false;
+        };
+        return true;
       }
     </script>
   </head>
@@ -21,45 +38,32 @@
     <h3>Modificar Servicio</h3>
     <?php
     if($_GET["id"]){
-      
       $id=$_GET["id"];
       include '../comun/conexion.php';//
       $link = Conectarse();
       $consulta = mysqli_query($link, "SELECT clave,descripcion,unidad_medida,precio FROM f_concepto where id='$id'");
       $row = mysqli_fetch_array($consulta);
-      //echo $row[6];
     }else{
       header("Location: servicios_admin.php");
     }
 
     if($_POST){
-      //echo "voy";
       $nombre = $_POST['clave_producto'];
       $descripcion = $_POST['descripcion'];
       $unidadmedida = $_POST['um'];
       $pu = $_POST['pu'];
-    
-        
-
         $update1=mysqli_query($link, "UPDATE f_concepto SET clave='$nombre',descripcion='$descripcion',unidad_medida='$unidadmedida',precio='$pu' where id='$id'");
         if($update1){
           echo "<script>alert('Actualizacion correcta');
           location.href='servicios_admin.php';
           </script>";
-         
         }else{
           echo "<script> alert('Algo salio mal')</script>";
         }
-
       }
-       
-
-
-  
     ?>
-
-    <table>
-      <form action="" method="POST">
+      <form action="modificar_Servicio.php" method="POST" onsubmit="return modificar()">
+        <table>
         <tr>
             <td>Clave Producto Servicio</td>
             <td>
@@ -69,9 +73,9 @@
         <tr>
             <td>Descripcion:</td>
             <td><textarea name="descripcion" id="" cols="20" rows="5" noresize >
-            
+
               <?php echo $row[1]?>
-            
+
           </textarea></td>
         </tr>
         <tr>
@@ -86,14 +90,12 @@
         <tr>
             <td colspan="2">
                 <center>
-                     <input type="submit" value="Modificar" onclick="modificar()">
+                     <input type="submit" value="Modificar">
                      <input type="button" value="Cancelar" onclick="history.go(-1)">
                 </center>
-               
             </td>
         </tr>
+      </table>
       </form>
-    </table>
-    
   </body>
 </html>

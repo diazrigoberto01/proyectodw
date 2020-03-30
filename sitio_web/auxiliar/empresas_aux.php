@@ -25,7 +25,7 @@
   </head>
   <body>
     <h1>Administra tus empresas aux</h1>
-    <a href="agregarempaux.html" target="principal">
+    <a href="agregarempaux.php" target="principal">
       <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
     </a>
     <a href="generar_facturaaux.html">
@@ -47,7 +47,7 @@
       <?php
       include '../comun/conexion.php';
       $link = Conectarse();
-      $consulta = mysqli_query($link, "SELECT nombre_comercial, contacto, rfc, telefono FROM f_empresas");
+      $consulta = mysqli_query($link, "SELECT nombre_comercial, contacto, rfc, telefono, id FROM f_empresas");
       if ($error = mysqli_error($link)) {
         echo 'Error buscando los datos en la Base de Datos: '.$error;
         ?>
@@ -58,7 +58,7 @@
       }
       // Éxito
       while ($row = mysqli_fetch_array($consulta)) {
-        printf('<tr><td>Imagen</td><td> %s </td><td> %s </td><td> %s </td><td> %s </td><td><a href="modificaremp_Admin.html" target="principal">
+        printf('<tr><td>Imagen</td><td> %s </td><td> %s </td><td> %s </td><td> %s </td><td><a href="modificarEmpaux.php?id='.$row[4].'" target="principal">
             <input type="button" value="Modificar">
           </a><input type="button" value="Eliminar" onclick="confirmarEliminar()"></td></tr>', $row[0], $row[1], $row[2], $row[3]);
       }

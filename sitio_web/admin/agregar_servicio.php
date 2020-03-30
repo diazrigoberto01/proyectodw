@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +27,7 @@
     </script>
   </head>
   <body>
-    <h3>Agregar Servicio 1</h3>
+    <h3>Agregar Servicio</h3>
 <?php
 include include'../comun/conexion.php';
     if($_POST){
@@ -47,17 +47,16 @@ include include'../comun/conexion.php';
     <br>
     <?php
       printf("<script>alert('Algo salio mal')</script>");
-    
+
     die();
   }
   if ($resultado) {
       printf("<script>alert('El servicio ha sido insertado'); location.href ='servicios_admin.php';</script>");
 }
-        
-    }
 
+    }
 ?>
-    <form action="agregar_servicio.php" method="POST" name="servicio">
+    <form action="agregar_servicio.php" method="POST" name="servicio" onsubmit="return valida()">
       <table>
             <td>Clave Producto Servicio</td>
             <td>
@@ -80,7 +79,7 @@ include include'../comun/conexion.php';
             <td colspan="2">
                 <center>
                   <br><br>
-                   <input type="submit" value="Agregar" onclick="">
+                   <input type="submit" value="Agregar">
                    <input type="button" value="Regresar" onclick="history.go(-1)">
                 </center>
             </td>

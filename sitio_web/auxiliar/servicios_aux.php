@@ -26,14 +26,13 @@
   </head>
   <body>
     <h1>Administra tus Servicios Aux</h1>
-    <a href="agregarServicioaux.html">
+    <a href="agregarServicioaux.php">
       <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
     </a>
     <a href="generar_facturaaux.html">
       <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
     </a>
-
-    <table align="center">
+    <table align="center" border=1>
       <tr>
         <td colspan="5">
           <center>
@@ -44,52 +43,40 @@
         </td>
       </tr>
       <tr>
-        <th>Clave Unidad SAT &nbsp;</th>
         <th>Clave Producto/Servicio &nbsp;</th>
         <th>Nombre de Identificacion &nbsp;</th>
         <th>Descripcion &nbsp;</th>
         <th>Total &nbsp;</th>
       </tr>
-      <tr>
-        <td>E48</td>
-        <td>72151302</td>
-        <td>TRAPIN</td>
-        <td>PINTURA EN MUROS INTERIORES Y PLAFONES</td>
-        <td>$1500</td>
+      <!-- Aqui comienza la parte dinamica de la tabla-->
+      <?php
+      include('../comun/conexion.php'); //'conectarse.php' ;para el servidor propio
+      $link=Conectarse();
+      $consulta=mysqli_query($link,"Select clave,descripcion,unidad_medida,precio,id from f_concepto");
+      if($error = mysqli_error($link)){
+        echo "Error buscando los datos en la base de datos: '$error'";
+        ?>
+        <br>
+        <br>
+        <?php
+        die();
+      }
+      while ($row = mysqli_fetch_array($consulta)) {
+        printf('<tr>
+        <td>%s</td>
+        <td>%s</td>
+        <td>%s</td>
+        <td>%.2f</td>
         <td>
-          <a href="modificaServiciosaux.html">
-            <input type="button" value="Modificar" />
-          </a>
-
-          <input type="button" value="Eliminar" onclick="confirmarEliminar()" />
+        <a href="modificaServiciosaux.php?id='.$row[4].'" target="principal">
+        <input type="button" value="Modificar">
+      </a>
+          <input type="button" value="Eliminar" onclick="confirmarEliminar()">
         </td>
-      </tr>
-      <tr>
-        <td>E50</td>
-        <td>721523</td>
-        <td>RECAAS</td>
-        <td>RECUPERADO DE CARPETA ASFALTICA</td>
-        <td>$3000</td>
-        <td>
-          <a href="modificaServiciosaux.html">
-            <input type="button" value="Modificar" />
-          </a>
-          <input type="button" value="Eliminar" onclick="confirmarEliminar()" />
-        </td>
-      </tr>
-      <tr>
-        <td>C120</td>
-        <td>5648293</td>
-        <td>TRAALG</td>
-        <td>TRABAJOS DE ALBAÑILERIA EN GENERAL</td>
-        <td>$5000</td>
-        <td>
-          <a href="modificaServiciosaux.html">
-            <input type="button" value="Modificar" />
-          </a>
-          <input type="button" value="Eliminar" onclick="confirmarEliminar()" />
-        </td>
-      </tr>
+        </tr>',$row[0], $row[1], $row[2],$row[3]);
+      }
+      ?>
+<!-- Aqui la parte dinamica de la tabla-->
     </table>
   </body>
 </html>
