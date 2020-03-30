@@ -8,8 +8,12 @@
   <body>
     <h1>Administra tus Clientes</h1>
 
-    <a href="generar_facturaaux.html">Inicio</a>
-    <a href="agregarClientesaux.html">Agregar Cliente</a>
+    <a href="agregarClientesaux.html">
+      <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
+    </a>
+    <a href="generar_facturaaux.html">
+      <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
+    </a>
     <br />
     <br />
     <table align="center" border="1">

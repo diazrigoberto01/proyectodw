@@ -25,8 +25,12 @@
   </head>
   <body>
     <h1>Administra tus empresas aux</h1>
-    <a href="agregarempaux.html" target="principal">Agregar</a>
-    <a href="generar_facturaaux.html">Inicio</a>
+    <a href="agregarempaux.html" target="principal">
+      <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
+    </a>
+    <a href="generar_facturaaux.html">
+      <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
+    </a>
 
     <br />
     <br />
