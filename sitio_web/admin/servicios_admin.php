@@ -69,5 +69,7 @@
       ?>
 <!-- Aqui la parte dinamica de la tabla-->
     </table>
+
+    <a href="crearfactura.html">Inicio</a>
   </body>
 </html>

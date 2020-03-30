@@ -18,12 +18,17 @@
   </head>
   <body>
     <h1>Administra tus empresas</h1>
+<<<<<<< HEAD
     <a href="agregar_empresas.html" target="principal">
       <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
     </a>
     <a href="crearfactura.php">
       <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
     </a>
+=======
+    <a href="agregar_empresas.html" target="principal">Agregar</a>
+    <a href="crearfactura.html">Inicio</a>
+>>>>>>> Add files via upload
 
     <br />
     <br />
