@@ -19,12 +19,7 @@
   </head>
   <body>
     <h1>Administra los usuarios</h1>
-    <a href="agregar_usuarios.html">
-      <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
-    </a>
-    <a href="crearfactura.html">
-      <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
-    </a>
+    <a href="agregar_usuarios.php">Agregar Usuario</a>
     <table align="center" border=1>
       <tr>
         <td colspan="6">
@@ -45,7 +40,7 @@
 <?php
       include('../comun/conexion.php'); // ;para el servidor propio
       $link=Conectarse();
-      $consulta=mysqli_query($link,"Select concat(nombre,concat(' ',apellidos)),email,rfc,celular from f_usuario");
+      $consulta=mysqli_query($link,"Select concat(nombre,concat(' ',apellidos)),email,rfc,celular,id from f_usuario");
       if($error = mysqli_error($link)){
         echo "Error buscando los datos en la base de datos: '$error'";
         ?>
@@ -62,16 +57,19 @@
         <td>%s</td>
         <td>%s</td>
         <td>
-          <input type="button" value="Modificar">
+        <a href="modificar_Usuario.php?id='.$row[4].'" target="principal">
+        <input type="button" value="Modificar">
+      </a>
           <input type="button" value="Eliminar" onclick="confirmarEliminar()">
         </td>
         </tr>',$row[0], $row[1], $row[2],$row[3]);
       }
 
-
+      
       ?>
 
 <!-- Aqui la parte dinamica de la tabla-->
     </table>
+    <a href="crearfactura.html">Inicio</a>
   </body>
 </html>

@@ -6,16 +6,7 @@
     <title>Facturacion-Admin</title>
     <script>
       function cancelarFactura(folio){
-        var cancelar=window.confirm("¿Cancelar Folio: "+ folio +"?");
-        if (cancelar) {
-          alert("Cancelado con Exito");
-
-        } else {
-          return 0;
-        }
-      }
-      function verFactura(folio){
-        var cancelar=window.confirm("¿Ver Folio: "+ folio +"?");
+        var cancelar=window.confirm("¿Cancelar Folio: "+folio +"?");
         if (cancelar) {
           alert("Cancelado con Exito");
 
@@ -27,26 +18,18 @@
   </head>
   <body>
     <h1>Administra tus Facturas</h1>
-    <a href="crearfactura.html">
-      <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
-    </a>
-    <a href="crearfactura.html">
-      <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
-    </a>
+    <a href="crearfactura.html">Generar Nueva Factura</a>
     <br />
 
-    <form name="busqueda" action="facturacion_admin.php" method="post">
-      <table align="center">
-        <tr>
-          <td>
-            <input type="text" name="dato" placeholder="Buscar Factura" />
-            <input type="submit" name="enviar" value="Buscar">
-          </td>
-        </tr>
-      </table>
-    </form>
-    <br><br>
-    <table align="center" border="1">
+    <table align="center">
+      <tr>
+        <td>
+          <input type="text" name="buscar" id="" placeholder="Buscar Factura" />
+        </td>
+      </tr>
+    </table>
+
+    <table align="center">
       <tr>
         <th colspan="6">
           <h3>
@@ -63,17 +46,15 @@
       </tr>
 <!-- Aqui comienza la parte dinamica de la tabla-->
       <?php
-      include('../comun/conexion.php');
+      include('../comun/conexion.php'); //conectarse.php ;para el servidor propio
       $link=Conectarse();
-      if ($_POST) {
-        $folio = $_POST['dato'];
-        echo "<script>console.log('Data: ".$folio."')"; // Debugging
-        $consulta = mysqli_query($link,"SELECT fecha_emision,folio,rfc_receptor,rfc_emisor,importe_total FROM f_factura WHERE folio LIKE '$folio%' OR rfc_emisor LIKE '$folio%' OR rfc_emisor LIKE '$folio%'");
-      } else {
-        $consulta=mysqli_query($link,"SELECT fecha_emision,folio,rfc_receptor,rfc_emisor,importe_total FROM f_factura");
-      }
+      $consulta=mysqli_query($link,"Select fecha_emision,folio,rfc_receptor,rfc_emisor,importe_total from f_factura");
       if($error = mysqli_error($link)){
         echo "Error buscando los datos en la base de datos: '$error'";
+        ?>
+        <br>
+        <br>
+        <?php
         die();
       }
       while ($row = mysqli_fetch_array($consulta)) {
@@ -82,15 +63,20 @@
         <td>%s</td>
         <td>%s</td>
         <td>%s</td>
-        <td>%.2f</td>
+        <td>%d</td>
         <td>
-          <input type="button" value="Ver" onclick="verFactura(%s)">
+          <input type="button" value="Ver">
           <input type="button" value="Cancelar" onclick="cancelarFactura(%s)">
         </td>
-        </tr>',$row[0], $row[1], $row[2], $row[3], $row[4],$row[1],$row[1]);
+        </tr>',$row[0], $row[1], $row[2], $row[3], $row[4],$row[1]);
       }
+
+      
       ?>
+
 <!-- Aqui la parte dinamica de la tabla-->
     </table>
+
+    <a href="crearfactura.html">Inicio</a>
   </body>
 </html>

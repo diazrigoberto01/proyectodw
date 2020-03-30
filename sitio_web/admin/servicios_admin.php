@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -17,12 +17,7 @@
   </head>
   <body>
     <h1>Administra tus Servicios</h1>
-    <a href="agregar_servicio.html">
-      <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
-    </a>
-    <a href="crearfactura.html">
-      <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
-    </a>
+    <a href="agregar_servicio.php">Agregar Servicio</a>
 
     <table align="center" border=1>
       <tr>
@@ -44,7 +39,7 @@
 <?php
       include('../comun/conexion.php'); //'conectarse.php' ;para el servidor propio
       $link=Conectarse();
-      $consulta=mysqli_query($link,"Select clave,descripcion,unidad_medida,precio from f_concepto");
+      $consulta=mysqli_query($link,"Select clave,descripcion,unidad_medida,precio,id from f_concepto");
       if($error = mysqli_error($link)){
         echo "Error buscando los datos en la base de datos: '$error'";
         ?>
@@ -60,16 +55,20 @@
         <td>%s</td>
         <td>%.2f</td>
         <td>
-          <input type="button" value="Modificar">
+        <a href="modificar_Servicio.php?id='.$row[4].'" target="principal">
+        <input type="button" value="Modificar">
+      </a>
           <input type="button" value="Eliminar" onclick="confirmarEliminar()">
         </td>
         </tr>',$row[0], $row[1], $row[2],$row[3]);
       }
 
-
+      
       ?>
 
 <!-- Aqui la parte dinamica de la tabla-->
     </table>
+
+    <a href="crearfactura.html">Inicio</a>
   </body>
 </html>

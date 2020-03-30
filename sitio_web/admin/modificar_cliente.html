@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modificar Clientes</title>
+    <script>
+      function modificar(){
+        var modificar=window.confirm("¿Seguro que desea modificar?");
+        if (modificar) {
+          alert("Modificado con exito");
+          history.go(-1);
+        } else {
+          return 0;
+
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Modificar Clientes</h1>
+
+    <form action="">
+      <table>
+        <tr>
+          <td>RFC:</td>
+          <td>
+            <input type="text" name="rfc_cliente" id="" placeholder="RFC" />
+          </td>
+        </tr>
+        <tr>
+          <td>Razon Social:</td>
+          <td>
+            <input type="text" name="r_social" placeholder="Razon Social" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Contacto:
+          </td>
+          <td>
+            <input type="text" name="contacto" id="" placeholder="Contacto" />
+          </td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><input type="text" name="email" id="" placeholder="Email" /></td>
+        </tr>
+        <tr>
+          <td>Telefono:</td>
+          <td><input type="text" name="tel" id="" placeholder="Telefono" /></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <center><h3>Direccion</h3></center>
+          </td>
+        </tr>
+        <tr>
+          <td>Calle:</td>
+          <td><input type="text" name="calle" id="" placeholder="Calle" /></td>
+        </tr>
+        <tr>
+          <td>Nº Exterior</td>
+          <td>
+            <input type="text" name="n_ext" id="" placeholder="Nº Exterior" />
+          </td>
+        </tr>
+        <tr>
+          <td>Localidad:</td>
+          <td>
+            <input type="text" name="localidad" id="" placeholder="Localidad" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Municipio:
+          </td>
+          <td><input type="text" name="municipio" id="" placeholder="Municipio"></td>
+        </tr>
+        <tr>
+          <td>Estado:</td>
+          <td><input type="text" name="estado" id="" placeholder="Estado"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2" >
+                <center>
+                  <br><br>
+                  <input type="button" value="Modificar" onclick="modificar()">
+                  <input type="button" value="Cancelar" onclick="history.go(-1)">
+                </center>
+
+            </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
