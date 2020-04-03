@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +14,7 @@
       $id=$_GET["id"];
       include '../comun/conexion.php';//
       $link = Conectarse();
-      $consulta = mysqli_query($link, "SELECT e.nombre_comercial, e.contacto, e.rfc, e.telefono,e.email,de.calle,de.colonia,de.municipio,de.estado,de.pais,de.n_exterior,de.cp FROM f_empresas e inner join f_direccion_empresa de on (e.rfc=de.empresa_rfc)  where e.id='$id'");
+      $consulta = mysqli_query($link, "SELECT e.nombre_comercial, e.contacto, e.rfc, e.telefono,e.email,de.calle,de.colonia,de.municipio,de.estado,de.pais,de.n_exterior,de.cp FROM f_empresas e inner join f_direccion_empresa de on (e.rfc=de.empresa_rfc)  where e.id='$id'") or die(mysqli_error($link));
       $row = mysqli_fetch_array($consulta);
       //echo $row[6];
     }else{
@@ -37,8 +37,8 @@
         
         $imagen=$_POST["imagen"];
 
-        $update1=mysqli_query($link, "UPDATE f_empresas SET nombre_comercial='$nombreComercial', contacto='$contacto', rfc='$rfc', telefono='$telefono',email='$email' where id='$id'");
-        $update2=mysqli_query($link, "UPDATE f_direccion_empresa set calle='$calle',colonia='$localidad',municipio='$municipio',estado='$estado',pais='$pais',n_exterior='$n_ext',cp=$cp,localidad='$localidad'  where empresa_rfc='$row[2]'");
+        $update1=mysqli_query($link, "UPDATE f_empresas SET nombre_comercial='$nombreComercial', contacto='$contacto', rfc='$rfc', telefono='$telefono',email='$email' where id='$id'") or die(mysqli_error($link));
+        $update2=mysqli_query($link, "UPDATE f_direccion_empresa set empresa_rfc='$rfc',calle='$calle',colonia='$localidad',municipio='$municipio',estado='$estado',pais='$pais',n_exterior='$n_ext',cp=$cp,localidad='$localidad'  where empresa_rfc='$row[2]'") or die(mysqli_error($link));
         if($update1 and $update2){
     
          printf("<script>alert('La empresa ha sido modificada.'); location.href = 'empresas_admin.php';</script>");

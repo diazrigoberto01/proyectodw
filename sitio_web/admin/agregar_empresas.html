@@ -1,42 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agregar Empresa</title>
-    <script type="text/javascript">
-      function empresaCreada() {
-        if (valida()) {
-          return 0;
-        } else {
-          alert("Hubo un error creando la empresa.");
-        }
-      }
-    </script>
     <script>
-     function Agregar() {
-        var contraseña = prompt("Ingresa tu contraseña");
-        if (contraseña) {
-          var val = valida();
-          if (val) {
-            var modificar = window.confirm("¿Agregar?");
-            if (modificar) {
-              alert("Agregado con exito");
-              history.go(-1);
-            } else {
-              return 0;
-            }
-          } else {
-            return 0;
-          }
-        } else {
-          alert("Contraseña Equivocada");
-          return 0;
-        }
-      }
+
         function valida() {
-        if(document.empresa.razon_social.value.length == 0){
-          document.empresa.razon_social.focus();
+        if(document.empresa.rfc.value.length == 0){
+          document.empresa.rfc.focus();
+          alert("Campo obligatorio")
+          return false;
+        };
+        if(document.empresa.rSocial.value.length == 0){
+          document.empresa.rSocial.focus();
           return false;
         };
         if(document.empresa.nombre_comercial.value.length == 0){
@@ -79,11 +56,12 @@
           document.empresa.n_ext.focus();
           return false;
         };
+        /*
         if(verificarCp(document.empresa.cp.value)){
           document.empresa.cp.focus();
           return false;
         };
-        /*if(document.empresa.referencia.value.length == 0){
+        if(document.empresa.referencia.value.length == 0){
           document.empresa.referencia.focus();
           return false;
         };*/
@@ -93,8 +71,7 @@
   </head>
   <body>
     <h1>Agregar Empresa</h1>
-    
-    <form name="empresa" action="../comun/add_empresa.php" method="POST" onsubmit="return empresaCreada()">
+    <form name="empresa" action="../comun/add_empresa.php" method="POST" onsubmit="return valida()">
       <table>
         <tr>
           <td>RFC: </td>
@@ -161,6 +138,29 @@
           <td><input type="email" name="email" placeholder="Email" required/></td>
         </tr>
         <tr>
+          <tr>
+            <td>Regimen Fiscal </td>
+            <td>
+              <select name="regimen">
+                <option value="0">Elegir</option>
+                <option value="Asalariados">Asalariados </option> 
+                <option value="Honorarios">
+                   Honorarios (servicios profesionales).
+                </option>
+                <option value="Arrendamiento de inmuebles">
+                  Arrendamiento de inmuebles.
+                </option>
+                <option value="Actividades Empresariales">
+                  Actividades empresariales.
+                </option>
+                <option value="RIF">
+                  Incorporación fiscal.
+                </option>
+
+              </select>
+            </td>
+          </tr>
+          <tr>
           <td>Pais: </td>
           <td><input type="text" name="pais" placeholder="Pais" /></td>
         </tr>
@@ -180,6 +180,12 @@
           <td>Localidad: </td>
           <td>
             <input type="text" name="localidad" placeholder="Localidad" />
+          </td>
+        </tr>
+        <tr>
+          <td>colonia</td>
+          <td>
+            <input type="text" name="colonia" placeholder="colonia" />
           </td>
         </tr>
         <tr>
