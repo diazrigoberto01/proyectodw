@@ -22,12 +22,12 @@
   <body>
     <h1>Modificar Clientes</h1>
     <?php
-    if(true){
+    if($_GET){
       
-      $id=1;//$_GET["id"];
+      $id=$_GET["id"];
       include '../comun/conexion.php';//
       $link = Conectarse();
-      $consulta = mysqli_query($link, "SELECT rfc, razon_social, email, telefono, calle, municipio, cp, estado FROM f_cliente where id='$id'") or die(mysqli_error($link));
+      $consulta = mysqli_query($link, "SELECT * FROM f_cliente where id='$id'") or die(mysqli_error($link));
       $row = mysqli_fetch_array($consulta);
       //echo $row[6];
     }else{
@@ -71,22 +71,22 @@
         <tr>
           <td>RFC:</td>
           <td>
-            <input type="text" name="rfc_cliente" id="" placeholder="RFC" value="<?php echo $row[0]?>"/>
+            <input type="text" name="rfc_cliente" id="" placeholder="RFC" value="<?php echo $row[1]?>"/>
           </td>
         </tr>
         <tr>
           <td>Razon Social:</td>
           <td>
-            <input type="text" name="r_social" placeholder="Razon Social" value="<?php echo $row[1]?>"/>
+            <input type="text" name="r_social" placeholder="Razon Social" value="<?php echo $row[2]?>"/>
           </td>
         </tr>
         <tr>
           <td>Email:</td>
-          <td><input type="text" name="email" id="" placeholder="Email" value="<?php echo $row[2]?>"/></td>
+          <td><input type="text" name="email" id="" placeholder="Email" value="<?php echo $row[8]?>"/></td>
         </tr>
         <tr>
           <td>Telefono:</td>
-          <td><input type="text" name="tel" id="" placeholder="Telefono" value="<?php echo $row[3]?>"/></td>
+          <td><input type="text" name="tel" id="" placeholder="Telefono" value="<?php echo $row[9]?>"/></td>
         </tr>
         <tr>
           <td colspan="2">
@@ -95,13 +95,7 @@
         </tr>
         <tr>
           <td>Calle:</td>
-          <td><input type="text" name="calle" id="" placeholder="Calle" value="<?php echo $row[4]?>"/></td>
-        </tr>
-        <tr>
-          <td>Localidad:</td>
-          <td>
-            <input type="text" name="localidad" id="" placeholder="Localidad" value="<?php echo $row[5]?>"/>
-          </td>
+          <td><input type="text" name="calle" id="" placeholder="Calle" value="<?php echo $row[3]?>"/></td>
         </tr>
         <tr>
           <td>

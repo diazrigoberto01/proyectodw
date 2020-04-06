@@ -7,16 +7,12 @@
     
     <script>
       function valida() {
-        if(document.cliente.rfcCliente.value){
+        if(document.cliente.rfcCliente.value==0){
           document.cliente.rfcCliente.focus();
           return false;
         };
         if(document.cliente.rSocial.value.length == 0){
           document.cliente.rSocial.focus();
-          return false;
-        };
-        if(document.cliente.contacto.value.length == 0 ){
-          document.cliente.contacto.focus();
           return false;
         };
         if(document.cliente.email.value.length == 0){
@@ -33,8 +29,8 @@
           return false;
 
         };
-        if(document.cliente.nExt.value.length == 0 ){
-          document.cliente.nExt.focus();
+        if(document.cliente.n_ext.value.length == 0 ){
+          document.cliente.n_ext.focus();
           return false;
 
         };
@@ -93,12 +89,6 @@
           <td>Nº Exterior: (*)</td>
           <td>
             <input type="text" name="n_ext" placeholder="Nº Exterior" />
-          </td>
-        </tr>
-        <tr>
-          <td>Localidad: (*)</td>
-          <td>
-            <input type="text" name="localidad" placeholder="Localidad" />
           </td>
         </tr>
         <tr>

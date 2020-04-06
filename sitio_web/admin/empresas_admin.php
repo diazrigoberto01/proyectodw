@@ -6,10 +6,10 @@
 
     <title>Empresas-Admin</title>
     <script>
-      function confirmarEliminar(){
-        var confirmar=window.confirm("Seguro que desea eliminar este registro?");
+      function confirmarEliminar(id){
+        var confirmar=window.confirm("Seguro que desea eliminar la empresa con el id: "+id);
         if(confirmar){
-          alert("Eliminado con exito")
+          location.href="eliminaemp.php?id="+id;
         }else{
           return 0;
         }
@@ -61,7 +61,7 @@
         <a href="modificaremp_Admin.php?id='.$row[4].'" target="principal">
             <input type="button" value="Modificar">
           </a>
-          <input type="button" value="Eliminar" onclick="confirmarEliminar()"></td></tr>', $row[0], $row[1], $row[2], $row[3]);
+          <input type="button" value="Eliminar" onclick="confirmarEliminar(%s)"></td></tr>', $row[0], $row[1], $row[2], $row[3],$row[4]);
       }
       ?>
     </table>
