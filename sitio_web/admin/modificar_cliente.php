@@ -101,15 +101,15 @@
           <td>
             Municipio:
           </td>
-          <td><input type="text" name="municipio" id="" placeholder="Municipio" value="<?php echo $row[5]?>"></td>
+          <td><input type="text" name="municipio" id="" placeholder="Municipio" value="<?php echo $row[6]?>"></td>
         </tr>
         <tr>
           <td>Estado:</td>
-          <td><input type="text" name="estado" id="" placeholder="Estado" value="<?php echo $row[7]?>"></td>
+          <td><input type="text" name="estado" id="" placeholder="Estado" value="<?php echo $row[5]?>"></td>
         </tr>
         <tr>
           <td>CP</td>
-          <td><input type="text" name="cp" id="" placeholder="CP" value="<?php echo $row[6]?>"/></td>
+          <td><input type="text" name="cp" id="" placeholder="CP" value="<?php echo $row[4]?>"/></td>
         </tr>
         <tr>
             <td colspan="2" >

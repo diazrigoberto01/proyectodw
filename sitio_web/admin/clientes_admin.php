@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clientes-Admin</title>
     <script>
-      function confirmarEliminar(){
+      function confirmarEliminar(id){
         var confirmar=window.confirm("¿Seguro que desea eliminar este registro?");
         if(confirmar){
-          alert("Eliminado con exito.")
+          location.href='eliminarClientes.php?id='+id;
+       
         }else{
           return 0;
         }
@@ -56,7 +57,11 @@
         <td>
         <a href="modificar_cliente.php?id='.$row[4].'">
         <input type="button" value="Modificar">
-        </a><a href="generar_facturaaux.html"><input type="button" value="Generar Factura"></a></td></tr>', $row[0], $row[1], $row[2], $row[3]);
+        </a>
+        <input type="button" value="Eliminar" onclick=confirmarEliminar(%s)>
+     
+        
+        <a href="generar_facturaaux.html"><input type="button" value="Generar Factura"></a></td></tr>', $row[0], $row[1], $row[2], $row[3],$row[4]);
       }
       ?>
     </table>
