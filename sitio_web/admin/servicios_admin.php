@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Servicios-Admin</title>
     <script>
-      function confirmarEliminar(){
-        var confirmar=window.confirm("Seguro que desea eliminar este registro?");
+      function confirmarEliminar(id){
+        var confirmar=window.confirm("Seguro que desea eliminar este registro:"+id+"?");
         if(confirmar){
-          alert("Eliminado con exito")
+          location.href='eliminarServicio.php?id='+id;
         }else{
           return 0;
         }
@@ -62,9 +62,9 @@
         <a href="modificar_Servicio.php?id='.$row[4].'" target="principal">
         <input type="button" value="Modificar">
       </a>
-          <input type="button" value="Eliminar" onclick="confirmarEliminar()">
+          <input type="button" value="Eliminar" onclick="confirmarEliminar(%s)">
         </td>
-        </tr>',$row[0], $row[1], $row[2],$row[3]);
+        </tr>',$row[0], $row[1], $row[2],$row[3],$row[4]);
       }
       ?>
 <!-- Aqui la parte dinamica de la tabla-->

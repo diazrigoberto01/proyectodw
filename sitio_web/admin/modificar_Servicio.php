@@ -8,14 +8,14 @@
       function modificar(){
         var modificar=window.confirm("¿Seguro que desea modificar?")
         if (modificar) {
-          return valida();
+          valida();
         } else {
           return 0;
         }
       }
       function valida() {
-        if(document.servicio.clave_producto.value.length == 0){
-          document.servicio.clave_producto.focus();
+        if(document.servicio.clave.value.length == 0){
+          document.servicio.clave.focus();
           return false;
         };
         if(document.servicio.um.value.length == 0){
@@ -37,7 +37,7 @@
   <body>
     <h3>Modificar Servicio</h3>
     <?php
-    if($_GET["id"]){
+    if($_GET){
       $id=$_GET["id"];
       include '../comun/conexion.php';//
       $link = Conectarse();
@@ -48,7 +48,10 @@
     }
 
     if($_POST){
-      $nombre = $_POST['clave_producto'];
+      echo "<script>
+      alert('si entro');
+      </script>";
+      $nombre = $_POST['clave'];
       $descripcion = $_POST['descripcion'];
       $unidadmedida = $_POST['um'];
       $pu = $_POST['pu'];
@@ -62,12 +65,12 @@
         }
       }
     ?>
-      <form action="modificar_Servicio.php" method="POST" onsubmit="return modificar()">
+      <form action="" method="POST" onsubmit="return modificar()" name="servicio">
         <table>
         <tr>
             <td>Clave Producto Servicio</td>
             <td>
-                <input type="text" name="clave_producto" placeholder="Clave del producto" value="<?php echo $row[0]?>">
+                <input type="text" name="clave" placeholder="Clave del producto" value="<?php echo $row[0]?>">
             </td>
         </tr>
         <tr>
