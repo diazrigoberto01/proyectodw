@@ -20,7 +20,7 @@
     <a href="agregar_servicio.php">
      <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
    </a>
-   <a href="crearfactura.html">
+   <a href="crearfactura.php">
      <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
    </a>
     <table align="center" border=1>

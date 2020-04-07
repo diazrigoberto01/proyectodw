@@ -86,6 +86,10 @@
     <title>Equipo 1</title>
   </head>
   <body align="center">
+    <?php
+    include'../comun/conexion.php';
+    $link=Conectarse();
+    ?>
     <form action="" method="POST" name="factura" onsubmit="valida()">
       <table align="center">
         <tr>
@@ -94,7 +98,7 @@
               <h3>
                 Crea tu Factura
               </h3>
-            </center>
+            </center>  
           </th>
         </tr>
 
@@ -102,11 +106,17 @@
           <td><p>RFC de la empresa:</p></td>
           <td>
             <select name="rfcEmisor">
-              <option value="Elegir">Elegir</option>
-              <option value="RFCEMP2309SLF">RFCEMP2309SLF</option>
-              <option value="EMPRFC1234SL">EMPRFC1234SL</option>
-              <option value="ROMA980547sl4">ROMA980547sl4</option>
+            <option value="Elegir">Elegir</option>
+            <?php
+            $result = mysqli_query($link, "SELECT rfc FROM f_empresas");
+            while ($row = mysqli_fetch_array($result)) {
+              echo '"<option value="'.$row[0].'">'.$row[0].'</option>"';
+            }
+          ?>
             </select>
+          </td>
+          <td>
+          <input type="submit" name="rfc" action="" value="Buscar" />
           </td>
           <td><p>Nombre Empresa:</p></td>
           <td><input type="text" name="nombre" /></td>
