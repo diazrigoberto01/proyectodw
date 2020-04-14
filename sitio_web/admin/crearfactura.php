@@ -24,16 +24,37 @@
         }
       }
       function valida() {
-        if(document.factura.rfcEmisor.selectedIndex == 0){
-          alert("Selecciona un RFC Emisor");
+        //valida rfc emisor
+        try {
+          if(document.factura.rfcEmp.value==0){
+         alert('Ingresa un rfc  Emisor valido');
+         document.factura.rfcEmp.focus();
+          return false;
+
+       }
+        } catch (error) {
+          alert('Ingresa un rfc  Emisor valido');
           document.factura.rfcEmisor.focus();
           return false;
-        };
-        if(document.factura.rfcCliente.selectedIndex == 0){
-          alert("Selecciona un RFC Receptor");
-          document.factura.rfcCliente.focus();
+          
+        }
+        //valida rfc receptor
+        try {
+          if(document.factura.rfcReceptor.value==0){
+         alert('Ingresa un rfc  Receptor valido');
+         document.factura.rfcEmp.focus();
           return false;
-        };
+
+       }
+        } catch (error) {
+          alert('Ingresa un rfc  Emisor valido');
+          document.factura.rfcEmisor.focus();
+          return false;
+          
+        }
+
+
+
         if(document.factura.nombreCliente.value.length == 0){
           alert("Introduzca una persona de contacto.");
           document.factura.contactoNombre.focus();
@@ -49,31 +70,7 @@
           document.factura.lugar.focus();
           return false;
         };
-        if(document.factura.claveProducto.selectedIndex == 0){
-          alert("Selecciona una clave")
-          document.factura.claveProducto.focus();
-          return false;
-        };
-        if(document.factura.cantidad1.value.length == 0){
-          alert("Introduzca una cantidad");
-          document.factura.cantidad1.focus();
-          return false;
-        };
-        if(document.factura.unidad1.value.length == 0){
-          alert("Introduzca una unidad.")
-          document.factura.unidad1.focus();
-          return false;
-        };
-        if(document.factura.descripcion1.value.length == 0){
-          alert("Introduzca una descipción")
-          document.factura.descripcion1.focus();
-          return false;
-        };
-        if(document.factura.monto1.value.length == 0){
-          alert("Introduzca un monto de pago");
-          document.factura.monto1.focus();
-          return false;
-        };
+       
         if(document.factura.tipoPagos.selectedIndex == 0){
           alert("Selecciona un metodo de pago")
           document.factura.tipoPagos.focus();
@@ -98,6 +95,8 @@
         }
         return true;
       }
+
+      
       var index = 1;
       function agregarProducto(){
         try {
@@ -109,6 +108,7 @@
        }
         } catch (error) {
           alert('Ingresa un rfc  Emisor valido');
+          document.factura.rfcEmisor.focus();
           return false;
           
         }
@@ -118,6 +118,7 @@
         var desc=document.getElementById("desc").value;
         var um=document.getElementById("um").value;
         var cantidad=document.getElementById("cantidad").value;
+        var can_productos=document.getElementById("c_productos");
 
             var row=table.insertRow(table.rows.length);
             //insertar clave
@@ -161,6 +162,19 @@
                 cell6.appendChild(t4);
                 */
         index++;
+        can_productos.value=index-1;
+
+      }
+      function eliminarUltimo(){
+        if(index==1){
+          return false;
+        }
+        var can_productos=document.getElementById("c_productos");
+        
+        document.getElementById("productos").deleteRow(index);
+        can_productos.value--;
+        index--;
+        
 
       }
     </script>
@@ -355,12 +369,14 @@
           <td><input type="button" name="agregar" value="Agregar" onclick="agregarProducto()"/></td>
         </tr>
         <tr>
+          <td>Cantidad Servicios: <input type="number" name="c_productos" id="c_productos" size="4" value="0" disabled></td>
           <td>Clave Producto</td>
           <td>Descripción</td>
           <td>Unidad de medida</td>
           <td>Cantidad</td>
           <td>Precio Unitario</td>
           <td>Total</td>
+          <td>Elimina Ultimo <input type="button" name="elimina" id="elimina" value="Elimina Ultimo" onclick="eliminarUltimo()"></td>
         </tr>
        
       </table>
