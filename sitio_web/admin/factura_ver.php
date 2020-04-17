@@ -12,11 +12,22 @@
   </head>
   <body>
     <?php
-    if($_POST){
-      $totalProductos=$_POST[""]
-    }else{
+    
+      $totalProductos=$_POST["cproductos"];
+      for($i=1; $i<=$totalProductos; $i++){
+      $num=strval($i);
+      $clave="clave".$num;
+      $desc="descripcion".$num;
+      $clave=$_POST[$clave];
+      $des=$_POST[$desc];
+
+      printf("Clave:%s Desc:%s",$clave,$des);
+      }
       
-    }
+      
+      //$servicios=array();
+      //$servicios=$_POST[$clave];
+    
     
     ?>
     <table align="center">

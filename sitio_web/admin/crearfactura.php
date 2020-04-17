@@ -215,7 +215,7 @@
     include'../comun/conexion.php';
     $link=Conectarse();
     ?>
-    <form action="" method="POST" name="factura" onsubmit="">
+    <form action="#" method="POST" name="factura" onsubmit="">
       <table align="center">
         <tr>
           <th colspan="6">
@@ -353,13 +353,14 @@
           <td><input type="text" name="lugar"/></td>
         </tr>
       </table>
-      </form>
-    <form action="factura_ver.html" name="productos" method="POST" onsubmit="return valida()">
+    </form>
+
+    <form action="factura_ver.php" name="productos" method="POST">
 
       <br /><br />
       <table align="center" id="productos" width="70%">
         <tr>
-        <td>Cantidad Servicios: <input type="number" name="c_productos" id="c_productos" size="4" value="0" disabled></td>
+        <td>Cantidad Servicios: <input type="number" name="cproductos" id="c_productos" size="4" value="0" readonly></td>
           <td>
             Servicios:
             <select name="desc_producto" id="desc">
