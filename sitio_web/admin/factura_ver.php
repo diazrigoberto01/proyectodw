@@ -11,6 +11,14 @@
     </script>
   </head>
   <body>
+    <?php
+    if($_POST){
+      $totalProductos=$_POST[""]
+    }else{
+      
+    }
+    
+    ?>
     <table align="center">
       <td><img src="../img/emp1.png" alt="" /></td>
 

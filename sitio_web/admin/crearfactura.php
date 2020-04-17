@@ -71,13 +71,16 @@
           return false;
         };
        
-        if(document.factura.tipoPagos.selectedIndex == 0){
+        if(document.productos.tipoPagos.selectedIndex == 0){
           alert("Selecciona un metodo de pago")
           document.factura.tipoPagos.focus();
           return false;
         };
-        alert("Factura generada con exito");
-        return location.href = "factura_ver.html";
+        document.productos.submit()
+        //alert("Factura generada con exito");
+        //return location.href = "factura_ver.html";
+        //return true;
+        
       }
 
       function validarRFC(){
@@ -113,11 +116,37 @@
           
         }
        
+       
         var table=document.getElementById("productos");
-        var clave=document.getElementById("clave").value;
         var desc=document.getElementById("desc").value;
+        if(desc=="Elegir"){
+          alert("Selecciona un servicio");
+          document.productos.desc_producto.focus()
+          return 0;
+        }
+        var dividir=desc.split("-")
+        var clave=dividir[0];
+        desc=dividir[1];
         var um=document.getElementById("um").value;
+        if(um=="Elegir"){
+          alert("Selecciona la unidad de medida");
+          document.productos.um.focus()
+          return 0;
+        }
+        //cantidad por servicio
         var cantidad=document.getElementById("cantidad").value;
+        if(cantidad==0){
+          alert("Ingresa la cantidad");
+          document.productos.cantidad.focus()
+          return 0;
+        }
+        var pu=document.getElementById("pu").value;
+        if(pu==0){
+          alert("Ingresa el Precio Unitario");
+          document.productos.pu.focus()
+          return 0;
+        }
+        //numero total de servicios
         var can_productos=document.getElementById("c_productos");
 
             var row=table.insertRow(table.rows.length);
@@ -131,36 +160,37 @@
             //inserta descripcion
             var cell2=row.insertCell(1);
             var t2=document.createElement("input");
-                t2.id = "descripcion"+index;
+                t2.name = "descripcion"+index;
                 t2.value=desc;
                 t2.size=50;
                 cell2.appendChild(t2);
             //inserta unidad de medida
             var cell3=row.insertCell(2);
             var t3=document.createElement("input");
-                t3.id = "um"+index;
+                t3.name = "um"+index;
                 t3.value=um;
                 cell3.appendChild(t3);
             //inserta cantidad
             var cell4=row.insertCell(3);
             var t4=document.createElement("input");
-                t4.id = "cantidad"+index;
+                t4.name = "cantidad"+index;
                 t4.value=cantidad;
                 cell4.appendChild(t4);
             //inserta valor unitario
-            /*
+            
             var cell5=row.insertCell(4);
             var t5=document.createElement("input");
-                t5.id = "clave"+index;
-                t5.value=clave;
-                cell5.appendChild(t4);
+                t5.name = "pu"+index;
+                t5.value=pu;
+                cell5.appendChild(t5);
+                
             //inserta total    
             var cell6=row.insertCell(5);
             var t6=document.createElement("input");
-                t6.id = "clave"+index;
-                t6.value=clave;
-                cell6.appendChild(t4);
-                */
+                t6.name = "total"+index;
+                t6.value=pu*cantidad;
+                cell6.appendChild(t6);
+                
         index++;
         can_productos.value=index-1;
 
@@ -230,6 +260,8 @@
           <input type="submit" name="Buscar"  value="Buscar" onclick=" return validarRFC()" />
           </td>
             </tr>
+
+            
             <?php
             if($_POST['Buscar']){
               $rfcEmisor=$_POST["rfcEmisor"];
@@ -247,7 +279,7 @@
               
 
 
-            <tr>
+        <tr>
           <td><p>Nombre Empresa:</p></td>
           <?php
           if($_POST['Buscar']){
@@ -264,7 +296,7 @@
             printf(
               "<td><input type='text' name='nombre'/></td>
               <td><p>Régimen fiscal:</p></td>
-              <td><input type='tex' name='regimen_fiscal' /></td>
+              <td><input type='text' name='regimen_fiscal' /></td>
               "
             );
 
@@ -321,30 +353,22 @@
           <td><input type="text" name="lugar"/></td>
         </tr>
       </table>
+      </form>
+    <form action="factura_ver.html" name="productos" method="POST" onsubmit="return valida()">
 
       <br /><br />
-      <table align="center" id="productos">
+      <table align="center" id="productos" width="70%">
         <tr>
+        <td>Cantidad Servicios: <input type="number" name="c_productos" id="c_productos" size="4" value="0" disabled></td>
           <td>
-            <select name="claveProducto" id="clave">
-              <option value="Elegir">Elegir</option>
-              <?php
-              $result = mysqli_query($link, "SELECT clave FROM f_concepto");
-              while ($claves = mysqli_fetch_array($result)) {
-                echo '"<option value="'.$claves[0].'">'.$claves[0].'</option>"';
-              }
-              
-              ?>
-            </select>
-          </td>
-          <td>
+            Servicios:
             <select name="desc_producto" id="desc">
               <option value="Elegir">Elegir</option>
               <?php
               $result = mysqli_query($link, "SELECT clave,descripcion FROM f_concepto");
               while ($descripcion = mysqli_fetch_array($result)) {
                 $desc=$descripcion[0].'-'.$descripcion[1];
-                echo '"<option value="'.$descripcion[1].'">'.$desc.'</option>"';
+                echo '"<option value="'.$desc.'">'.$desc.'</option>"';
               }
               
               ?>
@@ -352,6 +376,7 @@
             </select>
           </td>
           <td>
+            Unidad
             <select name="um" id="um">
               <option value="Elegir">Elegir</option>
               <option value="m">Mts</option>
@@ -364,19 +389,22 @@
               <option value="kg">kg</option>
             </select>
           </td>
-          <td><input type="number" name="cantidad1" id="cantidad" size=5 placeholder="Cantidad"/></td>
-          <td><input type="number" name="pu" id="pu" size=5 placeholder="Precio Unitario"/></td>
+          
+          <td>Cantidad:<input type="number" name="cantidad" id="cantidad" size=5 placeholder="Cantidad" value="0"/></td>
+          <td>Pu:<input type="number" name="pu" id="pu" id="pu" size=5 value="0" placeholder="Precio Unitario"/></td>
           <td><input type="button" name="agregar" value="Agregar" onclick="agregarProducto()"/></td>
+          <td>Elimina Ultimo <input type="button" name="elimina" id="elimina" value="Elimina Ultimo" onclick="eliminarUltimo()"></td>
         </tr>
+
         <tr>
-          <td>Cantidad Servicios: <input type="number" name="c_productos" id="c_productos" size="4" value="0" disabled></td>
-          <td>Clave Producto</td>
+          
+          <td>Producto</td>
           <td>Descripción</td>
           <td>Unidad de medida</td>
           <td>Cantidad</td>
           <td>Precio Unitario</td>
           <td>Total</td>
-          <td>Elimina Ultimo <input type="button" name="elimina" id="elimina" value="Elimina Ultimo" onclick="eliminarUltimo()"></td>
+          
         </tr>
        
       </table>
