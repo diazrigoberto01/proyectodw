@@ -12,21 +12,42 @@
   </head>
   <body>
     <?php
-    
-      $totalProductos=$_POST["cproductos"];
-      for($i=1; $i<=$totalProductos; $i++){
-      $num=strval($i);
-      $clave="clave".$num;
-      $desc="descripcion".$num;
-      $clave=$_POST[$clave];
-      $des=$_POST[$desc];
+    include "../comun/conexion.php";
+    $link=Conectarse();
 
-      printf("Clave:%s Desc:%s",$clave,$des);
-      }
+   
+    //datos de la factura
+
+      //datos del emisor
+      $rfcEmisor=$_POST["rfcEmp"];
+      $rfcReceptor=$_POST["rfcRec"];
+      $nombreEmpresa=$_POST["nomEmp"];
+      $regimen=$_POST["regimen"];
+      $nombreCliente=$_POST["nombreCliente"];
+      $direccionCliente=$_POST["direccionCliente"];
+      $cfdi=$_POST["cfdi"];
+      $fecha=date("Y-m-d H:i:s");
+      $lugar=$_POST["lugar"];
+      $totalProductos=$_POST["cproductos"];
+      $tipoPago=$_POST["tipoPago"];
+      $cantidadPagos=$_POST["cantidadPagos"];
+      $dire=mysqli_query($link,"SELECT calle FROM f_direccion_empresa where empresa_rfc='$rfcEmisor' ") or die(mysqli_error($link));
+      $info=mysqli_fetch_array($dire);
+      
+  
+      
+      //datos del receptor
+
+
+    //Para imprimir tabla de productos
+    /*
+     
+      echo "$totalProductos";
       
       
-      //$servicios=array();
-      //$servicios=$_POST[$clave];
+      
+      */
+      
     
     
     ?>
@@ -61,11 +82,24 @@
           </tr>
           <tr>
             <td>Fecha y Hora de Emision:</td>
-            <td>Tipo de comprobante</td>
+            <td>
+              Lugar de Emision
+            </td>
           </tr>
+
           <tr>
-            <td>11/01/2020 18:49:06</td>
-            <td>Ingresos</td>
+            <td>
+            <?php
+          echo" $fecha";
+          ?>
+            </td>
+            <td>
+            <?php
+          echo"
+          <input type='text' name='fecha' value='$lugar' readonly>
+          ";
+          ?>
+            </td>
           </tr>
         </table>
       </td>
@@ -73,35 +107,102 @@
     <table align="left">
       <tr>
         <td colspan="3">
-          Emisor:ROMA980547sl4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <?php
+          echo"
+          <input type='text' name='emisoRFC' value='$rfcEmisor' readonly>
+          ";
+          ?>
         </td>
-        <td colspan="3">Expedido en: 74630</td>
       </tr>
       <tr>
-        <td>Roberto Martinez</td>
+        <td>
+          Emisor:
+        <?php
+          echo"
+          <input type='text' name='nombreEmisor' value='$nombreEmpresa' readonly>
+          ";
+          ?>
+        </td>
       </tr>
       <tr>
-        <td colspan="6">Calle: 40 poniente 4098 Puebla,Puebla</td>
+        <td colspan="6">
+        <?php
+          echo"
+          <input type='text' name='nombreEmisor' size='70' value='$info[0]' readonly>
+          ";
+          ?>
+          </td>
       </tr>
       <tr>
         <th>Metodo de Pago:</th>
         <td>
-          Pago en una sola expedicion
+        <?php
+          switch($tipoPago){
+            case "Tarjeta": echo"
+            <input type='text' name='fecha' value='$tipoPago' readonly>
+            ";
+          break;
+          case "Tranferencia": echo"
+            <input type='text' name='fecha' value='$tipoPago' readonly>
+            ";
+          break;
+          case "Efectivo": echo"
+            <input type='text' name='fecha' value='$tipoPago' readonly>
+            ";
+          break;
+
+
+          }
+          
+          ?>
+
+
+
+
         </td>
         <th>
           Forma de Pago:
         </th>
         <td>
-          Transferencia electronica de fondos
+        <?php
+          echo"
+          <input type='text' name='fecha' value='$tipoPago' readonly>
+          ";
+          ?>
         </td>
         <th>Moneda:</th>
         <td>Peso Mexicano MXN</td>
       </tr>
       <tr>
         <th>Condicion de Pago:</th>
-        <td></td>
+        <td>
+        <?php
+  switch($cantidadPagos){
+    case 1: echo"
+      <input type='text' name='nombreEmisor' value='Pago unico' readonly>
+      ";
+      break;
+    case 2: echo"
+      <input type='text' name='nombreEmisor' value='1 mes' readonly>
+      ";
+    break;
+    case 3: echo"
+    <input type='text' name='nombreEmisor' value='3 meses' readonly>
+    ";
+    break;
+    case 4: echo"
+    <input type='text' name='nombreEmisor' value='6 meses' readonly>
+    ";
+  break;
+  }
+?>
+        </td>
         <th>Regimen Fiscal:</th>
-        <td>Personas Físicas con Actividades Empresariales y Profesionales</td>
+        <td> <?php
+          echo"
+          <input type='text' name='regimen' value='$regimen' readonly>
+          ";
+          ?></td>
       </tr>
       <tr>
         <td colspan="6">
@@ -112,63 +213,97 @@
 
     <table>
       <tr>
-        <td colspan="4">Facturado a (receptor): JPA45692GT9</td>
-      </tr>
-      <tr>
-        <td colspan="4">Grupo Consultor SA de CV</td>
+        <td colspan="4">Facturado a (receptor):
+        <?php
+          echo"
+          <input type='text' name='receptorRFC' value='$rfcReceptor' readonly>
+          ";
+          ?>
+           </td>
       </tr>
       <tr>
         <td colspan="4">
-          Calle: 43 Poniente 4389 Puebla,Puebla
+        <?php
+          echo"
+          <input type='text' name='receptorRFC' size='35' value='$nombreCliente' readonly>
+          ";
+          ?>
+          
         </td>
       </tr>
       <tr>
-        <th>Residencia Fiscal:</th>
-        <td></td>
-        <th>Uso de CFDI:</th>
-        <td>Gastos en general</td>
+        <td colspan="4">
+          Residencia Fiscal: 
+        <?php
+          echo"
+          <input type='text' name='receptorRFC'  size='75' value='$direccionCliente' readonly>
+          ";
+          ?>
+        </td>
       </tr>
-    </table>
-    <table>
-      <tr><td>
-         <table>
       <tr>
-        <th>Cantidad &nbsp;</th>
-        <th>Unidad &nbsp;</th>
-        <th>Clave Unidad &nbsp;</th>
-        <th>Clave Servicio &nbsp;</th>
-        <th>No de Identificacion &nbsp;</th>
+        <th>Uso de CFDI:</th>
+        <td>
+        <?php
+          echo"
+          <input type='text' name='fecha'size='70' value='$cfdi' readonly>
+          ";
+          ?>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        </td>
+      </tr>
+      
+    </table>
+    
+  <table align="center">
+      <tr>
+        <th>Clave &nbsp;</th>
         <th>Descripcion &nbsp;</th>
+        <th>Unidad &nbsp;</th>
         <th>Precio Unitario &nbsp;</th>
+        <th>Cantidad &nbsp;</th>
         <th>Importe</th>
       </tr>
-      <tr>
-        <td>10</td>
-        <td>M3</td>
-        <td>E50</td>
-        <td>721523</td>
-        <td>RECAAS</td>
-        <td>RECUPERADO DE CARPETA ASFALTICA</td>
-        <td>$3000</td>
-        <td>$30000</td>
-      </tr>
-      <tr>
-        <td colspan="7" border="0">
-          <p align="right">
-             +IVA(16%)</th>
-          </p>
-        </td>
-        <td>
-          <p>
-            $4800
-          </p>
-        </td>
-      </tr>
-    </table>
-      </td></tr>
-      <tr>
-        <td>
-          <table align="right">
+    <!-- PARTE dinamica -->
+
+        <?php
+      for($i=1; $i<=$totalProductos; $i++){
+          $num=strval($i);
+          $clave="clave".$num;
+          $desc="descripcion".$num;
+          $clave=$_POST[$clave];
+          $des=$_POST[$desc];
+          $um="um".$num;
+          $cantidad="cantidad".$num;
+          $pu="pu".$num;
+          $total="total".$num;
+          $um=$_POST[$um];
+          $cantidad=$_POST[$cantidad];
+          $pu=$_POST[$pu];
+          $total=$_POST[$total];
+
+          printf("<tr>
+          <td>%s</td>
+          <td>%s</td>
+          <td>%s</td>
+          <td>%s</td>
+          <td>%s</td>
+          <td>$total</td>
+  
+          </tr>
+   
+          ",$clave,$des,$um,$pu,$cantidad);
+          }
+        ?>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+        <td colspan="6">
+        <table align="right">
             <tr>
               <td>
                 Subtotal:
@@ -198,16 +333,29 @@
               <td>Total:</td>
               <td>$34,800</td>
             </tr>
+        <tr>
+        <td>Treinta y cuatro mil ochocientos pesos MXN</td>
+        </tr>
+        <tr>
+          <td>
+            <input type="button" value="Descargar" onclick="descargar()">
+          </td>
+          <td>
+          <input type="button" value="Regresar" onclick="history.go(-1)">
+          </td>
+        </tr>
 
           </table>
         </td>
-      </tr>
-      <tr>
-        <td>Treinta y cuatro mil ochocientos pesos MXN</td>
-      </tr>
-    </table>
 
-    <input type="button" value="Descargar" onclick="descargar()">
-    <input type="button" value="Regresar" onclick="history.go(-1)">
+        </tr>
+  </table>
+         
+        
+
+   <?php
+   mysqli_close($link);
+   ?>
+    
   </body>
 </html>

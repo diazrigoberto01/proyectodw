@@ -60,22 +60,67 @@
           document.factura.contactoNombre.focus();
           return false;
         };
-        if(document.factura.fecha.value.length == 0 ){
-          alert("Introduzca una fecha válida.")
-          document.factura.fecha.focus();
-          return false;
-        };
         if(document.factura.lugar.value.length == 0){
           alert("Introduzca un lugar.")
           document.factura.lugar.focus();
           return false;
         };
-       
-        if(document.productos.tipoPagos.selectedIndex == 0){
+        if(document.productos.tipoPago.value == "Tarjeta" ){
+          if(document.productos.cantidadPagos.selectedIndex == 0){
           alert("Selecciona un metodo de pago")
           document.factura.tipoPagos.focus();
           return false;
         };
+        };
+       
+        
+        var facturaCompleta=document.getElementById("facturacompleta");
+        //agregar datos faltantes
+        var rfcEmisor=document.createElement("input");
+        rfcEmisor.name="rfcEmp";
+        rfcEmisor.value=document.getElementById('emisor').value;
+        rfcEmisor.type="hidden";
+        var rfcReceptor=document.createElement("input");
+        rfcReceptor.name="rfcRec";
+        rfcReceptor.value=document.getElementById('receptor').value;
+        rfcReceptor.type="hidden";
+        var nombreEmpresa=document.createElement('input');
+        nombreEmpresa.name="nomEmp";
+        nombreEmpresa.value=document.getElementById('nomEmp').value;
+        nombreEmpresa.type="hidden";
+        var regimen=document.createElement("input");
+        regimen.name="regimen";
+        regimen.value=document.getElementById('regFis').value;
+        regimen.type="hidden";
+        var nombreCliente=document.createElement('input');
+        nombreCliente.name="nombreCliente";
+        nombreCliente.value=document.getElementById('nombreCliente').value;
+        nombreCliente.type="hidden";
+        var direccionCliente=document.createElement('input');
+        direccionCliente.name="direccionCliente";
+        direccionCliente.value=document.getElementById('direccionCliente').value;
+        direccionCliente.type="hidden";
+        var cfdi=document.createElement('input');
+        cfdi.name="cfdi";
+        cfdi.value=document.getElementById('cfdi').value;
+        cfdi.type="hidden";
+        var lugar=document.createElement('input');
+        lugar.name="lugar";
+        lugar.value=document.getElementById('lugar').value;
+        lugar.type="hidden";
+
+
+
+
+        //agregar datos al post
+        facturaCompleta.appendChild(rfcEmisor);
+        facturaCompleta.appendChild(rfcReceptor);
+        facturaCompleta.appendChild(nombreEmpresa);
+        facturaCompleta.appendChild(regimen);
+        facturaCompleta.appendChild(nombreCliente);
+        facturaCompleta.appendChild(direccionCliente);
+        facturaCompleta.appendChild(cfdi);
+        facturaCompleta.appendChild(lugar);
         document.productos.submit()
         //alert("Factura generada con exito");
         //return location.href = "factura_ver.html";
@@ -207,6 +252,13 @@
         
 
       }
+      function Muestra(type) {
+	    	document.getElementById("meses").style.display = "block"  // Despliega div dias
+      
+              }
+      function oculta(){
+                document.getElementById("meses").style.display = "none"
+              }
     </script>
     <title>Equipo 1</title>
   </head>
@@ -269,9 +321,9 @@
               printf("
               <tr>
                <td >Rfc Emisor</td>
-               <td><input type='text' name='rfcEmp' value='%s'></td>
+               <td><input type='text' name='rfcEmp' id='emisor' value='%s'></td>
                <td >Rfc Receptor</td>
-               <td><input name='rfcReceptor'value='%s' ></td>
+               <td><input name='rfcReceptor' id='receptor' value='%s' ></td>
              </tr> 
               ",$rfcEmisor,$rfcCliente);
             }
@@ -287,9 +339,9 @@
            $getinfo=mysqli_query($link,"Select razon_social,regimen_fiscal from f_empresas where rfc='$rfcEmisor'") or die(mysqli_error($link));
            $infoEmisor=mysqli_fetch_array($getinfo);
               printf(
-            "<td><input type='text' name='nombre' value='$infoEmisor[0]'/></td>
+            "<td><input type='text' name='nombre' id='nomEmp' value='$infoEmisor[0]'/></td>
             <td><p>Régimen fiscal:</p></td>
-            <td><input type='text' name='regimen_fiscal'  value='$infoEmisor[1]'/></td>
+            <td><input type='text' name='regimen_fiscal' id='regFis' value='$infoEmisor[1]'/></td>
             "
           );
           }else{
@@ -312,9 +364,9 @@
           $getCliente=mysqli_query($link,"SELECT razon_social,concat(calle,concat(' ',concat(no_exterior,concat(', ',concat(municipio,concat(', ',concat(estado,concat(', ',cp)))))))) as Direccion FROM f_cliente where rfc='$rfcCliente'") or die(mysqli_error($link));
           $infoCliente=mysqli_fetch_array($getCliente);
           printf("
-           <td><input type='text' name='nombreCliente' value='$infoCliente[0]' /></td>
+           <td><input type='text' name='nombreCliente' id='nombreCliente' value='$infoCliente[0]' /></td>
            <td>Direccion:</td>
-           <td><input type='text' name='dir_cliente' placeholder='Direccion Receptor' size=80 value='$infoCliente[1]'></td>
+           <td><input type='text' name='direccionCliente' id='direccionCliente' placeholder='Direccion Receptor' size=80 value='$infoCliente[1]'></td>
            "
           );
           }else{
@@ -335,27 +387,25 @@
         <tr>
         <td>Uso de CFDI</td>
           <td>
-            <select name="cfdi" id="">
+            <select name="cfdi" id="cfdi">
             <?php
               $result = mysqli_query($link, "SELECT clave,descripcion FROM f_usoscfdi");
               while ($usos = mysqli_fetch_array($result)) {
                 $uso=$usos[0].'-'.$usos[1];
-                echo '"<option value="'.$usos[0].'">'.$uso.'</option>"';
+                echo '"<option value="'.$usos[1].'">'.$uso.'</option>"';
               }
               
               ?>
             
             </select>
           </td>
-          <td><p>Fecha:</p></td>
-          <td><input type="date" name="fecha"/></td>
           <td><p>Lugar:</p></td>
-          <td><input type="text" name="lugar"/></td>
+          <td><input type="text" name="lugar" id="lugar"/></td>
         </tr>
       </table>
     </form>
 
-    <form action="factura_ver.php" name="productos" method="POST">
+    <form action="factura_ver.php" name="productos" method="POST" id="facturacompleta">
 
       <br /><br />
       <table align="center" id="productos" width="70%">
@@ -411,15 +461,21 @@
       </table>
 
       <p>Método de pago:</p>
-      <input type="radio" name="tipoPagos" /> Transferencia
-      <input type="radio" name="tipoPagos" checked/> Débito
-      <input type="radio" name="tipoPagos" /> Crédito <br />
-      <p>Condición de pago:</p>
+      <input type="radio" name="tipoPago" onClick="oculta()" checked value="Transferencia"/> Transferencia
+      <input type="radio" name="tipoPago"  onClick="Muestra('meses')" value="Tarjeta"/> Tarjeta Credito/Debito
+      <input type="radio" name="tipoPago" onClick="oculta()" value="Efectivo"/> Efectivo
+
+      <span id="meses" style="display:none">
+        <p>Condición de pago:</p>
       <select name="cantidadPagos">
-        <option value="una">Una exhibición</option>
-        <option value="varias">Varias exhibiciones</option>
-        <option value="msi">Meses sin intereses</option>
+      <option value="0">Elegir</option>
+      <option value="1">Pago Unico</option>
+        <option value="2">1 mes</option>
+        <option value="3">3 meses</option>
+        <option value="4">6 meses</option>
       </select>
+      </span>
+      
       <br /><br />
       <input type="button" value="Crear Factura" onclick="valida()"/>
       <input type="reset" value="Reiniciar" />
