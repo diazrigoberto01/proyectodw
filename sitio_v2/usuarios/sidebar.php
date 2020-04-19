@@ -116,6 +116,7 @@
       <?php
       }
       ?>
+      <!-- Quitar reportes
     <?php
       if ($_SESSION['tipo_usuario'] == "admin") {
     ?>
@@ -142,5 +143,5 @@
     <?php
       }
     ?>
-  </div>
+  --></div>
 </nav>
