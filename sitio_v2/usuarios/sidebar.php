@@ -25,12 +25,6 @@
           Nueva factura
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="modificar-factura.php">
-          <span data-feather="file-text"></span>
-          Modificar
-        </a>
-      </li>
     </ul>
 
     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -52,18 +46,6 @@
           Agregar
         </a>
       </li>
-      <?php
-        if ($_SESSION['tipo_usuario'] == "admin") {
-      ?>
-      <li class="nav-item">
-        <a class="nav-link" href="modificar-empresa.php">
-          <span data-feather="file-text"></span>
-          Modificar
-        </a>
-      </li>
-      <?php
-      }
-      ?>
     </ul>
 
     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -85,12 +67,6 @@
           Agregar
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="modificar-cliente.php">
-          <span data-feather="file-text"></span>
-          Modificar
-        </a>
-      </li>
     </ul>
 
     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -110,12 +86,6 @@
         <a class="nav-link" href="agregar-servicio.php">
           <span data-feather="file-text"></span>
           Agregar
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="modificar-servicio.php">
-          <span data-feather="file-text"></span>
-          Modificar
         </a>
       </li>
     </ul>
@@ -140,12 +110,6 @@
           <a class="nav-link" href="agregar-usuario.php">
             <span data-feather="file-text"></span>
             Agregar
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="modificar-usuario.php">
-            <span data-feather="file-text"></span>
-            Modificar
           </a>
         </li>
       </ul>
