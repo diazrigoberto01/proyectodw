@@ -45,7 +45,7 @@
                       var modificar = window.confirm("¿Generar?");
                       if (modificar) {
                         alert("Generada con exito");
-                        location.href = "factura_ver.html";
+                        location.href = "ver-factura.php";
                       } else {
                         return 0;
                       }
@@ -157,7 +157,7 @@
                   facturaCompleta.appendChild(lugar);
                   document.productos.submit()
                   //alert("Factura generada con exito");
-                  //return location.href = "factura_ver.html";
+                  //return location.href = "ver-factura.php";
                   //return true;
 
                 }
