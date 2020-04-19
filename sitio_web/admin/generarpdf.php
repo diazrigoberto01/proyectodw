@@ -1,6 +1,9 @@
 <?php
 include "../comun/conexion.php";
+require_once '../vendor/autoload.php';
 $link=Conectarse();
+
+
 $imagen=$_POST["ubiImagen"];
 $fecha=$_POST["fecha"];
 $lugar=$_POST["lugar"];
@@ -25,16 +28,7 @@ $insertaConcepto=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,dire
 rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi) 
 values('$folio','$rfcEmisor','$dirEmisor','$lugar','$fecha','$receptorRFC','$tipoPago','
 $totalmasiva','123asd','$iva','$subtotal','$cfdi')");
-if ($error = mysqli_error($link)) {
-    echo 'Error agregando los datos a la Base de Datos: '.$error;
-    ?>
-    <br>
-    <br>
-    <?php
-      printf("<script>alert('Algo salio mal') location.href ='crearfactura.php</script>");
 
-    die();
-  }
 
 
 
@@ -211,11 +205,6 @@ for($i=1; $i<=$totalProductos; $i++){
     concepto_um,concepto_cantidad,concepto_pu,concepto_subtotal,concepto_iva,concepto_total) 
         values('$folio','$rfcEmisor','$fecha','$clave','$des','
     $um','$cantidad','$pu','$total','$iva','$tmi')");
-    if ($error = mysqli_error($link)) {
-        echo 'Error agregando los datos a la Base de Datos: '.$error;
-         printf("<script>alert('Algo salio mal') location.href ='crearfactura.php</script>");
-    die();
-        }
 
 
     $tabla.="<tr>
@@ -266,5 +255,9 @@ for($i=1; $i<=$totalProductos; $i++){
     $factura.=$receptor;
     $factura.=$tabla;
 
-echo $factura;
+$mpdf = new \Mpdf\Mpdf();
+$mpdf->WriteHTML($factura);
+$nombreF="factura".$folio."pdf";
+$mpdf->Output($nombreF,"D");
+
 ?>

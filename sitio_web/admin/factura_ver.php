@@ -355,7 +355,7 @@
         <tr>
           <td>
             <input type="hidden" name="totalproductos" value="<?php  echo $totalProductos ?>">
-            <input type="button" value="Descargar" onclick="descargar()">
+            <input type="submit" value="Descargar" >
           </td>
           <td>
           <input type="button" value="Regresar" onclick="history.go(-1)">
