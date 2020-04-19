@@ -1,6 +1,6 @@
 <?php
 include "../comun/conexion.php";
-require_once '../vendor/autoload.php';
+//require_once '../vendor/autoload.php';
 $link=Conectarse();
 
 
@@ -254,10 +254,13 @@ for($i=1; $i<=$totalProductos; $i++){
     $factura.=$emisor;
     $factura.=$receptor;
     $factura.=$tabla;
-
+/*
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML($factura);
 $nombreF="factura".$folio."pdf";
 $mpdf->Output($nombreF,"D");
-
+*/
+echo "<script>
+location.href='crearfactura.php'
+</script>"
 ?>

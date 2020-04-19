@@ -69,7 +69,9 @@
         <td>%s</td>
         <td>%d</td>
         <td>
-          <input type="button" value="Ver">
+        <a href="factura-creada.php?id='.$row[1].'">
+        <input type="button" value="Ver">
+        </a>
           <input type="button" value="Cancelar" onclick="cancelarFactura(%s)">
         </td>
         </tr>',$row[0], $row[1], $row[2], $row[3], $row[4],$row[1]);
