@@ -1,5 +1,7 @@
 <?php
-  session_start();
+  if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
   if (!isset($_SESSION['tipo_usuario'])) {
     header("Location: no-autorizado.php");
     die();
@@ -58,11 +60,11 @@
                 <input type="button" class="btn btn-outline-info" value="Ver">
                 </a>', $row[0], $row[1], $row[2], $row[3],$row[4]);
                 if ($_SESSION['tipo_usuario'] == "admin") {
-                  printf('<a href="modificar-factura.php?id='.$row[1].'&op=1">
-                  <input type="button" class="btn btn-outline-secondary" value="Modificar">
-                  </a>');
+                  #printf('<a href="modificar-factura.php?id='.$row[1].'&op=1">
+                  #<input type="button" class="btn btn-outline-secondary" value="Modificar">
+                  #</a>');
                   printf('<a href="modificar-factura.php?id='.$row[1].'&op=2">
-                  <input type="button" class="btn btn-outline-danger" value="Eliminar">
+                  <input type="button" class="btn btn-outline-danger" value="Cancelar">
                   </a>');
                 }
                 printf('</td></tr>');
