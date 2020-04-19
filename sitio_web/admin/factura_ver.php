@@ -350,10 +350,10 @@
               <td>
               <?php
               $totalmasiva=$subtotal+$ivapc;
-          echo"
-          <input type='text' name='totalmasiva' size=10 value='$totalmasiva' readonly>
-          ";
-          ?>
+                echo"
+                <input type='text' name='totalmasiva' size=10 value='$totalmasiva' readonly>
+                ";
+              ?>
               </td>
             </tr>
         
