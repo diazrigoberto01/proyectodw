@@ -34,21 +34,11 @@
       $cantidadPagos=$_POST["cantidadPagos"];
       $dire=mysqli_query($link,"SELECT calle FROM f_direccion_empresa where empresa_rfc='$rfcEmisor' ") or die(mysqli_error($link));
       $info=mysqli_fetch_array($dire);
+      $buscarfolio=mysqli_query($link,"Select folio from f_factura order by folio desc limit 1") or die(mysqli_error($link));
+      $folio=mysqli_fetch_array($buscarfolio);
+      $folio[0]=$folio[0]+1;
       $subtotal=0;
-      
   
-      
-      //datos del receptor
-
-
-    //Para imprimir tabla de productos
-    /*
-     
-      echo "$totalProductos";
-      
-      
-      
-      */
       
     
     
@@ -83,7 +73,12 @@
           </tr>
           <tr>
             <td>Serie:A</td>
-            <td>Folio:345</td>
+            <td>Folio:
+              <?php
+              echo $folio[0];
+              echo"<input type='hidden' name='folio' value='$folio[0]' readonly>";
+              ?>
+                            </td>
           </tr>
           <tr>
             <td>Fecha y Hora de Emision:</td>

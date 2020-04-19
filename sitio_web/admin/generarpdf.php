@@ -17,6 +17,8 @@ $totalProductos=$_POST["totalproductos"];
 $subtotal=$_POST["subtotal"];
 $iva=$_POST["iva"];
 $totalmasiva=$_POST["totalmasiva"];
+$folio=$_POST["folio"];
+//añadir info a f_factura
 
 
 $encabezado="
@@ -49,7 +51,7 @@ $encabezado="
           </tr>
           <tr>
             <td>Serie:A</td>
-            <td>Folio:345</td>
+            <td>Folio:$folio</td>
           </tr>
           <tr>
             <td>Fecha y Hora de Emision:</td>
@@ -183,6 +185,8 @@ for($i=1; $i<=$totalProductos; $i++){
     $cantidad=$_POST[$cantidadn];
     $pu=$_POST[$pun];
     $total=$_POST[$totaln];
+    //añadir info a f_concepto_facturado
+
 
     $tabla.="<tr>
     <td>$clave</td>
