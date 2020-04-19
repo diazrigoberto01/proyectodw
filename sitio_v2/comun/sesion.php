@@ -19,7 +19,7 @@
     if($cantidad == 1) {
       $_SESSION['usuario'] = $email;
       $_SESSION['nombre'] = $informacion['nombre'];
-      $_SESSION['nombre'] = $informacion['apellidos'];
+      $_SESSION['apellido'] = $informacion['apellidos'];
       $_SESSION['tipo_usuario'] = $informacion['tipo'];
       return true;
     } else {

@@ -11,9 +11,9 @@
     <?php
       $nivel = 1;
       require "../comun/recursos.php";
-      require "../comun/lib-clientes.php";
+      require "../comun/lib-empresas.php";
       if ($_POST) {
-        agregarCliente();
+        agregarEmpresa();
       }
     ?>
     <title>Factura Fácil</title>
@@ -61,19 +61,64 @@
                   </div>
                 </div>
                 <!-- Fila -->
+                <div class="form-row mb-3">
+                  <h4>Datos de contacto</h4>
+                </div>
                 <div class="form-row">
-                  <div class="col-md-6 mb-3">
+                  <div class="col-md-3 mb-3">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="John" pattern="[a-zA-Z]{3,50}" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese un valor válido.
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label for="apellido">Apellidos</label>
+                    <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Doe" pattern="[a-zA-Z ]{2,50}" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese un valor válido.
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3">
                     <label for="email">Correo</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="nombre@correo.com" pattern="[a-zA-Z0-9]{2,60}@[a-zA-Z0-9]{2,60}\.[a-z]{2,3}.*" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un correo válido.
                     </div>
                   </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="tel">Teléfono</label>
-                    <input type="text" class="form-control" name="tel" id="tel" placeholder="555-1234567"  pattern="[0-9]{10}" required>
+                  <div class="col-md-3 mb-3">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" class="form-control" name="telefono" id="tel" placeholder="555-1234567"  pattern="[0-9]{10}" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un teléfono válido a 10 dígitos. Sólo números.
+                    </div>
+                  </div>
+                </div>
+                <!-- Fila -->
+                <div class="form-row mb-3">
+                  <h4>Información SAT</h4>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-4 mb-3">
+                    <label for="regimen">Regimen Fiscal</label>
+                    <select name="regimen" pattern="[a-zA-Z]+">
+                      <option value="0">Elegir</option>
+                      <option value="Asalariados">Asalariados </option>
+                      <option value="Honorarios">
+                         Honorarios (servicios profesionales).
+                      </option>
+                      <option value="Arrendamiento de inmuebles">
+                        Arrendamiento de inmuebles.
+                      </option>
+                      <option value="Actividades Empresariales">
+                        Actividades empresariales.
+                      </option>
+                      <option value="RIF">
+                        Incorporación fiscal.
+                      </option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Por favor elija una opción válida.
                     </div>
                   </div>
                 </div>
@@ -106,28 +151,35 @@
                 </div>
                 <!-- Fila -->
                 <div class="form-row">
-                  <div class="col-md-4 mb-3">
+                  <div class="col-md-3 mb-3">
                     <label for="municipio">Municipio</label>
                     <input type="text" class="form-control" name="municipio" id="municipio" placeholder="" pattern="[a-zA-Z ]{3,60}" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>
                   </div>
-                  <div class="col-md-4 mb-3">
+                  <div class="col-md-3 mb-3">
                     <label for="estado">Estado</label>
                     <input type="text" class="form-control" name="estado" id="estado" placeholder="" pattern="[a-zA-Z ]{4,60}" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>
                   </div>
-                  <div class="col-md-4 mb-3">
+                  <div class="col-md-3 mb-3">
                     <label for="cp">Código Postal</label>
                     <input type="text" class="form-control" name="cp" id="cp" placeholder="10001" pattern="[0-9]{5}" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese un valor válido.
+                    </div>
                   </div>
+                <div class="col-md-3 mb-3">
+                  <label for="pais">País</label>
+                  <input type="text" class="form-control" name="pais" id="pais" value="México" readonly>
                   <div class="invalid-feedback">
                     Por favor ingrese un valor válido.
                   </div>
                 </div>
+              </div>
                 <!-- Fila -->
                 <div class="form-row">
                   <div class="col-md-8 mb-3">

@@ -28,9 +28,9 @@
     if($_POST){
     $nombre=$_POST['nombre'];
     $apellidos=$_POST['apellido'];
-    $email=$_POST['email_usuario'];
+    $email=$_POST['email'];
     $rfc=$_POST['rfc'];
-    $celular=$_POST['cel_usuario'];
+    $celular=$_POST['tel'];
     $tipo=$_POST['tipo_usuario'];
     $contra=$_POST['contra'];
     $cContra=$_POST['cContra'];
@@ -40,7 +40,7 @@
       alert("No coinciden las contraseñas favor de verificar");
       </script>');
     }
-    
+
 
 
     $link=Conectarse();
@@ -54,13 +54,13 @@
     <br>
     <?php
       printf("<script>alert('Algo salio mal')</script>");
-    
+
     die();
   }
   if ($resultado) {
       printf("<script>alert('El servicio ha sido insertado'); location.href ='usuarios_admin.php';</script>");
 }
-        
+
     }
 
 ?>
