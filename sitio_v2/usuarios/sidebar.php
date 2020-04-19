@@ -116,7 +116,6 @@
       <?php
       }
       ?>
-      <!-- Quitar reportes
     <?php
       if ($_SESSION['tipo_usuario'] == "admin") {
     ?>
@@ -126,6 +125,15 @@
         <span data-feather="plus-circle"></span>
       </a>
     </h6>
+    <ul class="nav flex-column mb-2">
+      <li class="nav-item">
+        <a class="nav-link" href="reportes.php">
+          <span data-feather="file-text"></span>
+          Ver
+        </a>
+      </li>
+    </ul>
+    <!--
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
         <a class="nav-link" href="reporte-usuarios.php">
@@ -140,8 +148,9 @@
         </a>
       </li>
     </ul>
+    -->
     <?php
       }
     ?>
-  --></div>
+  </div>
 </nav>
