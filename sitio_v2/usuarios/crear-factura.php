@@ -12,7 +12,7 @@
       $nivel = 1;
       require "../comun/recursos.php"
     ?>
-    <title>Nueva factura - Factura Fácil</title>
+    <title>Crear Factura - Factura Fácil</title>
   </head>
   <body>
     <?php

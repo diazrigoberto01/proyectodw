@@ -28,9 +28,15 @@
     if($_POST){
     $nombre=$_POST['nombre'];
     $apellidos=$_POST['apellido'];
+<<<<<<< HEAD
     $email=$_POST['email'];
     $rfc=$_POST['rfc'];
     $celular=$_POST['tel'];
+=======
+    $email=$_POST['email_usuario'];
+    $rfc=$_POST['rfc'];
+    $celular=$_POST['cel_usuario'];
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
     $tipo=$_POST['tipo_usuario'];
     $contra=$_POST['contra'];
     $cContra=$_POST['cContra'];
@@ -40,7 +46,11 @@
       alert("No coinciden las contraseñas favor de verificar");
       </script>');
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
 
 
     $link=Conectarse();
@@ -54,13 +64,21 @@
     <br>
     <?php
       printf("<script>alert('Algo salio mal')</script>");
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
     die();
   }
   if ($resultado) {
       printf("<script>alert('El servicio ha sido insertado'); location.href ='usuarios_admin.php';</script>");
 }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
     }
 
 ?>

@@ -8,14 +8,23 @@
       function modificar(){
         var modificar=window.confirm("¿Seguro que desea modificar?")
         if (modificar) {
+<<<<<<< HEAD
           valida();
+=======
+          return valida();
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
         } else {
           return 0;
         }
       }
       function valida() {
+<<<<<<< HEAD
         if(document.servicio.clave.value.length == 0){
           document.servicio.clave.focus();
+=======
+        if(document.servicio.clave_producto.value.length == 0){
+          document.servicio.clave_producto.focus();
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
           return false;
         };
         if(document.servicio.um.value.length == 0){
@@ -37,7 +46,11 @@
   <body>
     <h3>Modificar Servicio</h3>
     <?php
+<<<<<<< HEAD
     if($_GET){
+=======
+    if($_GET["id"]){
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
       $id=$_GET["id"];
       include '../comun/conexion.php';//
       $link = Conectarse();
@@ -48,10 +61,14 @@
     }
 
     if($_POST){
+<<<<<<< HEAD
       echo "<script>
       alert('si entro');
       </script>";
       $nombre = $_POST['clave'];
+=======
+      $nombre = $_POST['clave_producto'];
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
       $descripcion = $_POST['descripcion'];
       $unidadmedida = $_POST['um'];
       $pu = $_POST['pu'];
@@ -65,12 +82,20 @@
         }
       }
     ?>
+<<<<<<< HEAD
       <form action="" method="POST" onsubmit="return modificar()" name="servicio">
+=======
+      <form action="modificar_Servicio.php" method="POST" onsubmit="return modificar()">
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
         <table>
         <tr>
             <td>Clave Producto Servicio</td>
             <td>
+<<<<<<< HEAD
                 <input type="text" name="clave" placeholder="Clave del producto" value="<?php echo $row[0]?>">
+=======
+                <input type="text" name="clave_producto" placeholder="Clave del producto" value="<?php echo $row[0]?>">
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
             </td>
         </tr>
         <tr>

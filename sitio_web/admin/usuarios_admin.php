@@ -19,16 +19,12 @@
   </head>
   <body>
     <h1>Administra los usuarios</h1>
-<<<<<<< HEAD
     <a href="agregar_usuarios.html">
       <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
     </a>
     <a href="crearfactura.php">
       <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
     </a>
-=======
-    <a href="agregar_usuarios.php">Agregar Usuario</a>
->>>>>>> Add files via upload
     <table align="center" border=1>
       <tr>
         <td colspan="6">
@@ -70,18 +66,24 @@
         <input type="button" value="Modificar">
       </a>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <input type="button" value="Eliminar" onclick="confirmarEliminar(%s)">
 =======
+=======
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
           <input type="button" value="Eliminar" onclick="confirmarEliminar()">
 >>>>>>> Add files via upload
         </td>
         </tr>',$row[0], $row[1], $row[2],$row[3],$row[4]);
       }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
-      
+
 >>>>>>> Add files via upload
+=======
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
       ?>
 <!-- Aqui la parte dinamica de la tabla-->
     </table>

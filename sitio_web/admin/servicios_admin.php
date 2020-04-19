@@ -20,7 +20,11 @@
     <a href="agregar_servicio.php">
      <img src="../img/agregar.png" alt="Agregar" width="5%" height="5%">
    </a>
+<<<<<<< HEAD
    <a href="crearfactura.php">
+=======
+   <a href="crearfactura.html">
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
      <img src="../img/inicio.png" alt="Inicio" width="5%" height="5%">
    </a>
     <table align="center" border=1>
@@ -62,7 +66,11 @@
         <a href="modificar_Servicio.php?id='.$row[4].'" target="principal">
         <input type="button" value="Modificar">
       </a>
+<<<<<<< HEAD
           <input type="button" value="Eliminar" onclick="confirmarEliminar(%s)">
+=======
+          <input type="button" value="Eliminar" onclick="confirmarEliminar()">
+>>>>>>> bddd171ac8cbd710ab919a332678a0a71e3add33
         </td>
         </tr>',$row[0], $row[1], $row[2],$row[3],$row[4]);
       }
