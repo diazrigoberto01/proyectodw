@@ -7,6 +7,7 @@
     <script>
       function descargar(){
         alert("Su descarga comenzara en unos segundos")
+        document.factura.submit();
       }
     </script>
   </head>
@@ -33,6 +34,7 @@
       $cantidadPagos=$_POST["cantidadPagos"];
       $dire=mysqli_query($link,"SELECT calle FROM f_direccion_empresa where empresa_rfc='$rfcEmisor' ") or die(mysqli_error($link));
       $info=mysqli_fetch_array($dire);
+      $subtotal=0;
       
   
       
@@ -51,8 +53,9 @@
     
     
     ?>
+    <form name="factura" action="generarpdf.php"> 
     <table align="center">
-      <td><img src="../img/emp1.png" alt="" /></td>
+      <td><img  name="logo" src="../img/emp1.png" alt="" /></td>
 
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -96,7 +99,7 @@
             <td>
             <?php
           echo"
-          <input type='text' name='fecha' value='$lugar' readonly>
+          <input type='text' name='lugar' value='$lugar' readonly>
           ";
           ?>
             </td>
@@ -128,7 +131,7 @@
         <td colspan="6">
         <?php
           echo"
-          <input type='text' name='nombreEmisor' size='70' value='$info[0]' readonly>
+          <input type='text' name='dirEmisor' size='70' value='$info[0]' readonly>
           ";
           ?>
           </td>
@@ -139,15 +142,15 @@
         <?php
           switch($tipoPago){
             case "Tarjeta": echo"
-            <input type='text' name='fecha' value='$tipoPago' readonly>
+            <input type='text' name='tipoPago' value='$tipoPago' readonly>
             ";
           break;
-          case "Tranferencia": echo"
-            <input type='text' name='fecha' value='$tipoPago' readonly>
+          case "Transferencia": echo"
+            <input type='text' name='tipoPago' value='$tipoPago' readonly>
             ";
           break;
           case "Efectivo": echo"
-            <input type='text' name='fecha' value='$tipoPago' readonly>
+            <input type='text' name='tipoPago' value='$tipoPago' readonly>
             ";
           break;
 
@@ -166,7 +169,7 @@
         <td>
         <?php
           echo"
-          <input type='text' name='fecha' value='$tipoPago' readonly>
+          <input type='text' name='tipoPago' value='$tipoPago' readonly>
           ";
           ?>
         </td>
@@ -178,20 +181,25 @@
         <td>
         <?php
   switch($cantidadPagos){
+    case 0: echo"
+    <input type='text' name='cantidadPagos' value='Pago unico' readonly>
+    ";
+  break;
+
     case 1: echo"
-      <input type='text' name='nombreEmisor' value='Pago unico' readonly>
+      <input type='text' name='cantidadPagos' value='Pago unico' readonly>
       ";
       break;
     case 2: echo"
-      <input type='text' name='nombreEmisor' value='1 mes' readonly>
+      <input type='text' name='cantidadPagos' value='1 mes' readonly>
       ";
     break;
     case 3: echo"
-    <input type='text' name='nombreEmisor' value='3 meses' readonly>
+    <input type='text' name='cantidadPagos' value='3 meses' readonly>
     ";
     break;
     case 4: echo"
-    <input type='text' name='nombreEmisor' value='6 meses' readonly>
+    <input type='text' name='cantidadPagos' value='6 meses' readonly>
     ";
   break;
   }
@@ -225,7 +233,7 @@
         <td colspan="4">
         <?php
           echo"
-          <input type='text' name='receptorRFC' size='35' value='$nombreCliente' readonly>
+          <input type='text' name='nombreCliente' size='35' value='$nombreCliente' readonly>
           ";
           ?>
           
@@ -236,7 +244,7 @@
           Residencia Fiscal: 
         <?php
           echo"
-          <input type='text' name='receptorRFC'  size='75' value='$direccionCliente' readonly>
+          <input type='text' name='dirCliente'  size='75' value='$direccionCliente' readonly>
           ";
           ?>
         </td>
@@ -246,7 +254,7 @@
         <td>
         <?php
           echo"
-          <input type='text' name='fecha'size='70' value='$cfdi' readonly>
+          <input type='text' name='cfdi'size='70' value='$cfdi' readonly>
           ";
           ?>
         </td>
@@ -273,30 +281,31 @@
         <?php
       for($i=1; $i<=$totalProductos; $i++){
           $num=strval($i);
-          $clave="clave".$num;
-          $desc="descripcion".$num;
-          $clave=$_POST[$clave];
-          $des=$_POST[$desc];
-          $um="um".$num;
-          $cantidad="cantidad".$num;
-          $pu="pu".$num;
-          $total="total".$num;
-          $um=$_POST[$um];
-          $cantidad=$_POST[$cantidad];
-          $pu=$_POST[$pu];
-          $total=$_POST[$total];
+          $claven="clave".$num;
+          $descn="descripcion".$num;
+          $clave=$_POST[$claven];
+          $des=$_POST[$descn];
+          $umn="um".$num;
+          $cantidadn="cantidad".$num;
+          $pun="pu".$num;
+          $totaln="total".$num;
+          $um=$_POST[$umn];
+          $cantidad=$_POST[$cantidadn];
+          $pu=$_POST[$pun];
+          $total=$_POST[$totaln];
 
           printf("<tr>
-          <td>%s</td>
-          <td>%s</td>
-          <td>%s</td>
-          <td>%s</td>
-          <td>%s</td>
-          <td>$total</td>
+          <td><input name='$claven' value='$clave' readonly></td>
+          <td><input name='$descn' value='$des' size=60 reandonly></td>
+          <td><input name='$umn' value='$um' reandonly></td>
+          <td><input name='$pun' value='$pu' reandonly></td>
+          <td><input name='$cantidadn' value='$cantidad' reandonly></td>
+          <td><input name='$totaln' value='$total' reandonly></td>
   
           </tr>
    
-          ",$clave,$des,$um,$pu,$cantidad);
+          ");
+          $subtotal=$subtotal+$total;
           }
         ?>
         <tr></tr>
@@ -309,33 +318,39 @@
                 Subtotal:
               </td>
               <td>
-                $30,000
+              <?php
+          echo"
+          <input type='text' name='subtotal' size=10 value='$subtotal' readonly>
+          ";
+          ?>
               </td>
 
-            </tr>
-            <tr>
-              <td>
-                Subtotal Neto:
-              </td>
-              <td>
-                $30,000
-              </td>
             </tr>
             <tr>
               <td>
                 +IVA(16%):
               </td>
               <td>
-                $4,800
+              <?php
+              $ivapc=$subtotal*0.16;
+          echo"
+          <input type='text' name='iva' size=10 value='$ivapc' readonly>
+          ";
+          ?>
               </td>
             </tr>
             <tr>
               <td>Total:</td>
-              <td>$34,800</td>
+              <td>
+              <?php
+              $totalmasiva=$subtotal+$ivapc;
+          echo"
+          <input type='text' name='totalmasiva' size=10 value='$totalmasiva' readonly>
+          ";
+          ?>
+              </td>
             </tr>
-        <tr>
-        <td>Treinta y cuatro mil ochocientos pesos MXN</td>
-        </tr>
+        
         <tr>
           <td>
             <input type="button" value="Descargar" onclick="descargar()">
@@ -352,7 +367,7 @@
   </table>
          
         
-
+  </form>
    <?php
    mysqli_close($link);
    ?>
