@@ -27,7 +27,7 @@
       $nombreCliente=$_POST["nombreCliente"];
       $direccionCliente=$_POST["direccionCliente"];
       $cfdi=$_POST["cfdi"];
-      $fecha=date("Y-m-d H:i:s");
+      $fecha=date("Y-m-d");
       $lugar=$_POST["lugar"];
       $totalProductos=$_POST["cproductos"];
       $tipoPago=$_POST["tipoPago"];
@@ -53,9 +53,11 @@
     
     
     ?>
-    <form name="factura" action="generarpdf.php"> 
+    <form name="factura" action="generarpdf.php" method="POST"> 
     <table align="center">
-      <td><img  name="logo" src="../img/emp1.png" alt="" /></td>
+      <td><img  name="logo" src="../img/emp1.png" alt="" value="../img/emp1.png" />
+        <input type="hidden" name="ubiImagen" value="../img/emp1.png">
+    </td>
 
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -93,26 +95,28 @@
           <tr>
             <td>
             <?php
-          echo" $fecha";
-          ?>
+              echo $fecha;
+              echo"<input type='hidden' name='fecha' value='$fecha' readonly>";
+            ?>
             </td>
             <td>
             <?php
-          echo"
-          <input type='text' name='lugar' value='$lugar' readonly>
-          ";
-          ?>
+              echo"
+               <input type='text' name='lugar' value='$lugar' readonly>
+              ";
+            ?>
             </td>
           </tr>
         </table>
       </td>
     </table>
+
     <table align="left">
       <tr>
         <td colspan="3">
           <?php
           echo"
-          <input type='text' name='emisoRFC' value='$rfcEmisor' readonly>
+          <input type='text' name='emisorRFC' value='$rfcEmisor' readonly>
           ";
           ?>
         </td>
@@ -120,15 +124,16 @@
       <tr>
         <td>
           Emisor:
-        <?php
-          echo"
-          <input type='text' name='nombreEmisor' value='$nombreEmpresa' readonly>
-          ";
+          <?php
+            echo"
+            <input type='text' name='nombreEmisor' value='$nombreEmpresa' readonly>
+            ";
           ?>
         </td>
       </tr>
       <tr>
         <td colspan="6">
+          Direccion:
         <?php
           echo"
           <input type='text' name='dirEmisor' size='70' value='$info[0]' readonly>
@@ -136,6 +141,7 @@
           ?>
           </td>
       </tr>
+
       <tr>
         <th>Metodo de Pago:</th>
         <td>
@@ -169,7 +175,7 @@
         <td>
         <?php
           echo"
-          <input type='text' name='tipoPago' value='$tipoPago' readonly>
+          <input type='text' name='formaPago' value='$tipoPago' readonly>
           ";
           ?>
         </td>
@@ -179,31 +185,31 @@
       <tr>
         <th>Condicion de Pago:</th>
         <td>
-        <?php
-  switch($cantidadPagos){
-    case 0: echo"
-    <input type='text' name='cantidadPagos' value='Pago unico' readonly>
-    ";
-  break;
+          <?php
+            switch($cantidadPagos){
+              case 0: echo"
+                <input type='text' name='cantidadPagos' value='Pago unico' readonly>
+                ";
+                break;
 
-    case 1: echo"
-      <input type='text' name='cantidadPagos' value='Pago unico' readonly>
-      ";
-      break;
-    case 2: echo"
-      <input type='text' name='cantidadPagos' value='1 mes' readonly>
-      ";
-    break;
-    case 3: echo"
-    <input type='text' name='cantidadPagos' value='3 meses' readonly>
-    ";
-    break;
-    case 4: echo"
-    <input type='text' name='cantidadPagos' value='6 meses' readonly>
-    ";
-  break;
-  }
-?>
+              case 1: echo"
+              <input type='text' name='cantidadPagos' value='Pago unico' readonly>
+              ";
+              break;
+              case 2: echo"
+              <input type='text' name='cantidadPagos' value='1 mes' readonly>
+              ";
+              break;
+              case 3: echo"
+                <input type='text' name='cantidadPagos' value='3 meses' readonly>
+              ";
+              break;
+              case 4: echo"
+              <input type='text' name='cantidadPagos' value='6 meses' readonly>
+              ";
+              break;
+              }
+            ?>
         </td>
         <th>Regimen Fiscal:</th>
         <td> <?php
@@ -254,7 +260,7 @@
         <td>
         <?php
           echo"
-          <input type='text' name='cfdi'size='70' value='$cfdi' readonly>
+          <input type='text' name='cfdi' size='70' value='$cfdi' readonly>
           ";
           ?>
         </td>
@@ -353,6 +359,7 @@
         
         <tr>
           <td>
+            <input type="hidden" name="totalproductos" value="<?php  echo $totalProductos ?>">
             <input type="button" value="Descargar" onclick="descargar()">
           </td>
           <td>
