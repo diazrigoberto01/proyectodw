@@ -14,19 +14,19 @@
     </h6>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="facturas.php">
           <span data-feather="file-text"></span>
           Ver
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="crear-factura.php">
           <span data-feather="file-text"></span>
-          Crear
+          Nueva factura
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="modificar-factura.php">
           <span data-feather="file-text"></span>
           Modificar
         </a>
@@ -41,22 +41,22 @@
     </h6>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="empresas.php">
           <span data-feather="file-text"></span>
           Ver
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="agregar-empresa.php">
           <span data-feather="file-text"></span>
-          Crear
+          Agregar
         </a>
       </li>
       <?php
         if ($_SESSION['tipo_usuario'] == "admin") {
       ?>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="modificar-empresa.php">
           <span data-feather="file-text"></span>
           Modificar
         </a>
@@ -74,19 +74,19 @@
     </h6>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="clientes.php">
           <span data-feather="file-text"></span>
           Ver
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="agregar-cliente.php">
           <span data-feather="file-text"></span>
-          Crear
+          Agregar
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="modificar-cliente.php">
           <span data-feather="file-text"></span>
           Modificar
         </a>
@@ -101,19 +101,19 @@
     </h6>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="servicios.php">
           <span data-feather="file-text"></span>
           Ver
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="agregar-servicio.php">
           <span data-feather="file-text"></span>
-          Crear
+          Agregar
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="modificar-servicio.php">
           <span data-feather="file-text"></span>
           Modificar
         </a>
@@ -128,7 +128,7 @@
     </h6>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="usuarios.php">
           <span data-feather="file-text"></span>
           Ver
         </a>
@@ -137,13 +137,13 @@
         if ($_SESSION['tipo_usuario'] == "admin") {
       ?>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="agregar-usuario.php">
             <span data-feather="file-text"></span>
-            Crear
+            Agregar
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="modificar-usuario.php">
             <span data-feather="file-text"></span>
             Modificar
           </a>
@@ -163,13 +163,13 @@
     </h6>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="reporte-usuarios.php">
           <span data-feather="file-text"></span>
           Usuarios
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="reporte-facturas.php">
           <span data-feather="file-text"></span>
           Facturas
         </a>
