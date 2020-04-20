@@ -2,52 +2,33 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>Ver-Factura</title>
-
+    <title>Equipo 1</title>
     <script>
       function descargar(){
         alert("Su descarga comenzara en unos segundos")
-        document.factura.submit();
       }
     </script>
   </head>
   <body>
     <?php
-    include "../comun/conexion.php";
-    $link=Conectarse();
+    $id=$_GET["id"];
+    echo $id;
+    include('../comun/conexion.php'); //conectarse.php ;para el servidor propio
+      $link=Conectarse();
+      $consulta=mysqli_query($link,"Select fecha_emision,folio,lugar_expedicion,rfc_receptor,
+      rfc_emisor,importe_total,direccion_emisor,metodo_pago,cantidadPagos,uso_cfdi,subtotal,iva from f_factura where id='$id' ") or die(mysqli_error($link));
+      $row = mysqli_fetch_array($consulta);
+      $emisorC=mysqli_query($link,"Select razon_social,regimen_fiscal from f_empresas where rfc='$row[4]' ") or die(mysqli_error($link));
+      $razonSocial = mysqli_fetch_array($emisorC);
+      $cliente=mysqli_query($link,"Select razon_social,concat(calle,concat(no_exterior,concat(municipio,concat(estado,'.')))) from f_cliente where rfc='$row[3]' ") or die(mysqli_error($link));
+      $info = mysqli_fetch_array($cliente);
 
-   
-    //datos de la factura
-
-      //datos del emisor
-      $rfcEmisor=$_POST["rfcEmp"];
-      $rfcReceptor=$_POST["rfcRec"];
-      $nombreEmpresa=$_POST["nomEmp"];
-      $regimen=$_POST["regimen"];
-      $nombreCliente=$_POST["nombreCliente"];
-      $direccionCliente=$_POST["direccionCliente"];
-      $cfdi=$_POST["cfdi"];
-      $fecha=date("Y-m-d");
-      $lugar=$_POST["lugar"];
-      $totalProductos=$_POST["cproductos"];
-      $tipoPago=$_POST["tipoPago"];
-      $cantidadPagos=$_POST["cantidadPagos"];
-      $dire=mysqli_query($link,"SELECT calle FROM f_direccion_empresa where empresa_rfc='$rfcEmisor' ") or die(mysqli_error($link));
-      $info=mysqli_fetch_array($dire);
-      $buscarfolio=mysqli_query($link,"Select folio from f_factura order by folio desc limit 1") or die(mysqli_error($link));
-      $folio=mysqli_fetch_array($buscarfolio);
-      $folio[0]=$folio[0]+1;
-      $subtotal=0;
-  
-      
-    
-    
     ?>
-    <form name="factura" action="generarpdf.php" method="POST"> 
+   <form name="factura" action="generarpdf.php" method="POST"> 
     <table align="center">
       <td><img  name="logo" src="../img/emp1.png" alt="" value="../img/emp1.png" />
         <input type="hidden" name="ubiImagen" value="../img/emp1.png">
-    </td>
+      </td>
 
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -75,8 +56,8 @@
             <td>Serie:A</td>
             <td>Folio:
               <?php
-              echo $folio[0];
-              echo"<input type='hidden' name='folio' value='$folio[0]' readonly>";
+              echo $row[1];
+              echo"<input type='hidden' name='folio' value='$row[1]' readonly>";
               ?>
                             </td>
           </tr>
@@ -90,14 +71,14 @@
           <tr>
             <td>
             <?php
-              echo $fecha;
-              echo"<input type='hidden' name='fecha' value='$fecha' readonly>";
+              echo $row[0];
+              echo"<input type='hidden' name='fecha' value='$$row[0]' readonly>";
             ?>
             </td>
             <td>
             <?php
               echo"
-               <input type='text' name='lugar' value='$lugar' readonly>
+               <input type='text' name='lugar' value='$row[2]' readonly>
               ";
             ?>
             </td>
@@ -111,7 +92,7 @@
         <td colspan="3">
           <?php
           echo"
-          <input type='text' name='emisorRFC' value='$rfcEmisor' readonly>
+          <input type='text' name='emisorRFC' value='$row[4]' readonly>
           ";
           ?>
         </td>
@@ -120,8 +101,8 @@
         <td>
           Emisor:
           <?php
-            echo"
-            <input type='text' name='nombreEmisor' value='$nombreEmpresa' readonly>
+            echo "
+            <input type='text' name='nombreEmisor' value='$razonSocial[0]' readonly>
             ";
           ?>
         </td>
@@ -131,7 +112,7 @@
           Direccion:
         <?php
           echo"
-          <input type='text' name='dirEmisor' size='70' value='$info[0]' readonly>
+          <input type='text' name='dirEmisor' size='70' value='$row[6]' readonly>
           ";
           ?>
           </td>
@@ -141,17 +122,17 @@
         <th>Metodo de Pago:</th>
         <td>
         <?php
-          switch($tipoPago){
+          switch($row[7]){
             case "Tarjeta": echo"
-            <input type='text' name='tipoPago' value='$tipoPago' readonly>
+            <input type='text' name='tipoPago' value='$row[7]' readonly>
             ";
           break;
           case "Transferencia": echo"
-            <input type='text' name='tipoPago' value='$tipoPago' readonly>
+            <input type='text' name='tipoPago' value='$row[7]' readonly>
             ";
           break;
           case "Efectivo": echo"
-            <input type='text' name='tipoPago' value='$tipoPago' readonly>
+            <input type='text' name='tipoPago' value='$row[7]' readonly>
             ";
           break;
 
@@ -170,7 +151,7 @@
         <td>
         <?php
           echo"
-          <input type='text' name='formaPago' value='$tipoPago' readonly>
+          <input type='text' name='formaPago' value='$row[7]' readonly>
           ";
           ?>
         </td>
@@ -181,25 +162,25 @@
         <th>Condicion de Pago:</th>
         <td>
           <?php
-            switch($cantidadPagos){
-              case 0: echo"
+            switch($row[8]){
+              case "Pago Unico": echo"
                 <input type='text' name='cantidadPagos' value='Pago unico' readonly>
                 ";
                 break;
 
-              case 1: echo"
+              case "Pago Unico": echo"
               <input type='text' name='cantidadPagos' value='Pago unico' readonly>
               ";
               break;
-              case 2: echo"
+              case "1 mes": echo"
               <input type='text' name='cantidadPagos' value='1 mes' readonly>
               ";
               break;
-              case 3: echo"
+              case "3 meses": echo"
                 <input type='text' name='cantidadPagos' value='3 meses' readonly>
               ";
               break;
-              case 4: echo"
+              case "6 meses": echo"
               <input type='text' name='cantidadPagos' value='6 meses' readonly>
               ";
               break;
@@ -209,7 +190,7 @@
         <th>Regimen Fiscal:</th>
         <td> <?php
           echo"
-          <input type='text' name='regimen' value='$regimen' readonly>
+          <input type='text' name='regimen' value='$razonSocial[1]' readonly>
           ";
           ?></td>
       </tr>
@@ -225,7 +206,7 @@
         <td colspan="4">Facturado a (receptor):
         <?php
           echo"
-          <input type='text' name='receptorRFC' value='$rfcReceptor' readonly>
+          <input type='text' name='receptorRFC' value='$row[3]' readonly>
           ";
           ?>
            </td>
@@ -234,7 +215,7 @@
         <td colspan="4">
         <?php
           echo"
-          <input type='text' name='nombreCliente' size='35' value='$nombreCliente' readonly>
+          <input type='text' name='nombreCliente' size='35' value='$info[0]' readonly>
           ";
           ?>
           
@@ -245,7 +226,7 @@
           Residencia Fiscal: 
         <?php
           echo"
-          <input type='text' name='dirCliente'  size='75' value='$direccionCliente' readonly>
+          <input type='text' name='dirCliente'  size='75' value='$info[1]' readonly>
           ";
           ?>
         </td>
@@ -255,7 +236,7 @@
         <td>
         <?php
           echo"
-          <input type='text' name='cfdi' size='70' value='$cfdi' readonly>
+          <input type='text' name='cfdi' size='70' value='$row[9]' readonly>
           ";
           ?>
         </td>
@@ -280,34 +261,8 @@
     <!-- PARTE dinamica -->
 
         <?php
-      for($i=1; $i<=$totalProductos; $i++){
-          $num=strval($i);
-          $claven="clave".$num;
-          $descn="descripcion".$num;
-          $clave=$_POST[$claven];
-          $des=$_POST[$descn];
-          $umn="um".$num;
-          $cantidadn="cantidad".$num;
-          $pun="pu".$num;
-          $totaln="total".$num;
-          $um=$_POST[$umn];
-          $cantidad=$_POST[$cantidadn];
-          $pu=$_POST[$pun];
-          $total=$_POST[$totaln];
-
-          printf("<tr>
-          <td><input name='$claven' value='$clave' readonly></td>
-          <td><input name='$descn' value='$des' size=60 reandonly></td>
-          <td><input name='$umn' value='$um' reandonly></td>
-          <td><input name='$pun' value='$pu' reandonly></td>
-          <td><input name='$cantidadn' value='$cantidad' reandonly></td>
-          <td><input name='$totaln' value='$total' reandonly></td>
-  
-          </tr>
-   
-          ");
-          $subtotal=$subtotal+$total;
-          }
+      
+          
         ?>
         <tr></tr>
         <tr></tr>
@@ -321,7 +276,7 @@
               <td>
               <?php
           echo"
-          <input type='text' name='subtotal' size=10 value='$subtotal' readonly>
+          <input type='text' name='subtotal' size=10 value='$row[10]' readonly>
           ";
           ?>
               </td>
@@ -333,9 +288,9 @@
               </td>
               <td>
               <?php
-              $ivapc=$subtotal*0.16;
+              
           echo"
-          <input type='text' name='iva' size=10 value='$ivapc' readonly>
+          <input type='text' name='iva' size=10 value='$row[11]' readonly>
           ";
           ?>
               </td>
@@ -344,9 +299,8 @@
               <td>Total:</td>
               <td>
               <?php
-              $totalmasiva=$subtotal+$ivapc;
-                echo"
-                <input type='text' name='totalmasiva' size=10 value='$totalmasiva' readonly>
+                echo "
+                <input type='text' name='totalmasiva' size=10 value='$row[5]' readonly>
                 ";
               ?>
               </td>

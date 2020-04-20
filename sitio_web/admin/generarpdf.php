@@ -25,9 +25,9 @@ $totalmasiva=$_POST["totalmasiva"];
 $folio=$_POST["folio"];
 //añadir info a f_factura
 $insertaConcepto=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,direccion_emisor,lugar_expedicion,fecha_emision,
-rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi) 
+rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos) 
 values('$folio','$rfcEmisor','$dirEmisor','$lugar','$fecha','$receptorRFC','$tipoPago','
-$totalmasiva','123asd','$iva','$subtotal','$cfdi')");
+$totalmasiva','123asd','$iva','$subtotal','$cfdi','$cantidadPagos')");
 
 
 
