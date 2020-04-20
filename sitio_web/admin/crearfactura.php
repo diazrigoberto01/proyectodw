@@ -240,7 +240,7 @@
         can_productos.value=index-1;
 
       }
-      function eliminarUltimo(){
+    function eliminarUltimo(){
         if(index==1){
           return false;
         }

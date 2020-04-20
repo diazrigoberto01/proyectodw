@@ -50,8 +50,8 @@
       </tr>
 <!-- Aqui comienza la parte dinamica de la tabla-->
       <?php
-      include('../comun/conexion.php'); //conectarse.php ;para el servidor propio
-      $link=Conectarse();
+      include('./comun/recursos.php'); //conectarse.php ;para el servidor propio
+      $link=conectarse();
       $consulta=mysqli_query($link,"Select fecha_emision,folio,rfc_receptor,rfc_emisor,importe_total from f_factura");
       if($error = mysqli_error($link)){
         echo "Error buscando los datos en la base de datos: '$error'";
@@ -69,7 +69,9 @@
         <td>%s</td>
         <td>%d</td>
         <td>
-          <input type="button" value="Ver">
+        <a href="factura-creada.php?id='.$row[1].'">
+        <input type="button" value="Ver">
+        </a>
           <input type="button" value="Cancelar" onclick="cancelarFactura(%s)">
         </td>
         </tr>',$row[0], $row[1], $row[2], $row[3], $row[4],$row[1]);

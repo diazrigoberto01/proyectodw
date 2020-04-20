@@ -1,4 +1,9 @@
 <?php
+include "../comun/conexion.php";
+//require_once '../vendor/autoload.php';
+$link=Conectarse();
+
+
 $imagen=$_POST["ubiImagen"];
 $fecha=$_POST["fecha"];
 $lugar=$_POST["lugar"];
@@ -19,6 +24,12 @@ $iva=$_POST["iva"];
 $totalmasiva=$_POST["totalmasiva"];
 $folio=$_POST["folio"];
 //añadir info a f_factura
+$insertaConcepto=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,direccion_emisor,lugar_expedicion,fecha_emision,
+rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos) 
+values('$folio','$rfcEmisor','$dirEmisor','$lugar','$fecha','$receptorRFC','$tipoPago','
+$totalmasiva','123asd','$iva','$subtotal','$cfdi','$cantidadPagos')");
+
+
 
 
 $encabezado="
@@ -185,7 +196,15 @@ for($i=1; $i<=$totalProductos; $i++){
     $cantidad=$_POST[$cantidadn];
     $pu=$_POST[$pun];
     $total=$_POST[$totaln];
+    $ivaP=$total*0.16;
+    $tmi=$total+$ivaP;
     //añadir info a f_concepto_facturado
+
+    $insertaFactura=mysqli_query($link,"insert into f_concepto_facturado(factura_folio,factura_empresa_rfc,
+    fecha,concepto_clave,concepto_descripcion,
+    concepto_um,concepto_cantidad,concepto_pu,concepto_subtotal,concepto_iva,concepto_total) 
+        values('$folio','$rfcEmisor','$fecha','$clave','$des','
+    $um','$cantidad','$pu','$total','$iva','$tmi')");
 
 
     $tabla.="<tr>
@@ -235,6 +254,13 @@ for($i=1; $i<=$totalProductos; $i++){
     $factura.=$emisor;
     $factura.=$receptor;
     $factura.=$tabla;
-
-echo $factura;
+/*
+$mpdf = new \Mpdf\Mpdf();
+$mpdf->WriteHTML($factura);
+$nombreF="factura".$folio."pdf";
+$mpdf->Output($nombreF,"D");
+*/
+echo "<script>
+location.href='crearfactura.php'
+</script>"
 ?>
