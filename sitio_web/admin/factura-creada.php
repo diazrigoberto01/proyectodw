@@ -12,9 +12,8 @@
   <body>
     <?php
     $id=$_GET["id"];
-    echo $id;
-    include('../comun/conexion.php'); //conectarse.php ;para el servidor propio
-      $link=Conectarse();
+    include('./comun/recursos.php'); //conectarse.php ;para el servidor propio
+      $link=conectarse();
       $consulta=mysqli_query($link,"Select fecha_emision,folio,lugar_expedicion,rfc_receptor,
       rfc_emisor,importe_total,direccion_emisor,metodo_pago,cantidadPagos,uso_cfdi,subtotal,iva from f_factura where id='$id' ") or die(mysqli_error($link));
       $row = mysqli_fetch_array($consulta);
@@ -261,7 +260,19 @@
     <!-- PARTE dinamica -->
 
         <?php
-      
+       $servicios=mysqli_query($link,"Select concepto_clave,concepto_descripcion,concepto_um,concepto_pu,
+       concepto_cantidad,concepto_subtotal from f_concepto_facturado where factura_folio='$row[1]'") or die(mysqli_error($link));
+       while ($servicio = mysqli_fetch_array($servicios)) {
+        printf('<tr>
+        <td>%s</td>
+        <td>%s</td>
+        <td>%s</td>
+        <td>%d</td>
+        <td>%d</td>
+        <td>%d</td
+
+        </tr>',$servicio[0], $servicio[1], $servicio[2], $servicio[3], $servicio[4],$servicio[5]);
+      }
           
         ?>
         <tr></tr>

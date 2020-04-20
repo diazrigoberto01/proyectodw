@@ -50,8 +50,8 @@
       </tr>
 <!-- Aqui comienza la parte dinamica de la tabla-->
       <?php
-      include('../comun/conexion.php'); //conectarse.php ;para el servidor propio
-      $link=Conectarse();
+      include('./comun/recursos.php'); //conectarse.php ;para el servidor propio
+      $link=conectarse();
       $consulta=mysqli_query($link,"Select fecha_emision,folio,rfc_receptor,rfc_emisor,importe_total from f_factura");
       if($error = mysqli_error($link)){
         echo "Error buscando los datos en la base de datos: '$error'";
