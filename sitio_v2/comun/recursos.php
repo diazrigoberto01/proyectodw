@@ -1,5 +1,6 @@
 <?php require "resolver_path.php" ?>
-<meta charset="utf-8">
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
 <link rel="shortcut icon" href="<?php echo $path_absoluto ?>img/favicon.ico" />
 <link rel="stylesheet" href="<?php echo $path_absoluto ?>css/global.css">
 <!-- Bootstrap -->
