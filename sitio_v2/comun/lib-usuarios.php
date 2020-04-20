@@ -10,6 +10,7 @@
     $email=$_POST['email'];
     $rfc=$_POST['rfc'];
     $celular=$_POST['tel'];
+    $telefono=$_POST['tel'];
     $tipo=$_POST['tipo_usuario'];
     $contra=$_POST['password'];
     $cContra=$_POST['password1'];
@@ -23,7 +24,7 @@
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
     $resultado = mysqli_query($link, "INSERT INTO f_usuario(rfc, nombre, apellidos, email, pass, celular, tel_fijo, tipo)
-    VALUES ('$rfc', '$nombre', '$apellidos', '$email', '$contra', '$celular', '', '$tipo')");
+    VALUES ('$rfc', '$nombre', '$apellidos', '$email', '$contra', '$celular', '$telefono', '$tipo')");
     # Error
     if ($error = mysqli_error($link)) {
       errorAgregarUsuario($rfc);
@@ -176,30 +177,26 @@
     $apellidos=$_POST['apellido'];
     $email=$_POST['email'];
     $rfc=$_POST['rfc'];
-    $celular=$_POST['tel'];
+    $telefono=$_POST['tel'];
     $tipo=$_POST['tipo_usuario'];
     $contra=$_POST['password'];
-    $cContra=$_POST['password1'];
-    if(!$contra==$cContra){
-      printf('<script>
-      alert("No coinciden las contraseñas favor de verificar");
-      </script>');
-    }
     # Conexión a la DB
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "UPDATE f_cliente SET rfc='$rfc', razon_social='$razon', email='$email', telefono='$telefono', calle='$calle', municipio='$municipio', cp='$cp', estado='$estado' where id='$id'");
+    $resultado = mysqli_query($link, "UPDATE f_usuario SET rfc='$rfc', email='$email', celular='$telefono', nombre='$nombre', apellidos='$apellidos', tipo='$tipo', pass='$contra' WHERE id='$id'");
     # Error
     if ($error = mysqli_error($link)) {
-      errorModificarUsuario($email);
+      echo "<script>console.log($error)</script>";
+      errorModificarUsuario($email, $error);
       return false;
     }
     # Éxito
     exitoModificarUsuario($email);
+    return true;
   }
 
-  function errorModificarUsuario($email) {
+  function errorModificarUsuario($email, $error) {
     ?>
     <script type="text/javascript" src="../comun/global.js"></script>
     <div class="modal fade" id="errorModificarUsuarioModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="errorModificarUsuarioModalLabel" aria-hidden="true">
@@ -212,8 +209,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Ocurrió un error al tratar de modficiar el usuario con correo  <samp><?php echo $email ?></samp>.</p>
+            <p>Ocurrió un error al tratar de modificar el usuario con correo  <samp><?php echo $email ?></samp>.</p>
             <p>Por favor verifique que todos los datos estén correctos y vuelva a intentarlo.</p>
+            <p><?php echo $error ?></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('usuarios.php')">Continuar</button>

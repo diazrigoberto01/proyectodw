@@ -63,7 +63,7 @@
                   </div>
                   <div class="col-md-4 mb-3">
                     <label for="nombre_comercial">Nombre comercial</label>
-                    <input type="text" class="form-control" name="nombre_comercial" id="nombre_comercial" placeholder="Comercio S.A." pattern="[A-Z0-9]{10,20}" value="<?php echo $row[0]?>" required>
+                    <input type="text" class="form-control" name="nombre_comercial" id="nombre_comercial" placeholder="Comercio S.A." pattern="[a-zA-Z0-9 ]{10,50}" value="<?php echo $row[0]?>" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>
@@ -76,7 +76,7 @@
                 <div class="form-row">
                   <div class="col-md-3 mb-3">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="John" pattern="[a-zA-Z]{3,50}" value="<?php echo $row[1]?>" required>
+                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="John Doe" pattern="[a-zA-Z ]{3,50}" value="<?php echo $row[1]?>" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>
@@ -200,6 +200,7 @@
                     </div>
                   </div>
                 </div>
+                <input type="hidden" name="id" value="<?php echo $id ?>">
                 <button class="btn btn-success" type="submit">Agregar</button>
                 <button class="btn btn-danger" type="button" onclick="history.go(-1)">Cancelar</button>
                 <button type="reset" class="btn btn-warning">Borrar</button>

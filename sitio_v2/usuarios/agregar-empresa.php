@@ -56,7 +56,7 @@
                   </div>
                   <div class="col-md-4 mb-3">
                     <label for="nombre_comercial">Nombre comercial</label>
-                    <input type="text" class="form-control" name="nombre_comercial" id="nombre_comercial" placeholder="Comercio S.A." pattern="[A-Z0-9]{10,20}" required>
+                    <input type="text" class="form-control" name="nombre_comercial" id="nombre_comercial" placeholder="Comercio S.A." pattern="[a-zA-Z0-9 ]{10,20}" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>

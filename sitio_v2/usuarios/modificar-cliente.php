@@ -72,14 +72,14 @@
                 <div class="form-row">
                   <div class="col-md-6 mb-3">
                     <label for="email">Correo</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="nombre@correo.com" pattern="[a-zA-Z0-9]{2,60}@[a-zA-Z0-9]{2,60}\.[a-z]{2,3}.*" value="<?php echo $row[9]?>" required>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="nombre@correo.com" pattern="[a-zA-Z0-9]{2,60}@[a-zA-Z0-9]{2,60}\.[a-z]{2,3}.*" value="<?php echo $row[8]?>" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un correo válido.
                     </div>
                   </div>
                   <div class="col-md-6 mb-3">
                     <label for="tel">Teléfono</label>
-                    <input type="text" class="form-control" name="tel" id="tel" placeholder="555-1234567"  pattern="[0-9]{10}" value="<?php echo $row[10]?>" required>
+                    <input type="text" class="form-control" name="tel" id="tel" placeholder="555-1234567"  pattern="[0-9]{10}" value="<?php echo $row[9]?>" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un teléfono válido a 10 dígitos. Sólo números.
                     </div>
@@ -92,14 +92,14 @@
                 <div class="form-row">
                   <div class="col-md-4 mb-3">
                     <label for="calle">Calle</label>
-                    <input type="text" class="form-control" name="calle" id="calle" placeholder="" pattern="[a-zA-Z0-9 ]{3,60}" value="<?php echo $row[4]?>" required>
+                    <input type="text" class="form-control" name="calle" id="calle" placeholder="" pattern="[a-zA-Z0-9 ]{3,60}" value="<?php echo $row[3]?>" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>
                   </div>
                   <div class="col-md-4 mb-3">
                     <label for="n_ext">Nº Exterior</label>
-                    <input type="text" class="form-control" name="n_ext" id="n_ext" placeholder="1" pattern="[0-9]{1,5}" value="<?php echo $row[8]?>" required>
+                    <input type="text" class="form-control" name="n_ext" id="n_ext" placeholder="1" pattern="[0-9]{1,5}" value="<?php echo $row[7]?>" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>
@@ -109,21 +109,21 @@
                 <div class="form-row">
                   <div class="col-md-4 mb-3">
                     <label for="municipio">Municipio</label>
-                    <input type="text" class="form-control" name="municipio" id="municipio" placeholder="" pattern="[a-zA-Z ]{3,60}" value="<?php echo $row[7]?>" required>
+                    <input type="text" class="form-control" name="municipio" id="municipio" placeholder="" pattern="[a-zA-Z ]{3,60}" value="<?php echo $row[6]?>" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>
                   </div>
                   <div class="col-md-4 mb-3">
                     <label for="estado">Estado</label>
-                    <input type="text" class="form-control" name="estado" id="estado" placeholder="" pattern="[a-zA-Z ]{4,60}" value="<?php echo $row[6]?>" required>
+                    <input type="text" class="form-control" name="estado" id="estado" placeholder="" pattern="[a-zA-Z ]{4,60}" value="<?php echo $row[5]?>" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>
                   </div>
                   <div class="col-md-4 mb-3">
                     <label for="cp">Código Postal</label>
-                    <input type="text" class="form-control" name="cp" id="cp" placeholder="10001" pattern="[0-9]{5}" value="<?php echo $row[5]?>" required>
+                    <input type="text" class="form-control" name="cp" id="cp" placeholder="10001" pattern="[0-9]{5}" value="<?php echo $row[4]?>" required>
                   </div>
                   <div class="invalid-feedback">
                     Por favor ingrese un valor válido.

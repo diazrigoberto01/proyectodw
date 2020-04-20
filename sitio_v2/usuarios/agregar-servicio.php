@@ -62,7 +62,7 @@
                 <div class="form-row">
                   <div class="col-md-4 mb-3">
                     <label for="um">Unidad de medida</label>
-                    <input type="text" class="form-control" name="um" id="um" placeholder="Kg" pattern="[a-zA-Z]{1,10}" required>
+                    <input type="text" class="form-control" name="um" id="um" placeholder="Kg" pattern="[a-zA-Z0-9]{1,10}" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>

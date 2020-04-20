@@ -1,13 +1,3 @@
-<?php
-# Código viejo en su totalidad
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
-if (!isset($_SESSION['tipo_usuario'])) {
-  header("Location: no-autorizado.php");
-  die();
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -22,16 +12,11 @@ if (!isset($_SESSION['tipo_usuario'])) {
     </script>
   </head>
   <body>
-    <script>
-      function descargar(){
-        alert("Su descarga comenzara en unos segundos")
-        document.factura.submit();
-      }
-    </script>
     <?php
     include "../comun/conexion.php";
-    $link=conectarse();
+    $link=Conectarse();
 
+   
     //datos de la factura
 
       //datos del emisor
@@ -53,10 +38,10 @@ if (!isset($_SESSION['tipo_usuario'])) {
       $folio=mysqli_fetch_array($buscarfolio);
       $folio[0]=$folio[0]+1;
       $subtotal=0;
-
+  
       
-
-
+    
+    
     ?>
     <form name="factura" action="generarpdf.php" method="POST"> 
     <table align="center">
@@ -282,8 +267,8 @@ if (!isset($_SESSION['tipo_usuario'])) {
       </tr>
       
     </table>
-
-    <table align="center">
+    
+  <table align="center">
       <tr>
         <th>Clave &nbsp;</th>
         <th>Descripcion &nbsp;</th>
@@ -317,9 +302,9 @@ if (!isset($_SESSION['tipo_usuario'])) {
           <td><input name='$pun' value='$pu' reandonly></td>
           <td><input name='$cantidadn' value='$cantidad' reandonly></td>
           <td><input name='$totaln' value='$total' reandonly></td>
-
+  
           </tr>
-
+   
           ");
           $subtotal=$subtotal+$total;
           }
@@ -381,13 +366,13 @@ if (!isset($_SESSION['tipo_usuario'])) {
         </td>
 
         </tr>
-    </table>
+  </table>
          
         
-    </form>
-    <?php
-    mysqli_close($link);
-    ?>
-
+  </form>
+   <?php
+   mysqli_close($link);
+   ?>
+    
   </body>
 </html>

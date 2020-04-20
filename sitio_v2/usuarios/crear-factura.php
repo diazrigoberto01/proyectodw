@@ -428,7 +428,7 @@
                   </table>
                 </form>
 
-                <form class="form"  action="factura_ver.php" name="productos" method="POST" id="facturacompleta">
+                <form class="form"  action="ver-factura.php" name="productos" method="POST" id="facturacompleta">
 
                   <br /><br />
                   <table align="center" id="productos" width="70%">

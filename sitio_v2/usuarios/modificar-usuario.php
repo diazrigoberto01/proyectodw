@@ -9,14 +9,14 @@
   if ($_GET) {
     $operacion = $_GET["op"];
     $id = $_GET["id"];
+    if ($operacion == 2) {
+      eliminarUsuario($id);
+      header("Location: usuarios.php");
+    }
   }
   $nivel = 1;
   require "../comun/recursos.php";
   require "../comun/lib-usuarios.php";
-  if ($operacion == 2) {
-    eliminarCliente($id);
-    header("Location: usuarios.php");
-  }
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -31,7 +31,8 @@
       <div class="row">
         <?php
           if ($_POST) {
-            modificarCliente();
+            modificarUsuario();
+            die();
           }
           include "sidebar.php";
           $link = conectarse();
@@ -50,7 +51,7 @@
           </div>
           <div class="row">
             <div class="col align-self-center">
-              <form class="needs-validation" name="usuario" action="agregar-usuario.php" method="post" novalidate>
+              <form class="needs-validation" name="usuario" action="modificar-usuario.php" method="post" novalidate>
                 <!-- Fila -->
                 <div class="form-row">
                   <div class="col-md-4 mb-3">

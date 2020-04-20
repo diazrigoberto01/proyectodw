@@ -14,7 +14,7 @@
       $nivel = 1;
       require "../comun/recursos.php"
     ?>
-    <title>Servicios - Factura Fácil</title>
+    <title>Usuarios - Factura Fácil</title>
   </head>
   <body>
     <?php

@@ -42,7 +42,7 @@
                 <div class="form-row">
                   <div class="col-md-4 mb-3">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="John" pattern="[a-zA-Z]{3,50}" required>
+                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="John" pattern="[a-zA-Z ]{3,50}" required>
                     <div class="invalid-feedback">
                       Por favor ingrese un valor válido.
                     </div>
@@ -101,7 +101,7 @@
                   </div>
                   <div class="col-md-4 mb-3">
                     <label for="password1">Confirmar contraseña</label>
-                    <input type="password1" class="form-control" name="password1" id="password1" placeholder="" pattern=".{6,30}" required>
+                    <input type="password" class="form-control" name="password1" id="password1" placeholder="" pattern=".{6,30}" required>
                     <div class="invalid-feedback">
                       Las contraseñas no coinciden.
                     </div>

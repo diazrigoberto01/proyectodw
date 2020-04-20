@@ -95,7 +95,7 @@
       </script>
       <?php
     }
-    
+
     function eliminarEmpresa($id) {
       # Conexión a la DB
       $link = conectarse();
@@ -175,10 +175,10 @@
 
     function modificarEmpresa() {
       # Datos
+      $id= $_POST['id'];
       $rfc = $_POST['rfc'];
-      $razon = $_POST['rSocial'];
       $nombre_comercial = $_POST['nombre_comercial'];
-      $contacto = $_POST['nombre'].' '.$_POST['apellido'];
+      $contacto = $_POST['nombre'];
       $telefono = $_POST['telefono'];
       $email = $_POST['email'];
       $regimen=$_POST['regimen'];
@@ -186,7 +186,6 @@
       $estado = $_POST['estado'];
       $municipio = $_POST['municipio'];
       $localidad = $_POST['localidad'];
-      $colonia=$_POST['colonia'];
       $calle = $_POST['calle'];
       $numero_exterior = $_POST['n_ext'];
       $cp = $_POST['cp'];
@@ -195,18 +194,23 @@
       $link = conectarse();
       echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
       # DB Update
-      $resultado = mysqli_query($link, "UPDATE f_empresas SET nombre_comercial='$nombreComercial', contacto='$contacto', rfc='$rfc', telefono='$telefono',email='$email' where id='$id'");
+      $resultado = mysqli_query($link, "UPDATE f_empresas SET nombre_comercial='$nombre_comercial', contacto='$contacto', rfc='$rfc', telefono='$telefono', email='$email' where id='$id'");
+      # Error
+      if ($error = mysqli_error($link)) {
+        errorModificarEmpresa($rfc, $error);
+        return false;
+      }
       $resultado_direccion = mysqli_query($link, "UPDATE f_direccion_empresa set empresa_rfc='$rfc',calle='$calle',colonia='$localidad',municipio='$municipio',estado='$estado',pais='$pais',n_exterior='$n_ext',cp=$cp,localidad='$localidad'  where empresa_rfc='$row[2]'");
       # Error
       if ($error = mysqli_error($link)) {
-        errorModificarEmpresa($rfc);
+        errorModificarEmpresa($rfc, $error);
         return false;
       }
       # Éxito
       exitoModificarEmpresa($rfc);
     }
 
-    function errorModificarEmpresa($rfc) {
+    function errorModificarEmpresa($rfc, $error) {
       ?>
       <script type="text/javascript" src="../comun/global.js"></script>
       <div class="modal fade" id="errorModificarEmpresaModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="errorModificarEmpresaModalLabel" aria-hidden="true">
@@ -221,6 +225,7 @@
             <div class="modal-body">
               <p>Ocurrió un error al tratar de modificar la empresa con RFC  <samp><?php echo $rfc ?></samp>.</p>
               <p>Por favor verifique que todos los datos estén correctos y vuelva a intentarlo.</p>
+              <p><?php echo $error ?></p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('empresas.php')">Continuar</button>
@@ -265,4 +270,3 @@
       <?php
     }
   ?>
-
