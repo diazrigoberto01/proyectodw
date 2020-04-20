@@ -1,5 +1,7 @@
 <?php
-  session_start();
+  if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
   if (!isset($_SESSION['tipo_usuario'])) {
     header("Location: no-autorizado.php");
     die();
@@ -24,14 +26,14 @@
         <?php
           include "sidebar.php";
         ?>
-        <div class="col">
-          <div class="row">
+        <div class="col align-self-end">
+          <div class="row justify-content-end">
             <div class="col align-self-center mb-3 mt-3">
               <h2>Nueva Factura</h2>
             </div>
           </div>
           <div class="row">
-            <div class="col align-self-center">
+            <div class="col-8 align-self-end">
               <!-- Código viejo, deprecar -->
               <?php
               $link=conectarse();
@@ -87,8 +89,6 @@
 
                   }
 
-
-
                   if(document.factura.nombreCliente.value.length == 0){
                     alert("Introduzca una persona de contacto.");
                     document.factura.contactoNombre.focus();
@@ -106,7 +106,6 @@
                     return false;
                   };
                   };
-
 
                   var facturaCompleta=document.getElementById("facturacompleta");
                   //agregar datos faltantes
@@ -143,9 +142,6 @@
                   lugar.value=document.getElementById('lugar').value;
                   lugar.type="hidden";
 
-
-
-
                   //agregar datos al post
                   facturaCompleta.appendChild(rfcEmisor);
                   facturaCompleta.appendChild(rfcReceptor);
@@ -159,7 +155,6 @@
                   //alert("Factura generada con exito");
                   //return location.href = "ver-factura.php";
                   //return true;
-
                 }
 
                 function validarRFC(){
@@ -294,219 +289,221 @@
                           document.getElementById("meses").style.display = "none"
                         }
               </script>
-              <form action="#" method="POST" name="factura" onsubmit="">
-                <table align="center">
-                  <tr>
-                    <th colspan="6">
-                      <center>
-                        <h3>
-                          Crea tu Factura
-                        </h3>
-                      </center>
-                    </th>
-                  </tr>
+              <div class="col-8 align-self-center">
+                <form class="form" action="#" method="POST" name="factura" onsubmit="">
+                  <table align="center">
+                    <tr>
+                      <th colspan="6">
+                        <center>
+                          <h3>
+                            Crea tu Factura
+                          </h3>
+                        </center>
+                      </th>
+                    </tr>
 
-                  <tr>
-                    <td><p>RFC de la empresa:</p></td>
-                    <td>
+                    <tr>
+                      <td><p>RFC de la empresa:</p></td>
+                      <td>
 
-                      <select name="rfcEmisor">
-                      <option value="0" >Elegir</option>
-                      <?php
-                      $result = mysqli_query($link, "SELECT rfc FROM f_empresas");
-                      while ($row = mysqli_fetch_array($result)) {
-                        echo '"<option value="'.$row[0].'">'.$row[0].'</option>"';
-                      }
-                    ?>
-                      </select>
-
-
-                    </td>
-                    <td><p>RFC del cliente:</p></td>
-                    <td>
-                      <select name="rfcCliente">
-                        <option value="0">Elegir</option>
+                        <select name="rfcEmisor">
+                        <option value="0" >Elegir</option>
                         <?php
-                        $result = mysqli_query($link, "SELECT rfc FROM f_cliente");
+                        $result = mysqli_query($link, "SELECT rfc FROM f_empresas");
                         while ($row = mysqli_fetch_array($result)) {
                           echo '"<option value="'.$row[0].'">'.$row[0].'</option>"';
                         }
+                      ?>
+                        </select>
 
-                        ?>
-                      </select>
+
                       </td>
-                    <td>
-                    <input type="submit" name="Buscar"  value="Buscar" onclick=" return validarRFC()" />
-                    </td>
-                      </tr>
+                      <td><p>RFC del cliente:</p></td>
+                      <td>
+                        <select name="rfcCliente">
+                          <option value="0">Elegir</option>
+                          <?php
+                          $result = mysqli_query($link, "SELECT rfc FROM f_cliente");
+                          while ($row = mysqli_fetch_array($result)) {
+                            echo '"<option value="'.$row[0].'">'.$row[0].'</option>"';
+                          }
+
+                          ?>
+                        </select>
+                        </td>
+                      <td>
+                      <input type="submit" name="Buscar"  value="Buscar" onclick=" return validarRFC()" />
+                      </td>
+                        </tr>
 
 
+                        <?php
+                        if($_POST['Buscar']){
+                          $rfcEmisor=$_POST["rfcEmisor"];
+                          $rfcCliente=$_POST["rfcCliente"];
+                          printf("
+                          <tr>
+                           <td >Rfc Emisor</td>
+                           <td><input type='text' name='rfcEmp' id='emisor' value='%s'></td>
+                           <td >Rfc Receptor</td>
+                           <td><input name='rfcReceptor' id='receptor' value='%s' ></td>
+                         </tr>
+                          ",$rfcEmisor,$rfcCliente);
+                        }
+                        ?>
+
+
+
+                    <tr>
+                      <td><p>Nombre Empresa:</p></td>
                       <?php
                       if($_POST['Buscar']){
-                        $rfcEmisor=$_POST["rfcEmisor"];
-                        $rfcCliente=$_POST["rfcCliente"];
-                        printf("
-                        <tr>
-                         <td >Rfc Emisor</td>
-                         <td><input type='text' name='rfcEmp' id='emisor' value='%s'></td>
-                         <td >Rfc Receptor</td>
-                         <td><input name='rfcReceptor' id='receptor' value='%s' ></td>
-                       </tr>
-                        ",$rfcEmisor,$rfcCliente);
+                       $rfcEmisor= $_POST["rfcEmisor"];
+                       $getinfo=mysqli_query($link,"Select razon_social,regimen_fiscal from f_empresas where rfc='$rfcEmisor'") or die(mysqli_error($link));
+                       $infoEmisor=mysqli_fetch_array($getinfo);
+                          printf(
+                        "<td><input type='text' name='nombre' id='nomEmp' value='$infoEmisor[0]'/></td>
+                        <td><p>Régimen fiscal:</p></td>
+                        <td><input type='text' name='regimen_fiscal' id='regFis' value='$infoEmisor[1]'/></td>
+                        "
+                      );
+                      }else{
+                        printf(
+                          "<td><input type='text' name='nombre'/></td>
+                          <td><p>Régimen fiscal:</p></td>
+                          <td><input type='text' name='regimen_fiscal' /></td>
+                          "
+                        );
+
                       }
                       ?>
 
-
-
-                  <tr>
-                    <td><p>Nombre Empresa:</p></td>
-                    <?php
-                    if($_POST['Buscar']){
-                     $rfcEmisor= $_POST["rfcEmisor"];
-                     $getinfo=mysqli_query($link,"Select razon_social,regimen_fiscal from f_empresas where rfc='$rfcEmisor'") or die(mysqli_error($link));
-                     $infoEmisor=mysqli_fetch_array($getinfo);
-                        printf(
-                      "<td><input type='text' name='nombre' id='nomEmp' value='$infoEmisor[0]'/></td>
-                      <td><p>Régimen fiscal:</p></td>
-                      <td><input type='text' name='regimen_fiscal' id='regFis' value='$infoEmisor[1]'/></td>
-                      "
-                    );
-                    }else{
-                      printf(
-                        "<td><input type='text' name='nombre'/></td>
-                        <td><p>Régimen fiscal:</p></td>
-                        <td><input type='text' name='regimen_fiscal' /></td>
-                        "
-                      );
-
-                    }
-                    ?>
-
-                  </tr>
-                  <tr>
-                    <td>Nombre Cliente</td>
-                    <?php
-                    if($_POST["Buscar"]){
-                       $rfcCliente=$_POST["rfcCliente"];
-                    $getCliente=mysqli_query($link,"SELECT razon_social,concat(calle,concat(' ',concat(no_exterior,concat(', ',concat(municipio,concat(', ',concat(estado,concat(', ',cp)))))))) as Direccion FROM f_cliente where rfc='$rfcCliente'") or die(mysqli_error($link));
-                    $infoCliente=mysqli_fetch_array($getCliente);
-                    printf("
-                     <td><input type='text' name='nombreCliente' id='nombreCliente' value='$infoCliente[0]' /></td>
-                     <td>Direccion:</td>
-                     <td><input type='text' name='direccionCliente' id='direccionCliente' placeholder='Direccion Receptor' size=80 value='$infoCliente[1]'></td>
-                     "
-                    );
-                    }else{
-                      printf(
-                        "
-                        <td><input type='text' name='nombreCliente' /></td>
-                        <td>Direccion:</td>
-                        <td><input type='text' name='dir_cliente' placeholder='Direccion Receptor'></td>
-                        "
-                      );
-
-                    }
-
-                    ?>
-
-
-                  </tr>
-                  <tr>
-                  <td>Uso de CFDI</td>
-                    <td>
-                      <select name="cfdi" id="cfdi">
+                    </tr>
+                    <tr>
+                      <td>Nombre Cliente</td>
                       <?php
-                        $result = mysqli_query($link, "SELECT clave,descripcion FROM f_usoscfdi");
-                        while ($usos = mysqli_fetch_array($result)) {
-                          $uso=$usos[0].'-'.$usos[1];
-                          echo '"<option value="'.$usos[1].'">'.$uso.'</option>"';
-                        }
+                      if($_POST["Buscar"]){
+                         $rfcCliente=$_POST["rfcCliente"];
+                      $getCliente=mysqli_query($link,"SELECT razon_social,concat(calle,concat(' ',concat(no_exterior,concat(', ',concat(municipio,concat(', ',concat(estado,concat(', ',cp)))))))) as Direccion FROM f_cliente where rfc='$rfcCliente'") or die(mysqli_error($link));
+                      $infoCliente=mysqli_fetch_array($getCliente);
+                      printf("
+                       <td><input type='text' name='nombreCliente' id='nombreCliente' value='$infoCliente[0]' /></td>
+                       <td>Direccion:</td>
+                       <td><input type='text' name='direccionCliente' id='direccionCliente' placeholder='Direccion Receptor' size=80 value='$infoCliente[1]'></td>
+                       "
+                      );
+                      }else{
+                        printf(
+                          "
+                          <td><input type='text' name='nombreCliente' /></td>
+                          <td>Direccion:</td>
+                          <td><input type='text' name='dir_cliente' placeholder='Direccion Receptor'></td>
+                          "
+                        );
 
-                        ?>
+                      }
 
-                      </select>
-                    </td>
-                    <td><p>Lugar:</p></td>
-                    <td><input type="text" name="lugar" id="lugar"/></td>
-                  </tr>
-                </table>
-              </form>
+                      ?>
 
-              <form action="factura_ver.php" name="productos" method="POST" id="facturacompleta">
 
-                <br /><br />
-                <table align="center" id="productos" width="70%">
-                  <tr>
-                  <td>Cantidad Servicios: <input type="number" name="cproductos" id="c_productos" size="4" value="0" readonly></td>
-                    <td>
-                      Servicios:
-                      <select name="desc_producto" id="desc">
-                        <option value="Elegir">Elegir</option>
+                    </tr>
+                    <tr>
+                    <td>Uso de CFDI</td>
+                      <td>
+                        <select name="cfdi" id="cfdi">
                         <?php
-                        $result = mysqli_query($link, "SELECT clave,descripcion FROM f_concepto");
-                        while ($descripcion = mysqli_fetch_array($result)) {
-                          $desc=$descripcion[0].'-'.$descripcion[1];
-                          echo '"<option value="'.$desc.'">'.$desc.'</option>"';
-                        }
+                          $result = mysqli_query($link, "SELECT clave,descripcion FROM f_usoscfdi");
+                          while ($usos = mysqli_fetch_array($result)) {
+                            $uso=$usos[0].'-'.$usos[1];
+                            echo '"<option value="'.$usos[1].'">'.$uso.'</option>"';
+                          }
 
-                        ?>
+                          ?>
 
-                      </select>
-                    </td>
-                    <td>
-                      Unidad
-                      <select name="um" id="um">
-                        <option value="Elegir">Elegir</option>
-                        <option value="m">Mts</option>
-                        <option value="m2">M2</option>
-                        <option value="m3">M3</option>
-                        <option value="cm">cm</option>
-                        <option value="cm2">cm2</option>
-                        <option value="lts">lts</option>
-                        <option value="ton">ton</option>
-                        <option value="kg">kg</option>
-                      </select>
-                    </td>
+                        </select>
+                      </td>
+                      <td><p>Lugar:</p></td>
+                      <td><input type="text" name="lugar" id="lugar"/></td>
+                    </tr>
+                  </table>
+                </form>
 
-                    <td>Cantidad:<input type="number" name="cantidad" id="cantidad" size=5 placeholder="Cantidad" value="0"/></td>
-                    <td>Pu:<input type="number" name="pu" id="pu" id="pu" size=5 value="0" placeholder="Precio Unitario"/></td>
-                    <td><input type="button" name="agregar" value="Agregar" onclick="agregarProducto()"/></td>
-                    <td>Elimina Ultimo <input type="button" name="elimina" id="elimina" value="Elimina Ultimo" onclick="eliminarUltimo()"></td>
-                  </tr>
+                <form class="form"  action="factura_ver.php" name="productos" method="POST" id="facturacompleta">
 
-                  <tr>
+                  <br /><br />
+                  <table align="center" id="productos" width="70%">
+                    <tr>
+                    <td>Cantidad Servicios: <input type="number" name="cproductos" id="c_productos" size="4" value="0" readonly></td>
+                      <td>
+                        Servicios:
+                        <select name="desc_producto" id="desc">
+                          <option value="Elegir">Elegir</option>
+                          <?php
+                          $result = mysqli_query($link, "SELECT clave,descripcion FROM f_concepto");
+                          while ($descripcion = mysqli_fetch_array($result)) {
+                            $desc=$descripcion[0].'-'.$descripcion[1];
+                            echo '"<option value="'.$desc.'">'.$desc.'</option>"';
+                          }
 
-                    <td>Producto</td>
-                    <td>Descripción</td>
-                    <td>Unidad de medida</td>
-                    <td>Cantidad</td>
-                    <td>Precio Unitario</td>
-                    <td>Total</td>
+                          ?>
 
-                  </tr>
+                        </select>
+                      </td>
+                      <td>
+                        Unidad
+                        <select name="um" id="um">
+                          <option value="Elegir">Elegir</option>
+                          <option value="m">Mts</option>
+                          <option value="m2">M2</option>
+                          <option value="m3">M3</option>
+                          <option value="cm">cm</option>
+                          <option value="cm2">cm2</option>
+                          <option value="lts">lts</option>
+                          <option value="ton">ton</option>
+                          <option value="kg">kg</option>
+                        </select>
+                      </td>
 
-                </table>
+                      <td>Cantidad:<input type="number" name="cantidad" id="cantidad" size=5 placeholder="Cantidad" value="0"/></td>
+                      <td>Pu:<input type="number" name="pu" id="pu" id="pu" size=5 value="0" placeholder="Precio Unitario"/></td>
+                      <td><input type="button" name="agregar" value="Agregar" onclick="agregarProducto()"/></td>
+                      <td>Elimina Ultimo <input type="button" name="elimina" id="elimina" value="Elimina Ultimo" onclick="eliminarUltimo()"></td>
+                    </tr>
 
-                <p>Método de pago:</p>
-                <input type="radio" name="tipoPago" onClick="oculta()" checked value="Transferencia"/> Transferencia
-                <input type="radio" name="tipoPago"  onClick="Muestra('meses')" value="Tarjeta"/> Tarjeta Credito/Debito
-                <input type="radio" name="tipoPago" onClick="oculta()" value="Efectivo"/> Efectivo
+                    <tr>
 
-                <span id="meses" style="display:none">
-                  <p>Condición de pago:</p>
-                <select name="cantidadPagos">
-                <option value="0">Elegir</option>
-                <option value="1">Pago Unico</option>
-                  <option value="2">1 mes</option>
-                  <option value="3">3 meses</option>
-                  <option value="4">6 meses</option>
-                </select>
-                </span>
+                      <td>Producto</td>
+                      <td>Descripción</td>
+                      <td>Unidad de medida</td>
+                      <td>Cantidad</td>
+                      <td>Precio Unitario</td>
+                      <td>Total</td>
 
-                <br /><br />
-                <input type="button" value="Crear Factura" onclick="valida()"/>
-                <input type="reset" value="Reiniciar" />
-              </form>
+                    </tr>
+
+                  </table>
+
+                  <p>Método de pago:</p>
+                  <input type="radio" name="tipoPago" onClick="oculta()" checked value="Transferencia"/> Transferencia
+                  <input type="radio" name="tipoPago"  onClick="Muestra('meses')" value="Tarjeta"/> Tarjeta Credito/Debito
+                  <input type="radio" name="tipoPago" onClick="oculta()" value="Efectivo"/> Efectivo
+
+                  <span id="meses" style="display:none">
+                    <p>Condición de pago:</p>
+                  <select name="cantidadPagos">
+                  <option value="0">Elegir</option>
+                  <option value="1">Pago Unico</option>
+                    <option value="2">1 mes</option>
+                    <option value="3">3 meses</option>
+                    <option value="4">6 meses</option>
+                  </select>
+                  </span>
+
+                  <br /><br />
+                  <input type="button" value="Crear Factura" onclick="valida()"/>
+                  <input type="reset" value="Reiniciar" />
+                </form>
+              </div>
               <!-- Código viejo, deprecar -->
             </div>
           </div>
