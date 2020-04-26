@@ -1,5 +1,4 @@
 <?php
-# Código viejo
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
@@ -7,6 +6,10 @@ if (!isset($_SESSION['tipo_usuario'])) {
   header("Location: no-autorizado.php");
   die();
 }
+include "../comun/recursos.php";
+require_once '../vendor/autoload.php';
+$link=conectarse();
+
 
 $imagen=$_POST["ubiImagen"];
 $fecha=$_POST["fecha"];
@@ -27,11 +30,43 @@ $subtotal=$_POST["subtotal"];
 $iva=$_POST["iva"];
 $totalmasiva=$_POST["totalmasiva"];
 $folio=$_POST["folio"];
+
+
 //añadir info a f_factura
+$insertaConcepto=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,direccion_emisor,lugar_expedicion,fecha_emision,
+rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos) 
+values('$folio','$rfcEmisor','$dirEmisor','$lugar','$fecha','$receptorRFC','$tipoPago','
+$totalmasiva','123asd','$iva','$subtotal','$cfdi','$cantidadPagos')") or die(mysqli_error($link));
+
+for($i=1; $i<=$totalProductos; $i++){
+  $num=strval($i);
+    $claven="clave".$num;
+    $descn="descripcion".$num;
+    $clave=$_POST[$claven];
+    $des=$_POST[$descn];
+    $umn="um".$num;
+    $cantidadn="cantidad".$num;
+    $pun="pu".$num;
+    $totaln="total".$num;
+    $um=$_POST[$umn];
+    $cantidad=$_POST[$cantidadn];
+    $pu=$_POST[$pun];
+    $total=$_POST[$totaln];
+    $ivaP=$total*0.16;
+    $tmi=$total+$ivaP;
+    echo $des;
+    $insertaFactura=mysqli_query($link,"insert into f_concepto_facturado(factura_folio,factura_empresa_rfc,
+    fecha,concepto_clave,concepto_descripcion,
+    concepto_um,concepto_cantidad,concepto_pu,concepto_subtotal,concepto_iva,concepto_total) 
+        values('$folio','$rfcEmisor','$fecha','$clave','$des','
+    $um','$cantidad','$pu','$total','$iva','$tmi')") or die(mysqli_error($link));
+
+}
+
 
 
 $encabezado="
-<table align='center'>
+<table align='center'> 
 
     <td>
     <h1>Factura</h1>
@@ -122,7 +157,7 @@ $emisor="
             $cantidadPagos
         </td>
         <th>Regimen Fiscal:</th>
-        <td>
+        <td> 
         $regimen
         </td>
     </tr>
@@ -143,12 +178,12 @@ $receptor="
       <tr>
         <td colspan='4'>
         Cliente: $nombreCliente
-
+          
         </td>
       </tr>
       <tr>
         <td colspan='4'>
-          Residencia Fiscal:
+          Residencia Fiscal: 
             $dirCliente
         </td>
       </tr>
@@ -163,7 +198,7 @@ $receptor="
           --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         </td>
       </tr>
-
+      
 </table>
 ";
 
@@ -179,7 +214,7 @@ $tabla="<table align='center'>
         <th>Importe</th>
     </tr>
 ";
-
+//añadir productos
 for($i=1; $i<=$totalProductos; $i++){
     $num=strval($i);
     $claven="clave".$num;
@@ -194,8 +229,9 @@ for($i=1; $i<=$totalProductos; $i++){
     $cantidad=$_POST[$cantidadn];
     $pu=$_POST[$pun];
     $total=$_POST[$totaln];
+    $ivaP=$total*0.16;
+    $tmi=$total+$ivaP;
     //añadir info a f_concepto_facturado
-
 
     $tabla.="<tr>
     <td>$clave</td>
@@ -208,8 +244,8 @@ for($i=1; $i<=$totalProductos; $i++){
     </tr>
 
     ";
-    }
-    $tabla.="
+}
+$tabla.="
         <tr><br><br><br><br></tr>
         <tr><br><br><br><br></tr>
         <tr>
@@ -236,7 +272,7 @@ for($i=1; $i<=$totalProductos; $i++){
                         <td>$
                         $totalmasiva
                         </td>
-                    </tr>
+         </tr>
     </table>";
 
     $factura="";
@@ -244,6 +280,15 @@ for($i=1; $i<=$totalProductos; $i++){
     $factura.=$emisor;
     $factura.=$receptor;
     $factura.=$tabla;
+/*
+$mpdf = new \Mpdf\Mpdf();
+$mpdf->WriteHTML($factura);
+$nombreF="factura".$folio."pdf";
+$mpdf->Output($nombreF,"D");
 
-echo $factura;
+
+echo "<script>
+location.href='facturas.php'
+</script>"
+*/
 ?>
