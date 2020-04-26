@@ -1,12 +1,3 @@
-<?php
-  if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-  }
-  if (!isset($_SESSION['tipo_usuario'])) {
-    header("Location: no-autorizado.php");
-    die();
-  }
-?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -19,11 +10,15 @@
   <body>
     <?php
       require "../comun/navbar.php";
+      
     ?>
     <div class="container-fluid">
+<?php
+include "sidebar2.php";
+?>
       <div class="row justify-content-end">
         <?php
-          include "sidebar.php";
+          
           $link = conectarse();
           $consulta = mysqli_query($link,"SELECT fecha_emision, folio, rfc_receptor, rfc_emisor, importe_total FROM f_factura");
           if ($error = mysqli_error($link)) {
