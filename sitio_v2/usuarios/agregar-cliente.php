@@ -25,11 +25,11 @@
       require "../comun/navbar.php";
     ?>
     <div class="container-fluid">
-      <div class="row">
+      <div class="row justify-content-end">
         <?php
           include "sidebar.php";
         ?>
-        <div class="col">
+        <div class="col-md-10  align-self-end">
           <div class="row">
             <div class="col align-self-center mb-3 mt-3">
               <h2>Agregar Cliente</h2>
