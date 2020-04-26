@@ -21,11 +21,11 @@
       require "../comun/navbar.php";
     ?>
     <div class="container-fluid">
-      <div class="row">
+      <div class="row justify-content-end">
         <?php
           include "sidebar.php";
         ?>
-        <div class="col">
+        <div class="col-md-10  align-self-end">
           <h2 style="text-align: center">Seleccionar reporte a generar</h2>
           <form action="reportes.php" method="post" name="forma-reportes">
             <table align="center">
@@ -49,7 +49,7 @@
           <hr>
           <h2 style="text-align: center">Reportes</h2>
           <hr>
-          <table border="1" align="center">
+          <table class="table" border="1" align="center">
             <?php
             $link = conectarse();
             if ($error = mysqli_error($link)) {

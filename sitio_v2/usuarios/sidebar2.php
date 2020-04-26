@@ -93,11 +93,9 @@
           <span style="color:#fff">Facturas</span>
         </button>
         <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="facturas.php"><span style="color:#fff">Ver</span></a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="crear-factura.php"><span style="color:#fff">Nueva Factura</span></a>
-          <div class="dropdown-divider"></div>
         </div>
       </div>
         <!--Empresas-->
@@ -106,11 +104,8 @@
             <span style="color:#fff">Empresas</span>
           </button>
           <div class="dropdown-menu bg-dark " aria-labelledby="dropdownMenuButton">
-          <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="empresas.php"><span style="color:#fff">Ver</span></a>
-            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="agregar-empresa.php"><span style="color:#fff">Agregar</span></a>
-            <div class="dropdown-divider"></div>
           </div>
         </div>
         <!--Clientes-->
@@ -119,11 +114,8 @@
               <span style="color:#fff">Clientes</span>
             </button>
             <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-            <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="clientes.php"><span style="color:#fff">Ver</span></a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="agregar-cliente.php"><span style="color:#fff">Agregar</span></a>
-              <div class="dropdown-divider"></div>
             </div>
         </div>
         <!--Servicios-->
@@ -132,11 +124,8 @@
              <span style="color:#fff">Servicios</span>
             </button>
             <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-            <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="servicios.php"><span style="color:#fff">Ver</span></a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="agregar-servicio.php"><span style="color:#fff">Agregar</span></a>
-              <div class="dropdown-divider"></div>
             </div>
         </div>
         <!--Usuarios-->
@@ -146,14 +135,11 @@
             <span style="color:#fff">Usuarios</span>
           </button>
           <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-          <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="usuarios.php"><span style="color:#fff">Ver</span></a>
-            <div class="dropdown-divider"></div>
             <?php
               if ($_SESSION['tipo_usuario'] == "admin") {
             ?>
             <a class="dropdown-item" href="agregar-usuario.php"><span style="color:#fff">Agregar</span></a>
-            <div class="dropdown-divider"></div>
             <?php
             }
             ?>
@@ -170,9 +156,7 @@
         <span style="color:#fff">Reportes</span>
       </button>
       <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-      <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="reportes.php"><span style="color:#fff">Ver</span></a>
-        <div class="dropdown-divider"></div>
       </div>
     </div>
     <?php

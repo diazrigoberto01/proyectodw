@@ -21,7 +21,7 @@
       require "../comun/navbar.php";
     ?>
     <div class="container-fluid">
-      <div class="row">
+      <div class="row justify-content-end">
         <?php
           include "sidebar.php";
           $link = conectarse();
@@ -35,7 +35,7 @@
             die();
           }
         ?>
-        <div class="col">
+        <div class="col-md-10  align-self-end">
           <table class="table">
             <thead>
               <tr>
