@@ -12,7 +12,7 @@
   <body>
     <?php
     $id=$_GET["id"];
-    include('./comun/recursos.php'); //conectarse.php ;para el servidor propio
+    include('../comun/recursos.php'); //conectarse.php ;para el servidor propio
       $link=conectarse();
       $consulta=mysqli_query($link,"Select fecha_emision,folio,lugar_expedicion,rfc_receptor,
       rfc_emisor,importe_total,direccion_emisor,metodo_pago,cantidadPagos,uso_cfdi,subtotal,iva from f_factura where id='$id' ") or die(mysqli_error($link));
@@ -25,8 +25,8 @@
     ?>
    <form name="factura" action="generarpdf.php" method="POST"> 
     <table align="center">
-      <td><img  name="logo" src="../img/emp1.png" alt="" value="../img/emp1.png" />
-        <input type="hidden" name="ubiImagen" value="../img/emp1.png">
+      <td><img  name="logo" src="../img/mezclas.png" alt="" value="../img/mezclas.png" />
+        <input type="hidden" name="ubiImagen" value="../img/mezclas.png">
       </td>
 
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

@@ -30,6 +30,8 @@ $subtotal=$_POST["subtotal"];
 $iva=$_POST["iva"];
 $totalmasiva=$_POST["totalmasiva"];
 $folio=$_POST["folio"];
+
+
 //añadir info a f_factura
 $insertaConcepto=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,direccion_emisor,lugar_expedicion,fecha_emision,
 rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos) 
@@ -52,6 +54,7 @@ for($i=1; $i<=$totalProductos; $i++){
     $total=$_POST[$totaln];
     $ivaP=$total*0.16;
     $tmi=$total+$ivaP;
+    echo $des;
     $insertaFactura=mysqli_query($link,"insert into f_concepto_facturado(factura_folio,factura_empresa_rfc,
     fecha,concepto_clave,concepto_descripcion,
     concepto_um,concepto_cantidad,concepto_pu,concepto_subtotal,concepto_iva,concepto_total) 
@@ -211,7 +214,7 @@ $tabla="<table align='center'>
         <th>Importe</th>
     </tr>
 ";
-
+//añadir productos
 for($i=1; $i<=$totalProductos; $i++){
     $num=strval($i);
     $claven="clave".$num;
@@ -241,8 +244,8 @@ for($i=1; $i<=$totalProductos; $i++){
     </tr>
 
     ";
-    }
-    $tabla.="
+}
+$tabla.="
         <tr><br><br><br><br></tr>
         <tr><br><br><br><br></tr>
         <tr>
@@ -269,7 +272,7 @@ for($i=1; $i<=$totalProductos; $i++){
                         <td>$
                         $totalmasiva
                         </td>
-                    </tr>
+         </tr>
     </table>";
 
     $factura="";
@@ -277,13 +280,15 @@ for($i=1; $i<=$totalProductos; $i++){
     $factura.=$emisor;
     $factura.=$receptor;
     $factura.=$tabla;
-
+/*
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML($factura);
 $nombreF="factura".$folio."pdf";
 $mpdf->Output($nombreF,"D");
 
+
 echo "<script>
-location.href='crearfactura.php'
+location.href='facturas.php'
 </script>"
+*/
 ?>
