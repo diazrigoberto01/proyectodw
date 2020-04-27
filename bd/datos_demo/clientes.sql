@@ -8,4 +8,4 @@ INSERT INTO f_cliente(rfc, razon_social, calle, cp, estado, municipio, email, no
 VALUES ('HUA8956049FG', 'URBANIZADORA SAN JUAN', '2 Oriente 507', '72160', 'Puebla', 'Puebla', 'URBASJ@gmail.com', '11', '4569871234',  NULL);
 INSERT INTO f_cliente(rfc, razon_social, calle, cp, estado, municipio, email, no_exterior, telefono, usuario_rfc)
 VALUES ('PUB8955674FG', 'URBANIZADORA UPAEP', '3 Oriente 1507', '72180', 'Puebla', 'Puebla', 'noexite@gmail.com', '11', '4569871234',  NULL);
-INSERT INTO `f_cliente` VALUES (8,'123RFC456','Pedro Lopez','guerrero sur','90500','Tlaxcala','Huamantla','500','rigobertomd27@gmail.com','2474710104', NULL);
+INSERT INTO f_cliente(rfc, razon_social, calle, cp, estado, municipio, email, no_exterior, telefono, usuario_rfc) VALUES ('123RFC456','Pedro Lopez','Guerrero Sur','90500','Tlaxcala','Huamantla','rigobertomd27@gmail.com','500','2474710104', NULL);

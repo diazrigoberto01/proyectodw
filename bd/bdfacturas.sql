@@ -23,6 +23,7 @@ CREATE TABLE `f_cliente` (
   `email` varchar(120) NOT NULL,
   `telefono` varchar(30) NOT NULL,
   `usuario_rfc` varchar(30) DEFAULT NULL,
+  `logo` varchar(255),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
@@ -38,6 +39,7 @@ CREATE TABLE `f_empresas` (
   `status` char(1) DEFAULT NULL,
   `usuario_rfc` varchar(255) DEFAULT NULL,
   `regimen_fiscal` varchar(255) DEFAULT NULL,
+  `logo` varchar(255),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
@@ -57,18 +59,6 @@ CREATE TABLE `f_direccion_empresa` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
-
-CREATE TABLE `f_logo` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `imagen` varchar(255) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `fecha` varchar(20) NOT NULL,
-  `empresa_rfc` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
-
-
 CREATE TABLE `f_factura` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `folio` int(11) NOT NULL,
@@ -86,8 +76,6 @@ CREATE TABLE `f_factura` (
   `cantidadPagos` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
-
-
 
 CREATE TABLE `f_concepto_facturado` (
   `factura_folio` varchar(255) NOT NULL,
