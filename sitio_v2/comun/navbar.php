@@ -26,7 +26,10 @@
       ?>
         <div class="collapse navbar-collapse justify-content-end">
           <form class="form-inline" name="cierreSesion" action="cerrar-sesion.php" method="post">
-            <button type="submit" class="btn btn-outline-light" name="cerrarSesion">
+            <button type="button" class="btn btn-outline-light mr-2" name="usuarios" onclick="irA(<?php echo $path_absoluto ?>crear-factura.php)">
+              Ir al Dashboard
+            </button>
+            <button type="submit" class="btn btn-outline-warning" name="cerrarSesion">
               Cerrar Sesion
             </button>
           </form>
