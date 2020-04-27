@@ -6,6 +6,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
   header("Location: no-autorizado.php");
   die();
 }
+$nivel=1;
 include "../comun/recursos.php";
 require_once '../vendor/autoload.php';
 $link=conectarse();
@@ -34,7 +35,7 @@ $folio=$_POST["folio"];
 
 //añadir info a f_factura
 $insertaConcepto=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,direccion_emisor,lugar_expedicion,fecha_emision,
-rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos) 
+rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos)
 values('$folio','$rfcEmisor','$dirEmisor','$lugar','$fecha','$receptorRFC','$tipoPago','
 $totalmasiva','123asd','$iva','$subtotal','$cfdi','$cantidadPagos')") or die(mysqli_error($link));
 
@@ -57,7 +58,7 @@ for($i=1; $i<=$totalProductos; $i++){
     echo $des;
     $insertaFactura=mysqli_query($link,"insert into f_concepto_facturado(factura_folio,factura_empresa_rfc,
     fecha,concepto_clave,concepto_descripcion,
-    concepto_um,concepto_cantidad,concepto_pu,concepto_subtotal,concepto_iva,concepto_total) 
+    concepto_um,concepto_cantidad,concepto_pu,concepto_subtotal,concepto_iva,concepto_total)
         values('$folio','$rfcEmisor','$fecha','$clave','$des','
     $um','$cantidad','$pu','$total','$iva','$tmi')") or die(mysqli_error($link));
 
@@ -66,7 +67,7 @@ for($i=1; $i<=$totalProductos; $i++){
 
 
 $encabezado="
-<table align='center'> 
+<table align='center'>
 
     <td>
     <h1>Factura</h1>
@@ -157,7 +158,7 @@ $emisor="
             $cantidadPagos
         </td>
         <th>Regimen Fiscal:</th>
-        <td> 
+        <td>
         $regimen
         </td>
     </tr>
@@ -178,12 +179,12 @@ $receptor="
       <tr>
         <td colspan='4'>
         Cliente: $nombreCliente
-          
+
         </td>
       </tr>
       <tr>
         <td colspan='4'>
-          Residencia Fiscal: 
+          Residencia Fiscal:
             $dirCliente
         </td>
       </tr>
@@ -198,7 +199,7 @@ $receptor="
           --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         </td>
       </tr>
-      
+
 </table>
 ";
 
@@ -280,7 +281,7 @@ $tabla.="
     $factura.=$emisor;
     $factura.=$receptor;
     $factura.=$tabla;
-/*
+
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML($factura);
 $nombreF="factura".$folio."pdf";
@@ -290,5 +291,5 @@ $mpdf->Output($nombreF,"D");
 echo "<script>
 location.href='facturas.php'
 </script>"
-*/
+
 ?>

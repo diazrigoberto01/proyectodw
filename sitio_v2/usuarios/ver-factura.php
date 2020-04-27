@@ -22,6 +22,7 @@
   </head>
   <body>
     <?php
+    $nivel = 1;
     include "../comun/recursos.php";
     $link=conectarse();
 
@@ -49,7 +50,7 @@
 
 
     ?>
-    <form name="factura" action="generarpdf.php" method="POST"> 
+    <form name="factura" action="generarpdf.php" method="POST">
 <div class="container-fluid mt-8">
 
 
@@ -162,7 +163,7 @@
             <input type='text' name='tipoPago' class='form-control' value='$tipoPago' readonly>";
             break;
             }
-          
+
           ?>
         </div>
         <div class="col-md-2">
@@ -208,7 +209,7 @@
             ?>
         </div>
         <div class="col-md-2">Regimen Fiscal:</div>
-        <div class="col-md-4"> 
+        <div class="col-md-4">
           <?php
           echo "<input type='text' class='form-control' name='regimen' value='$regimen' readonly>";
           ?>
@@ -219,7 +220,7 @@
             <hr width="100%" style="color: #000">
       </div>
   </div>
-    
+
   <!--Encabezado Receptor-->
   <div class="container-fluid">
 
@@ -234,16 +235,16 @@
       <div class="col-md-12 row">
         <div class="col-md-4 ">
           Facturado a:
-          <?php 
+          <?php
           echo "<input type='text' class='form-control' name='nombreCliente' size='35' value='$nombreCliente' readonly>";
           ?>
-          
+
         </div>
       </div>
 
       <div class="col-md-12 row">
         <div  class="col-md-4">
-          Residencia Fiscal: 
+          Residencia Fiscal:
           <?php echo "<input type='text'  class='form-control' name='dirCliente'  size='75' value='$direccionCliente' readonly>";
           ?>
         </div>
@@ -261,7 +262,7 @@
             <hr width="100%" style="color: #000">
       </div>
   </div>
-    
+
 
     <div class="container-fluid">
       <div class="col-md-12 row justify-content-center">
@@ -311,7 +312,7 @@
           <div class="col-md-6" >
             <!--Parte final Factura-->
             <div class="container-fluid  mt-4" >
-            
+
               <div class="col-md-12 row justify-content-end mt-2" >
                 <div class="col-md-3">
                   Subtotal:
@@ -347,7 +348,7 @@
                   ?>
                 </div>
               </div>
-        
+
             <div class="col-md-12 row justify-content-end mt-2">
               <div class="col-md-3">
                 <input type="hidden" name="totalproductos" value="<?php  echo $totalProductos ?>">
@@ -358,9 +359,9 @@
               </div>
           </div>
 
-          
-          
-          
+
+
+
         </div>
 
         </div>
@@ -370,7 +371,7 @@
 
     </div>
 </div>
-        
+
     </form>
     <?php
     mysqli_close($link);

@@ -20,9 +20,9 @@
   </head>
   <body>
     <?php
-        $id=$_GET["id"];
-        //echo $id;
-        include('../comun/recursos.php'); //conectarse.php ;para el servidor propio
+      $nivel = 1;
+      require "../comun/recursos.php";
+      $id=$_GET["id"];
       $link=conectarse();
       $consulta=mysqli_query($link,"Select fecha_emision,folio,lugar_expedicion,rfc_receptor,
       rfc_emisor,importe_total,direccion_emisor,metodo_pago,cantidadPagos,uso_cfdi,subtotal,iva from f_factura where folio='$id' ") or die(mysqli_error($link));
@@ -35,7 +35,7 @@
 
     ?>
     <div class="container-fluid">
-    <form name="factura" action="generarpdf.php" method="POST"> 
+    <form name="factura" action="generarpdf.php" method="POST">
             <!-- Encabezado factura-->
             <div class="col-md-10 row justify-content-center">
                 <div class="col-md-5">
@@ -96,7 +96,7 @@
             </div>
         <!-- Encabezado Emisor-->
     <div class="container-fluid">
-    
+
         <div class="col-md-12 row">
             <div class="col-md-4">
                 <?php
@@ -188,7 +188,7 @@
             <hr width="100%" style="color: #000">
         </div>
     </div>
-    
+
 <!-- Encabezado Receptor-->
 <div class="container-fluid">
     <div class="col-md-12 row">
@@ -208,12 +208,12 @@
           <input type='text'  class='form-control' name='nombreCliente' size='35' value='$info[0]' readonly>
           ";
           ?>
-          
+
         </div>
     </div>
       <div class="col-md-12 row">
         <div class="col-md-6">
-          Residencia Fiscal: 
+          Residencia Fiscal:
         <?php
           echo"
           <input type='text' name='dirCliente' class='form-control' size='75' value='$info[1]' readonly>
@@ -234,9 +234,9 @@
     <div class="col-md-12 row">
       <hr width="100%" style="color: #000">
     </div>
-      
+
 </div>
-    
+
     <div class=" container-fluid " >
       <div class="col-md-12 row justify-content-center">
         <div class="col-md-1">Clave &nbsp;</div>
@@ -262,7 +262,7 @@
 
         </div>',$servicio[0], $servicio[1], $servicio[2], $servicio[3], $servicio[4],$servicio[5]);
       }
-          
+
         ?>
         <div class="col-md-12"></div>
         <div class="col-md-12"></div>
@@ -289,7 +289,7 @@
                     </div>
                     <div class="col-md-3">
                         <?php
-              
+
                         echo"
                         <input type='text' class='form-control' name='iva' size=10 value='$row[11]' readonly>
                         ";
@@ -307,10 +307,10 @@
               ?>
               </div>
     </div>
-        
+
     <div class="col-md-12 row justify-content-end mt-2">
     <div class="col-md-3">
-            <input type="hidden" name="totalproductos" value="<?php  echo $totalProductos ?>">
+            <input type="hidden" name="totalproductos" value="<?php  echo $row[5] ?>">
             <input type="button" class='btn-success' value="Descargar" onclick="descargar()" >
     </div>
     <div class="col-md-3">
@@ -318,19 +318,19 @@
     </div>
     </div>
 
-          
+
     </div>
 
     </div>
     </div>
-         
-        
+
+
     </form>
 </div>
-   
+
    <?php
    mysqli_close($link);
    ?>
-    
+
   </body>
 </html>

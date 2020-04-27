@@ -43,8 +43,8 @@
           $row = mysqli_fetch_array($consulta);
         ?>
         <div class="col">
-          <div class="row">
-            <div class="col align-self-center mb-3 mt-3">
+          <div class="row justify-content-end">
+            <div class="col mb-3 mt-3 col-md-10 align-self-end">
               <h2>Modificar Cliente</h2>
             </div>
           </div>
