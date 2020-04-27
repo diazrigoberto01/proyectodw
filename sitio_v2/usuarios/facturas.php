@@ -56,7 +56,7 @@
                 <td> %s </td>
                 <td> $%.2f </td>
                 <td>
-                <a href="factura-creada.php?id='.$row[1].'">
+                <a href="ver-factura.php?id='.$row[1].'">
                 <input type="button" class="btn btn-outline-info" value="Ver">
                 </a>', $row[0], $row[1], $row[2], $row[3],$row[4]);
                 if ($_SESSION['tipo_usuario'] == "admin") {
