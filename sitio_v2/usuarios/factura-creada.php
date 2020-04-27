@@ -311,10 +311,10 @@
     <div class="col-md-12 row justify-content-end mt-2">
     <div class="col-md-3">
             <input type="hidden" name="totalproductos" value="<?php  echo $row[5] ?>">
-            <input type="button" class='btn-success' value="Descargar" onclick="descargar()" >
+            <input type="button" class='btn btn-success' value="Descargar" onclick="descargar()" >
     </div>
     <div class="col-md-3">
-                    <input type="button" class='btn-warning' value="Regresar" onclick="history.go(-1)">
+                    <input type="button" class='btn btn-warning' value="Regresar" onclick="history.go(-1)">
     </div>
     </div>
 

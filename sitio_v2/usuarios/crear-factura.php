@@ -154,7 +154,7 @@
 
                 var index = 1;
                 function agregarProducto(){
-                    
+
                   try {
                     if(document.factura.rfcEmp.value==0){
                    alert('Ingresa un rfc  Emisor valido');
@@ -172,7 +172,7 @@
 
                   var table=document.getElementById("productos");
                   var desc=document.getElementById("desc").value;
-                  
+
                   if(desc=="Elegir"){
                     alert("Selecciona un servicio");
                     document.productos.desc_producto.focus()
@@ -182,7 +182,7 @@
                   var clave=dividir[0];
                   desc=dividir[1];
                   var um=document.getElementById("um").value;
-                  
+
                   if(um=="Elegir"){
                     alert("Selecciona la unidad de medida");
                     document.productos.um.focus()
@@ -287,7 +287,7 @@
           include "sidebar.php";
         ?>
         <div class="col-10 align-self-start">
-          
+
           <?php
               $link=conectarse();
               ?>
@@ -304,9 +304,9 @@
                             Crea tu Factura
                           </h3>
                         </center>
-                      
+
                       </div>
-                        
+
                     </tr>
 
                 <tr>
@@ -314,9 +314,9 @@
                           <div class="col-md-3">
                               <p>RFC de la empresa:</p>
                             </div>
-                          
-                          
-                     
+
+
+
                         <div class="col-md-2">
                             <select name="rfcEmisor" class="form-control">
                                 <option value="0" >Elegir</option>
@@ -328,12 +328,12 @@
                                 ?>
                             </select>
                         </div>
-                        
 
 
-                      
+
+
                             <div class="col-md-2"><p>RFC del cliente:</p></div>
-                      
+
                             <div class="col-md-2">
                                 <select name="rfcCliente" class="form-control">
                                     <option value="0">Elegir</option>
@@ -346,9 +346,9 @@
                                     ?>
                             </select>
                             </div>
-                       
+
                             <div class="col-md-3">
-                                <input type="submit" name="Buscar" class="btn-primary" value="Buscar" onclick=" return validarRFC()" />
+                                <input type="submit" name="Buscar" class="btn btn-primary" value="Buscar" onclick=" return validarRFC()" />
                             </div>
                     </div>
                 </tr>
@@ -365,7 +365,7 @@
                     <div class='col-md-3' >Rfc Receptor</div>
                     <div class='col-md-3'><input name='rfcReceptor' class='form-control' id='receptor' value='%s' ></div>
                     </div>
-                     </tr> 
+                     </tr>
                     ",$rfcEmisor,$rfcCliente);
                     }
                 ?>
@@ -396,16 +396,16 @@
                                 }
                                 ?>
                         </div>
-                      
+
                     </tr>
-                    
-                    
+
+
                     <tr>
                         <div class="col-md 12 row">
                             <div class="col-md-3">
                                 Nombre Cliente
                             </div>
-                            
+
                                 <?php
                                 if($_POST["Buscar"]){
                                 $rfcCliente=$_POST["rfcCliente"];
@@ -432,7 +432,7 @@
 
 
                         </div>
-                     
+
 
 
                     </tr>
@@ -456,7 +456,7 @@
                             <div class="col-md-3"><p>Lugar:</p></div>
                             <div class="col-md-3"><input type="text" name="lugar" id="lugar" class="form-control"/></div>
                         </div>
-                        
+
                     </tr>
                   </table>
                 </form>
@@ -464,11 +464,11 @@
                 <form class="form"  action="ver-factura.php" name="productos" method="POST" id="facturacompleta">
 
                   <br /><br />
-                  
+
                   <table align="center" id="productos" width="70%">
                     <tr>
                         <div class="col-md-12 row">
-                            <div class="col-md-2">Cantidad Servicios: 
+                            <div class="col-md-2">Cantidad Servicios:
                                 <input type="number" name="cproductos" id="c_productos" size="4" value="0" class="form-control" readonly>
                             </div>
                             <div class="col-md-2">
@@ -503,11 +503,11 @@
 
                             <div class="col-md-2">Cantidad:<input type="number" name="cantidad" class="form-control" id="cantidad" size=5 placeholder="Cantidad" value="0"/></div>
                             <div class="col-md-2">Pu:<input type="number" name="pu" class="form-control" id="pu" id="pu" size=5 value="0" placeholder="Precio Unitario"/></div>
-                            <div class="col-md-1"><input type="button" name="agregar" value="Agregar" class="btn-success" onclick="agregarProducto()"/></div>
-                            <div class="col-md-1"><input type="button" name="elimina" id="elimina" value="Elimina" class="btn-danger" onclick="eliminarUltimo()"></div>
+                            <div class="col-md-1"><input type="button" name="agregar" value="Agregar" class="btn btn-success" onclick="agregarProducto()"/></div>
+                            <div class="col-md-1"><input type="button" name="elimina" id="elimina" value="Elimina" class="btn btn-danger" onclick="eliminarUltimo()"></div>
 
                         </div>
-                    
+
                     </tr>
 
                     <tr>
@@ -522,15 +522,15 @@
                     </tr>
 
                   </table>
-                      
-                  
-                  
+
+
+
                 <div class="col-md-12 ">
                     <label>Método de pago:</label>
                         <input type="radio" class="radio" name="tipoPago" onClick="oculta()" checked value="Transferencia"/> Transferencia
                         <input type="radio" class="radio" name="tipoPago"  onClick="Muestra('meses')" value="Tarjeta"/> Tarjeta Credito/Debito
                         <input type="radio" class="radio" name="tipoPago" onClick="oculta()" value="Efectivo"/> Efectivo
-                
+
                     <span id="meses" style="display:none">
                     <p>Condición de pago:</p>
                   <select name="cantidadPagos" class="form-control">
@@ -542,13 +542,13 @@
                   </select>
                   </span>
                 </div>
-                 
 
-                  
+
+
 
                   <br /><br />
-                  <input class="btn-success" type="button" value="Crear Factura" onclick="valida()"/>
-                  <input class="btn-warning" type="reset" value="Reiniciar" />
+                  <input class="btn btn-success" type="button" value="Crear Factura" onclick="valida()"/>
+                  <input class="btn btn-warning" type="reset" value="Reiniciar" />
                 </form>
               </div>
               <!-- Código viejo, deprecar -->
@@ -557,6 +557,6 @@
         </div>
       </div>
     </div>
-    
+
   </body>
 </html>
