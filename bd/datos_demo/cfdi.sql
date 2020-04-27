@@ -1,0 +1,12 @@
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('G01', 'Adquisicion de mercancias');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('G02', 'Devoluciones, descuentos o bonificaciones');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('G03', 'Gastos en general');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('I01', 'Construcciones');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('I02', 'Mobilario y equipo de oficina por inversiones');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('I03', 'Equipo de transporte');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('I04', 'Equipo de computo y accesorios');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('I05', 'Dados, troqueles, moldes, matrices y herramental');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('I06', 'Comunicaciones telefonicas');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('I07', 'Comunicaciones satelitales');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('I08', 'Otra maquinaria y equipo');
+INSERT INTO f_usoscfdi(clave, descripcion) VALUES('P01', 'Por definir');

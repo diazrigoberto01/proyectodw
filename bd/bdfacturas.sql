@@ -103,8 +103,6 @@ CREATE TABLE `f_concepto_facturado` (
   `concepto_total` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
 CREATE TABLE `f_concepto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `clave` varchar(255) NOT NULL,

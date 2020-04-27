@@ -6,3 +6,4 @@ DROP TABLE f_logo;
 DROP TABLE f_factura;
 DROP TABLE f_concepto_facturado;
 DROP TABLE f_concepto;
+DROP TABLE f_usoscfdi;
