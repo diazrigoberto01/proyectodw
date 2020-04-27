@@ -355,6 +355,7 @@
                 <input type="button" class="btn btn-success" value="Descargar" onclick="descargar()" >
               </div>
               <div class="col-md-3">
+                <a href="facturas.php"><input type="button" class='btn btn-primary' value="Ir a Facturas"></a>
                   <input type="button" value="Regresar" class="btn btn-warning" onclick="history.go(-1)">
               </div>
           </div>

@@ -330,7 +330,8 @@
             <input type="button" class='btn btn-success' value="Descargar" onclick="descargar()" >
     </div>
     <div class="col-md-3">
-                    <input type="button" class='btn btn-warning' value="Regresar" onclick="history.go(-1)">
+      <a href="facturas.php"><input type="button" class='btn btn-primary' value="Ir a Facturas"></a>
+      <input type="button" class='btn btn-warning' value="Regresar" onclick="history.go(-1)">
     </div>
     </div>
 
