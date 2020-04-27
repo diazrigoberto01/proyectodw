@@ -15,14 +15,15 @@
     <script>
       function descargar(){
         alert("Su descarga comenzara en unos segundos")
+        document.factura.submit();
       }
     </script>
   </head>
   <body>
     <?php
-      $nivel = 1;
-      require "../comun/recursos.php";
-      $id=$_GET["id"];
+        $id=$_GET["id"];
+        //echo $id;
+        include('../comun/recursos.php'); //conectarse.php ;para el servidor propio
       $link=conectarse();
       $consulta=mysqli_query($link,"Select fecha_emision,folio,lugar_expedicion,rfc_receptor,
       rfc_emisor,importe_total,direccion_emisor,metodo_pago,cantidadPagos,uso_cfdi,subtotal,iva from f_factura where folio='$id' ") or die(mysqli_error($link));
@@ -35,7 +36,7 @@
 
     ?>
     <div class="container-fluid">
-    <form name="factura" action="generarpdf.php" method="POST">
+    <form name="factura" action="generarpdf.php" method="POST"> 
             <!-- Encabezado factura-->
             <div class="col-md-10 row justify-content-center">
                 <div class="col-md-5">
@@ -96,7 +97,7 @@
             </div>
         <!-- Encabezado Emisor-->
     <div class="container-fluid">
-
+    
         <div class="col-md-12 row">
             <div class="col-md-4">
                 <?php
@@ -188,7 +189,7 @@
             <hr width="100%" style="color: #000">
         </div>
     </div>
-
+    
 <!-- Encabezado Receptor-->
 <div class="container-fluid">
     <div class="col-md-12 row">
@@ -208,12 +209,12 @@
           <input type='text'  class='form-control' name='nombreCliente' size='35' value='$info[0]' readonly>
           ";
           ?>
-
+          
         </div>
     </div>
       <div class="col-md-12 row">
         <div class="col-md-6">
-          Residencia Fiscal:
+          Residencia Fiscal: 
         <?php
           echo"
           <input type='text' name='dirCliente' class='form-control' size='75' value='$info[1]' readonly>
@@ -234,9 +235,9 @@
     <div class="col-md-12 row">
       <hr width="100%" style="color: #000">
     </div>
-
+      
 </div>
-
+    
     <div class=" container-fluid " >
       <div class="col-md-12 row justify-content-center">
         <div class="col-md-1">Clave &nbsp;</div>
@@ -251,18 +252,31 @@
         <?php
        $servicios=mysqli_query($link,"Select concepto_clave,concepto_descripcion,concepto_um,concepto_pu,
        concepto_cantidad,concepto_subtotal from f_concepto_facturado where factura_folio='$row[1]'") or die(mysqli_error($link));
+       $totalProductos=mysqli_num_rows($servicios);
        while ($servicio = mysqli_fetch_array($servicios)) {
-        printf('<div class="col-md-12 row">
-        <div class="col-md-1 form-control">%s</div>
-        <div class="col-md-4 form-control">%s</div>
-        <div class="col-md-1 form-control">%s</div>
-        <div class="col-md-2 form-control">%d</div>
-        <div class="col-md-2 form-control">%d</div>
-        <div class="col-md-2 form-control">$%d</div>
+           $i=1;
 
-        </div>',$servicio[0], $servicio[1], $servicio[2], $servicio[3], $servicio[4],$servicio[5]);
-      }
+           $claven="clave".strval($i);
+           $descn="descripcion".strval($i);
+           $umn="um".strval($i);
+           $pun="pu".strval($i);
+           $cantidadn="cantidad".strval($i);
+           $totaln="total".strval($i);
+           
+           
+           
+        printf("<div class='col-md-12 row'>
+        <div class='col-md-1 form-control'><input type='hidden' name='$claven' value='$servicio[0]' readonly>%s</div>
+        <div class='col-md-4 form-control'><input type='hidden' name='$descn' value='$servicio[1]' readonly>%s</div>
+        <div class='col-md-1 form-control'><input type='hidden' name='$umn' value='$servicio[2]' reandonly>%s</div>
+        <div class='col-md-2 form-control'><input type='hidden' name='$pun' value='$servicio[3]' reandonly>%d</div>
+        <div class='col-md-2 form-control'><input type='hidden' name='$cantidadn' value='$servicio[4]' reandonly>%d</div>
+        <div class='col-md-2 form-control'><input type='hidden' name='$totaln' value='$servicio[5]' reandonly>$%d</div>
 
+        </div>",$servicio[0], $servicio[1], $servicio[2], $servicio[3], $servicio[4],$servicio[5]);
+      $i++;
+    }
+          
         ?>
         <div class="col-md-12"></div>
         <div class="col-md-12"></div>
@@ -289,7 +303,7 @@
                     </div>
                     <div class="col-md-3">
                         <?php
-
+              
                         echo"
                         <input type='text' class='form-control' name='iva' size=10 value='$row[11]' readonly>
                         ";
@@ -307,30 +321,30 @@
               ?>
               </div>
     </div>
-
+        
     <div class="col-md-12 row justify-content-end mt-2">
     <div class="col-md-3">
-            <input type="hidden" name="totalproductos" value="<?php  echo $row[5] ?>">
-            <input type="button" class='btn btn-success' value="Descargar" onclick="descargar()" >
+            <input type="hidden" name="totalproductos" value="<?php  echo $totalProductos ?>">
+            <input type="button" class='btn-success' value="Descargar" onclick="descargar()" >
     </div>
     <div class="col-md-3">
-                    <input type="button" class='btn btn-warning' value="Regresar" onclick="history.go(-1)">
+                    <input type="button" class='btn-warning' value="Regresar" onclick="history.go(-1)">
     </div>
     </div>
 
-
+          
     </div>
 
     </div>
     </div>
-
-
+         
+        
     </form>
 </div>
-
+   
    <?php
    mysqli_close($link);
    ?>
-
+    
   </body>
 </html>
