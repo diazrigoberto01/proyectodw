@@ -50,7 +50,7 @@
           </div>
           <div class="row">
             <div class="col align-self-center">
-              <form class="needs-validation" name="cliente" action="modificar-cliente.php" method="post" novalidate>
+              <form class="needs-validation" name="cliente" action="modificar-cliente.php" method="post" enctype="multipart/form-data" novalidate>
                 <!-- Fila -->
                 <div class="form-row">
                   <div class="col-md-6 mb-3">
@@ -133,7 +133,7 @@
                 <div class="form-row">
                   <div class="col-md-8 mb-3">
                     <label for="logo">Logo</label>
-                    <input type="file" class="form-control" name="logo" id="logo" placeholder="" required disabled>
+                    <input type="file" class="form-control" name="logo" id="logo" placeholder="" value="<?php echo $row[11] ?>" required>
                   </div>
                 </div>
                 <div class="form-group">

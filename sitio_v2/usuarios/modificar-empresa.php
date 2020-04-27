@@ -36,7 +36,7 @@
           }
           include "sidebar.php";
           $link = conectarse();
-          $consulta = mysqli_query($link, "SELECT e.nombre_comercial, e.contacto, e.rfc, e.telefono,e.email,de.calle,de.colonia,de.municipio,de.estado,de.pais,de.n_exterior,de.cp FROM f_empresas e inner join f_direccion_empresa de on (e.rfc=de.empresa_rfc)  where e.id='$id'") or die(mysqli_error($link));
+          $consulta = mysqli_query($link, "SELECT e.nombre_comercial, e.contacto, e.rfc, e.telefono,e.email,de.calle,de.colonia,de.municipio,de.estado,de.pais,de.n_exterior,de.cp,e.logo FROM f_empresas e inner join f_direccion_empresa de on (e.rfc=de.empresa_rfc)  where e.id='$id'") or die(mysqli_error($link));
           if ($error = mysqli_error($link)) {
             echo "Error al conseguir el usuario de ID <samp>$id</samp>.";
             die();
@@ -51,7 +51,7 @@
           </div>
           <div class="row">
             <div class="col align-self-center">
-              <form class="needs-validation" name="empresa" action="modificar-empresa.php" method="post" novalidate>
+              <form class="needs-validation" name="empresa" action="modificar-empresa.php" method="post" enctype="multipart/form-data" novalidate>
                 <!-- Fila -->
                 <div class="form-row">
                   <div class="col-md-4 mb-3">
@@ -186,7 +186,7 @@
                 <div class="form-row">
                   <div class="col-md-8 mb-3">
                     <label for="logo">Logo</label>
-                    <input type="file" class="form-control" name="logo" id="logo" placeholder="" required disabled>
+                    <input type="file" class="form-control" name="logo" id="logo" placeholder="" value="<?php echo $row[12]?>" required>
                   </div>
                 </div>
                 <div class="form-group">
