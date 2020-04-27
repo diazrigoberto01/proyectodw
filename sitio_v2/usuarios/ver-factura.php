@@ -103,8 +103,7 @@
               if(!isset($_GET['id'])){
                 echo $folio[0];
                 echo"<input type='hidden'  name='folio' value='$folio[0]' readonly>";
-              }
-              if(isset($_GET)){
+              }elseif(isset($_GET)){
                 echo $row[1];
                 echo "<input type='hidden' name='folio' value='$row[1]' readonly>";
 
@@ -565,6 +564,9 @@
               </div>
               <div class="col-md-3">
                   <input type="button" value="Regresar" class="btn-warning" onclick="history.go(-1)">
+              </div>
+              <div class="col-md-3">
+              <a href="facturas.php"><input type="button" class='btn btn-primary' value="Ir a Facturas"></a>
               </div>
           </div>
 
