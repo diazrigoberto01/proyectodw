@@ -175,6 +175,8 @@
                     case "6 meses": echo"
                         <input type='text' name='cantidadPagos' class='form-control' value='6 meses' readonly>";
                         break;
+                    default:
+                    echo"<input type='text' name='cantidadPagos' class='form-control' value='Pago unico' readonly>";
                         }
                         ?>
                 </div>
