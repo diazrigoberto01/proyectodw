@@ -28,7 +28,7 @@
       require "../comun/navbar.php";
     ?>
     <div class="container-fluid">
-      <div class="row">
+      <div class="row justify-content-end">
         <?php
           if ($_POST) {
             modificarServicio();
@@ -42,9 +42,9 @@
           }
           $row = mysqli_fetch_array($consulta);
         ?>
-        <div class="col">
-          <div class="row justify-content-end">
-            <div class="col mb-3 mt-3 col-md-10 align-self-end">
+        <div class=" col-md-10 align-self-end">
+          <div class="row ">
+            <div class="col mb-3 mt-3 ">
               <h2>Modificar Servicio</h2>
             </div>
           </div>
