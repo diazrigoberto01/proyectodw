@@ -14,6 +14,7 @@
     $tipo=$_POST['tipo_usuario'];
     $contra=$_POST['password'];
     $cContra=$_POST['password1'];
+    $status="1";
     if(!$contra==$cContra){
       printf('<script>
       alert("No coinciden las contraseñas favor de verificar");
@@ -23,8 +24,8 @@
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "INSERT INTO f_usuario(rfc, nombre, apellidos, email, pass, celular, tel_fijo, tipo)
-    VALUES ('$rfc', '$nombre', '$apellidos', '$email', '$contra', '$celular', '$telefono', '$tipo')");
+    $resultado = mysqli_query($link, "INSERT INTO f_usuario(rfc, nombre, apellidos, email, pass, celular, tel_fijo, tipo,status)
+    VALUES ('$rfc', '$nombre', '$apellidos', '$email', '$contra', '$celular', '$telefono', '$tipo','$status')");
     # Error
     if ($error = mysqli_error($link)) {
       errorAgregarUsuario($rfc);
@@ -101,7 +102,8 @@
     $consulta = mysqli_query($link, "SELECT email FROM f_usuario WHERE id=$id");
     $row = mysqli_fetch_array($consulta);
     $rfc = $row["email"];
-    $resultado = mysqli_query($link, "DELETE FROM f_usuario WHERE id=$id");
+    //cambiar por update status
+    $resultado = mysqli_query($link, "UPDATE f_usuario set status='0' WHERE id=$id");
     # Error
     if ($error = mysqli_error($link)) {
       errorEliminarUsuario($email);
