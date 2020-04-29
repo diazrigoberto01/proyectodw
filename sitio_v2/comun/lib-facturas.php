@@ -13,7 +13,8 @@
     $consulta = mysqli_query($link, "SELECT folio FROM f_factura WHERE id=$id");
     $row = mysqli_fetch_array($consulta);
     $folio = $row["folio"];
-    $resultado = mysqli_query($link, "DELETE FROM f_factura WHERE id=$id");
+    //cambiar por update status
+    $resultado = mysqli_query($link, "UPDATE  f_factura set status='0' WHERE folio=$folio");
     # Error
     if ($error = mysqli_error($link)) {
       errorEliminarFactura($folio);
