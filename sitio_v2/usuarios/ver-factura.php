@@ -128,7 +128,7 @@
 
             }elseif(isset($_GET)){
               echo $row[0];
-              echo"<input type='hidden' name='fecha' value='$$row[0]' readonly>";
+              echo"<input type='hidden' name='fecha' value='$row[0]' readonly>";
             }
               
             ?>
@@ -466,8 +466,9 @@
         $servicios=mysqli_query($link,"Select concepto_clave,concepto_descripcion,concepto_um,concepto_pu,
         concepto_cantidad,concepto_subtotal from f_concepto_facturado where factura_folio='$row[1]'") or die(mysqli_error($link));
         $totalProductos=mysqli_num_rows($servicios);
+        $i=1;
         while ($servicio = mysqli_fetch_array($servicios)) {
-            $i=1;
+            
  
             $claven="clave".strval($i);
             $descn="descripcion".strval($i);
@@ -475,6 +476,7 @@
             $pun="pu".strval($i);
             $cantidadn="cantidad".strval($i);
             $totaln="total".strval($i);
+            
  
  
  
