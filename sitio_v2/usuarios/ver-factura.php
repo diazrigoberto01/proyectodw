@@ -28,7 +28,7 @@
     //datos de la factura
     //identificar si es post(nuevafactura) o get(factura anterior)
       if(!isset($_GET['id'])){
-        echo "POST";
+        //echo "POST";
         $rfcEmisor=$_POST["rfcEmp"];
         $rfcReceptor=$_POST["rfcRec"];
         $nombreEmpresa=$_POST["nomEmp"];
@@ -49,11 +49,11 @@
         $subtotal=0;
       }
       if(isset($_GET['id'])){
-        echo "GET";
+        //echo "GET";
         $nivel = 1;
         $id=$_GET["id"];
         $consulta=mysqli_query($link,"Select fecha_emision,folio,lugar_expedicion,rfc_receptor,
-        rfc_emisor,importe_total,direccion_emisor,metodo_pago,cantidadPagos,uso_cfdi,subtotal,iva from f_factura where folio='$id' ") or die(mysqli_error($link));
+        rfc_emisor,importe_total,direccion_emisor,metodo_pago,cantidadPagos,uso_cfdi,subtotal,iva,status from f_factura where folio='$id' ") or die(mysqli_error($link));
         $row = mysqli_fetch_array($consulta);
         //echo $row[4];
         $emisorC=mysqli_query($link,"Select razon_social,regimen_fiscal from f_empresas where rfc='$row[4]' ") or die(mysqli_error($link));
@@ -147,6 +147,17 @@
               
             ?>
             </td>
+            <?php
+              if(isset($_GET['id'])){
+                if($row[12]== 0){
+                  printf("<td>
+
+                  <button type='button' class='btn btn-danger' disable>Cancelada</button>
+                  </td>");
+                }
+              }
+             
+              ?>
           </tr>
         </table>
       </div>
