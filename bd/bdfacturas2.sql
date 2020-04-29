@@ -8,6 +8,7 @@ CREATE TABLE f_usuario (
   celular varchar(255) NOT NULL,
   tel_fijo varchar(255) DEFAULT NULL,
   tipo varchar(15) DEFAULT NULL,
+  status varchar(2) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -23,6 +24,7 @@ CREATE TABLE f_cliente (
   email varchar(120) NOT NULL,
   telefono varchar(30) NOT NULL,
   usuario_rfc varchar(30) DEFAULT NULL,
+  status varchar(2) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -54,6 +56,7 @@ CREATE TABLE f_direccion_empresa (
   n_interior varchar(50) DEFAULT NULL,
   empresa_rfc varchar(255) NOT NULL,
   empresa_usuario_rfc varchar(255) NOT NULL,
+  status varchar(2) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -64,6 +67,7 @@ CREATE TABLE f_logo (
   nombre varchar(255) NOT NULL,
   fecha varchar(20) NOT NULL,
   empresa_rfc varchar(255) NOT NULL,
+  status varchar(2) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -84,6 +88,7 @@ CREATE TABLE f_factura (
   subtotal float DEFAULT NULL,
   uso_cfdi varchar(255) DEFAULT NULL,
   cantidadPagos varchar(100) DEFAULT NULL,
+  status varchar(2) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -100,7 +105,8 @@ CREATE TABLE f_concepto_facturad (
   concepto_pu float DEFAULT NULL,
   concepto_subtotal float DEFAULT NULL,
   concepto_iva float DEFAULT NULL,
-  concepto_total float DEFAULT NULL
+  concepto_total float DEFAULT NULL,
+  status varchar(2) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -111,6 +117,7 @@ CREATE TABLE f_concepto (
   descripcion varchar(255) NOT NULL,
   unidad_medida varchar(255) NOT NULL,
   precio float(7,2) NOT NULL,
+  status varchar(2) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -118,18 +125,19 @@ CREATE TABLE f_usoscfdi (
   id int(11) NOT NULL AUTO_INCREMENT,
   clave varchar(30) NOT NULL,
   descripcion varchar(255) NOT NULL,
+  status varchar(2) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into f_usoscfdi(clave,descripcion) values(G01,Adquisicion de mercancias);
-insert into f_usoscfdi(clave,descripcion) values(G02,Devoluciones, descuentos o bonificaciones);
-insert into f_usoscfdi(clave,descripcion) values(G03,Gastos en general);
-insert into f_usoscfdi(clave,descripcion) values(I01,Construcciones);
-insert into f_usoscfdi(clave,descripcion) values(I02,Mobilario y equipo de oficina por inversiones);
-insert into f_usoscfdi(clave,descripcion) values(I03,Equipo de transporte);
-insert into f_usoscfdi(clave,descripcion) values(I04,Equipo de computo y accesorios);
-insert into f_usoscfdi(clave,descripcion) values(I05,Dados, troqueles, moldes, matrices y herramental);
-insert into f_usoscfdi(clave,descripcion) values(I06,Comunicaciones telefonicas);
-insert into f_usoscfdi(clave,descripcion) values(I07,Comunicaciones satelitales);
-insert into f_usoscfdi(clave,descripcion) values(I08,Otra maquinaria y equipo);
-insert into f_usoscfdi(clave,descripcion) values(P01,Por definir);
+insert into f_usoscfdi(clave,descripcion) values('G01','Adquisicion de mercancias');
+insert into f_usoscfdi(clave,descripcion) values('G02','Devoluciones, descuentos o bonificaciones');
+insert into f_usoscfdi(clave,descripcion) values('G03','Gastos en general');
+insert into f_usoscfdi(clave,descripcion) values('I01','Construcciones');
+insert into f_usoscfdi(clave,descripcion) values('I02','Mobilario y equipo de oficina por inversiones');
+insert into f_usoscfdi(clave,descripcion) values('I03','Equipo de transporte');
+insert into f_usoscfdi(clave,descripcion) values('I04','Equipo de computo y accesorios');
+insert into f_usoscfdi(clave,descripcion) values('I05','Dados, troqueles, moldes, matrices y herramental');
+insert into f_usoscfdi(clave,descripcion) values('I06','Comunicaciones telefonicas');
+insert into f_usoscfdi(clave,descripcion) values('I07','Comunicaciones satelitales');
+insert into f_usoscfdi(clave,descripcion) values('I08','Otra maquinaria y equipo');
+insert into f_usoscfdi(clave,descripcion) values('P01','Por definir');
