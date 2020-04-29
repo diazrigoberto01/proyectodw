@@ -16,21 +16,15 @@
     $cp = $_POST['cp'];
     $estado = $_POST['estado'];
     $user_rfc = $_POST['usuario_rfc'];
-    $logo = subirImagen();
-    if ($logo == false) {
-      return false;
-    }
+    $status="1";
     # Conexión a la DB
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "INSERT INTO f_cliente(rfc, razon_social, email, telefono, calle, no_exterior, municipio, cp, estado, usuario_rfc, logo) VALUES('$rfc', '$razon', '$email', '$telefono', '$calle', '$numero_exterior', '$municipio', '$cp', '$estado','$user_rfc', '$logo')");
+    $resultado = mysqli_query($link, "INSERT INTO f_cliente(rfc, razon_social, email, telefono, calle, no_exterior, municipio, cp, estado,usuario_rfc,status) VALUES('$rfc', '$razon', '$email', '$telefono', '$calle', '$numero_exterior', '$municipio', '$cp', '$estado','$user_rfc','$status')");
     # Error
     if ($error = mysqli_error($link)) {
       errorAgregarCliente($rfc);
-      return false;
-    }
-    if (!subirImagen()) {
       return false;
     }
     # Éxito
@@ -104,7 +98,8 @@
     $consulta = mysqli_query($link, "SELECT rfc FROM f_cliente WHERE id=$id");
     $row = mysqli_fetch_array($consulta);
     $rfc = $row["rfc"];
-    $resultado = mysqli_query($link, "DELETE FROM f_cliente WHERE id=$id");
+    //cambiar por udpate
+    $resultado = mysqli_query($link, "UPDATE  f_cliente set status='0' WHERE id=$id");
     # Error
     if ($error = mysqli_error($link)) {
       errorEliminarCliente($rfc);
@@ -187,14 +182,11 @@
     $cp = $_POST['cp'];
     $estado = $_POST['estado'];
     $user_rfc = $_POST['usuario_rfc'];
-    if ($logo = subirImagen()) {
-      return false;
-    }
     # Conexión a la DB
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "UPDATE f_cliente SET rfc='$rfc', razon_social='$razon', email='$email', telefono='$telefono', calle='$calle', municipio='$municipio', cp='$cp', estado='$estado', logo='$logo' WHERE id='$id'");
+    $resultado = mysqli_query($link, "UPDATE f_cliente SET rfc='$rfc', razon_social='$razon', email='$email', telefono='$telefono', calle='$calle', municipio='$municipio', cp='$cp', estado='$estado' where id='$id'");
     # Error
     if ($error = mysqli_error($link)) {
       errorModificarCliente($rfc);
@@ -258,78 +250,6 @@
     <script type="text/javascript">
       $(document).ready(function() {
         $("#exitoModificarClienteModal").modal('show');
-      })
-    </script>
-    <?php
-  }
-
-  function subirImagen() {
-    $dir_objetivo = "../img/uploads/";
-    $nombre_temporal = $_FILES["logo"]["tmp_name"];
-    $archivo_objetivo = $dir_objetivo . basename($_FILES["logo"]["name"]);
-    move_uploaded_file($nombre_temporal, $archivo_objetivo);
-    if ($error == UPLOAD_ERR_OK) {
-        return $archivo_objetivo;
-    } else {
-      $error = $_FILES['logo']['error'];
-      echo "<script>console.log('Hubo un error al subir el archivo: $error.')</script>";
-    }
-  }
-
-  function errorExtensionImagen() {
-    ?>
-    <script type="text/javascript" src="../comun/global.js"></script>
-    <div class="modal fade" id="errorExtensionImagenModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="errorExtensionImagenModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Extensión de imagen no válido.</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>La extensión de la imagen que se trató de subir no es válida. Los formatos válidos son: <code>.jpg, .jpeg, .png, .gif</code>.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('clientes.php')">Continuar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#errorExtensionImagenModal").modal('show');
-      })
-    </script>
-    <?php
-  }
-
-  function errorSubirImagen($imagen) {
-    ?>
-    <script type="text/javascript" src="../comun/global.js"></script>
-    <div class="modal fade" id="errorSubirImagenModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="errorSubirImagenModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Error subiendo la imagen</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Ocurrió un error al tratar de subir la imagen <samp><?php echo $imagen ?></samp>.</p>
-            <p>Por favor verifique que todos los datos estén correctos y vuelva a intentarlo.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('clientes.php')">Continuar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#errorSubirImagenModal").modal('show');
       })
     </script>
     <?php

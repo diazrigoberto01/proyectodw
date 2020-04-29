@@ -21,14 +21,12 @@
     $numero_exterior = $_POST['n_ext'];
     $cp = $_POST['cp'];
     $rfc_user=$_POST['rfc_usuario'];
-    if ($logo = subirImagen()) {
-      return false;
-    }
+    $status="1";
     # Conexión a la DB
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "INSERT INTO f_empresas(rfc, razon_social, nombre_comercial, contacto, telefono, email,celular,status,usuario_rfc,regimen_fiscal, logo) VALUES('$rfc', '$razon', '$nombre_comercial', '$contacto', '$telefono', '$email','$telefono','$status','$rfc_user','$regimen','$logo')");
+    $resultado = mysqli_query($link, "INSERT INTO f_empresas(rfc, razon_social, nombre_comercial, contacto, telefono, email,celular,status,usuario_rfc,regimen_fiscal) VALUES('$rfc', '$razon', '$nombre_comercial', '$contacto', '$telefono', '$email','$telefono','$status','$rfc_user','$regimen')");
     $resultado1=mysqli_query($link,"INSERT INTO f_direccion_empresa(calle,localidad,colonia,municipio,estado,pais,n_exterior,cp,empresa_rfc,empresa_usuario_rfc)
   values ('$calle','$localidad','$colonia','$municipio','$estado','$pais','$numero_exterior','$cp','$rfc','$rfc_user')");
     # Error
@@ -107,7 +105,8 @@
       $consulta = mysqli_query($link, "SELECT rfc FROM f_empresas WHERE id=$id");
       $row = mysqli_fetch_array($consulta);
       $rfc = $row["rfc"];
-      $resultado = mysqli_query($link, "DELETE FROM f_empresas WHERE id=$id");
+      //cambiar por update status
+      $resultado = mysqli_query($link, "UPDATE  f_empresas set status='0' WHERE id=$id");
       # Error
       if ($error = mysqli_error($link)) {
         errorEliminarEmpresa($rfc);
@@ -193,20 +192,17 @@
       $numero_exterior = $_POST['n_ext'];
       $cp = $_POST['cp'];
       $rfc_user=$_POST['rfc_usuario'];
-      if ($logo = subirImagen()) {
-        return false;
-      }
       # Conexión a la DB
       $link = conectarse();
       echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
       # DB Update
-      $resultado = mysqli_query($link, "UPDATE f_empresas SET nombre_comercial='$nombre_comercial', contacto='$contacto', rfc='$rfc', telefono='$telefono', email='$email', logo='$logo' WHERE id='$id'");
+      $resultado = mysqli_query($link, "UPDATE f_empresas SET nombre_comercial='$nombre_comercial', contacto='$contacto', rfc='$rfc', telefono='$telefono', email='$email' where id='$id'");
       # Error
       if ($error = mysqli_error($link)) {
         errorModificarEmpresa($rfc, $error);
         return false;
       }
-      $resultado_direccion = mysqli_query($link, "UPDATE f_direccion_empresa set empresa_rfc='$rfc',calle='$calle',colonia='$localidad',municipio='$municipio',estado='$estado',pais='$pais',n_exterior='$n_ext',cp=$cp,localidad='$localidad'  WHERE empresa_rfc='$row[2]'");
+      $resultado_direccion = mysqli_query($link, "UPDATE f_direccion_empresa set empresa_rfc='$rfc',calle='$calle',colonia='$localidad',municipio='$municipio',estado='$estado',pais='$pais',n_exterior='$n_ext',cp=$cp,localidad='$localidad'  where empresa_rfc='$row[2]'");
       # Error
       if ($error = mysqli_error($link)) {
         errorModificarEmpresa($rfc, $error);
@@ -275,76 +271,4 @@
       </script>
       <?php
     }
-
-  function subirImagen() {
-    $dir_objetivo = "../img/uploads/";
-    $nombre_temporal = $_FILES["logo"]["tmp_name"];
-    $archivo_objetivo = $dir_objetivo . basename($_FILES["logo"]["name"]);
-    move_uploaded_file($nombre_temporal, $archivo_objetivo);
-    if ($error == UPLOAD_ERR_OK) {
-        return $archivo_objetivo;
-    } else {
-      $error = $_FILES['logo']['error'];
-      echo "<script>console.log('Hubo un error al subir el archivo: $error.')</script>";
-    }
-  }
-
-  function errorExtensionImagen() {
-    ?>
-    <script type="text/javascript" src="../comun/global.js"></script>
-    <div class="modal fade" id="errorExtensionImagenModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="errorExtensionImagenModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Extensión de imagen no válido.</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>La extensión de la imagen que se trató de subir no es válida. Los formatos válidos son: <code>.jpg, .jpeg, .png, .gif</code>.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('empresas.php')">Continuar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#errorExtensionImagenModal").modal('show');
-      })
-    </script>
-    <?php
-  }
-
-  function errorSubirImagen($imagen) {
-    ?>
-    <script type="text/javascript" src="../comun/global.js"></script>
-    <div class="modal fade" id="errorSubirImagenModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="errorSubirImagenModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Error subiendo la imagen</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Ocurrió un error al tratar de subir la imagen <samp><?php echo $imagen ?></samp>.</p>
-            <p>Por favor verifique que todos los datos estén correctos y vuelva a intentarlo.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('empresas.php')">Continuar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#errorSubirImagenModal").modal('show');
-      })
-    </script>
-    <?php
-  }
-?>
+  ?>
