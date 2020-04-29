@@ -6,6 +6,8 @@
     header("Location: no-autorizado.php");
     die();
   }
+  require "../comun/recursos.php";
+  require "../comun/lib-usuarios.php";
   if ($_GET) {
     $operacion = $_GET["op"];
     $id = $_GET["id"];
@@ -15,8 +17,8 @@
     }
   }
   $nivel = 1;
-  require "../comun/recursos.php";
-  require "../comun/lib-usuarios.php";
+  
+  
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -43,9 +45,9 @@
           }
           $row = mysqli_fetch_array($consulta);
         ?>
-        <div class="col-md-10 align-self-end">
-          <div class="row ">
-            <div class="col mb-3 mt-3 ">
+        <div class="col-md-10  align-self-end">
+          <div class="row">
+            <div class="col align-self-center mb-3 mt-3">
               <h2>Modificar Usuario</h2>
             </div>
           </div>
