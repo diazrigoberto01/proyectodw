@@ -25,7 +25,7 @@
         <?php
           include "sidebar.php";
           $link = conectarse();
-          $consulta = mysqli_query($link,"SELECT concat(nombre, apellidos), email, rfc, celular, id FROM f_usuario");
+          $consulta = mysqli_query($link,"SELECT concat(nombre, apellidos), email, rfc, celular, id FROM f_usuario where status='1'");
           if ($error = mysqli_error($link)) {
             echo 'Error buscando los datos en la Base de Datos: '.$error;
             ?>
