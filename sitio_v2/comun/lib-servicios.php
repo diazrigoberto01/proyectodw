@@ -9,12 +9,13 @@
     $descripcion=$_POST['descripcion'];
     $um=$_POST['um'];
     $pu=$_POST['pu'];
+    $status="1";
     # Conexión a la DB
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "INSERT INTO f_concepto(clave,descripcion,unidad_medida,precio)
-     VALUES('$clave', '$descripcion', '$um', '$pu')");
+    $resultado = mysqli_query($link, "INSERT INTO f_concepto(clave,descripcion,unidad_medida,precio,status)
+     VALUES('$clave', '$descripcion', '$um', '$pu','$status')");
     # Error
     if ($error = mysqli_error($link)) {
       errorAgregarServicio($clave);
@@ -91,7 +92,8 @@
     $consulta = mysqli_query($link, "SELECT clave FROM f_concepto WHERE id=$id");
     $row = mysqli_fetch_array($consulta);
     $clave = $row["clave"];
-    $resultado = mysqli_query($link, "DELETE FROM f_concepto WHERE id=$id");
+    //cambiar por update status
+    $resultado = mysqli_query($link, "UPDATE f_concepto set status='0' WHERE id=$id");
     # Error
     if ($error = mysqli_error($link)) {
       errorAgregarServicio($clave);
