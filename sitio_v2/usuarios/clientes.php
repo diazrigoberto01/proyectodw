@@ -25,7 +25,7 @@
         <?php
           include "sidebar.php";
           $link = conectarse();
-          $consulta = mysqli_query($link, "SELECT razon_social, rfc, municipio, telefono, id FROM f_cliente");
+          $consulta = mysqli_query($link, "SELECT razon_social, rfc, municipio, telefono, id FROM f_cliente where status='1'");
           if ($error = mysqli_error($link)) {
             echo 'Error buscando los datos en la Base de Datos: '.$error;
             ?>
