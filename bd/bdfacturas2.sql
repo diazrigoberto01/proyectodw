@@ -8,7 +8,7 @@ CREATE TABLE f_usuario (
   celular varchar(255) NOT NULL,
   tel_fijo varchar(255) DEFAULT NULL,
   tipo varchar(15) DEFAULT NULL,
-  status varchar(2) NOT NULL,
+  status varchar(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -24,7 +24,7 @@ CREATE TABLE f_cliente (
   email varchar(120) NOT NULL,
   telefono varchar(30) NOT NULL,
   usuario_rfc varchar(30) DEFAULT NULL,
-  status varchar(2) NOT NULL,
+  status varchar(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -37,7 +37,7 @@ CREATE TABLE f_empresas (
   telefono varchar(255) NOT NULL,
   celular varchar(255) DEFAULT NULL,
   email varchar(255) NOT NULL,
-  status char(1) DEFAULT NULL,
+  status char(1) DEFAULT NULL DEFAULT '1',
   usuario_rfc varchar(255) DEFAULT NULL,
   regimen_fiscal varchar(255) DEFAULT NULL,
   PRIMARY KEY (id)
@@ -56,7 +56,7 @@ CREATE TABLE f_direccion_empresa (
   n_interior varchar(50) DEFAULT NULL,
   empresa_rfc varchar(255) NOT NULL,
   empresa_usuario_rfc varchar(255) NOT NULL,
-  status varchar(2) NOT NULL,
+  status varchar(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -67,7 +67,7 @@ CREATE TABLE f_logo (
   nombre varchar(255) NOT NULL,
   fecha varchar(20) NOT NULL,
   empresa_rfc varchar(255) NOT NULL,
-  status varchar(2) NOT NULL,
+  status varchar(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -88,7 +88,7 @@ CREATE TABLE f_factura (
   subtotal float DEFAULT NULL,
   uso_cfdi varchar(255) DEFAULT NULL,
   cantidadPagos varchar(100) DEFAULT NULL,
-  status varchar(2) NOT NULL,
+  status varchar(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -116,7 +116,7 @@ CREATE TABLE f_concepto (
   descripcion varchar(255) NOT NULL,
   unidad_medida varchar(255) NOT NULL,
   precio float(7,2) NOT NULL,
-  status varchar(2) NOT NULL,
+  status varchar(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -124,7 +124,7 @@ CREATE TABLE f_usoscfdi (
   id int(11) NOT NULL AUTO_INCREMENT,
   clave varchar(30) NOT NULL,
   descripcion varchar(255) NOT NULL,
-  status varchar(2) NOT NULL,
+  status varchar(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
