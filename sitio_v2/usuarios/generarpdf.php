@@ -33,10 +33,11 @@ $folio=$_POST["folio"];
 
 
 if(isset($_POST["nueva"])){
-  $insertaConcepto=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,direccion_emisor,lugar_expedicion,fecha_emision,
-  rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos) 
+  $status="1";
+  $insertaFactura=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,direccion_emisor,lugar_expedicion,fecha_emision,
+  rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos,status) 
   values('$folio','$rfcEmisor','$dirEmisor','$lugar','$fecha','$receptorRFC','$tipoPago','
-  $totalmasiva','123asd','$iva','$subtotal','$cfdi','$cantidadPagos')") or die(mysqli_error($link));
+  $totalmasiva','123asd','$iva','$subtotal','$cfdi','$cantidadPagos','$status')") or die(mysqli_error($link));
   
   for($i=1; $i<=$totalProductos; $i++){
     $num=strval($i);
@@ -55,7 +56,7 @@ if(isset($_POST["nueva"])){
       $ivaP=$total*0.16;
       $tmi=$total+$ivaP;
       //echo $des;
-      $insertaFactura=mysqli_query($link,"insert into f_concepto_facturado(factura_folio,factura_empresa_rfc,
+      $insertaConcepto=mysqli_query($link,"insert into f_concepto_facturado(factura_folio,factura_empresa_rfc,
       fecha,concepto_clave,concepto_descripcion,
       concepto_um,concepto_cantidad,concepto_pu,concepto_subtotal,concepto_iva,concepto_total) 
           values('$folio','$rfcEmisor','$fecha','$clave','$des','
@@ -72,7 +73,7 @@ $encabezado="
 <table align='center'> 
 
     <td>
-    <h1>Factura</h1>
+    <img src='../img/mezclas.png' width='250px' heigth='250px'>
     </td>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -166,7 +167,7 @@ $emisor="
     </tr>
     <tr>
         <td colspan='6'>
-        --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         </td>
     </tr>
 </table>
@@ -198,7 +199,7 @@ $receptor="
       </tr>
       <tr>
         <td colspan='6'>
-          --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         </td>
       </tr>
       
