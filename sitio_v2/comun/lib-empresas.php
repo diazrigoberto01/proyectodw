@@ -22,13 +22,25 @@
     $cp = $_POST['cp'];
     $rfc_user=$_POST['rfc_usuario'];
     $status="1";
+    //$nombreLogo=$_POST['nombreLogo'];
+    //$ubiImagen=$_POST['ubiImagen'];
+    //$fecha;
     # Conexión a la DB
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
     $resultado = mysqli_query($link, "INSERT INTO f_empresas(rfc, razon_social, nombre_comercial, contacto, telefono, email,celular,status,usuario_rfc,regimen_fiscal) VALUES('$rfc', '$razon', '$nombre_comercial', '$contacto', '$telefono', '$email','$telefono','$status','$rfc_user','$regimen')");
-    $resultado1=mysqli_query($link,"INSERT INTO f_direccion_empresa(calle,localidad,colonia,municipio,estado,pais,n_exterior,cp,empresa_rfc,empresa_usuario_rfc)
-  values ('$calle','$localidad','$colonia','$municipio','$estado','$pais','$numero_exterior','$cp','$rfc','$rfc_user')");
+    //obtener id de la ultima empresa añadida
+    $obtenerid=mysqli_query($link,"SELECT id FROM f_empresas where rfc='$rfc'");
+    $row=mysqli_fetch_array($obtenerid);
+    $idE=$row[0];
+  
+    
+    $resultado1=mysqli_query($link,"INSERT INTO f_direccion_empresa(calle,localidad,colonia,municipio,estado,pais,n_exterior,cp,empresa_rfc,empresa_usuario_rfc,f_empresas_id)
+  values ('$calle','$localidad','$colonia','$municipio','$estado','$pais','$numero_exterior','$cp','$rfc','$rfc_user','$idE')");
+    //falta agregar logo de empresa
+    //$agregarLogo=mysqli_query($link,"INSERT INTO f_logo(nombre,imagen,fecha,empresa_rfc,f_empresas_id) values('$nombreLogo','$ubiImagen','$fecha','$rfc','$idE')")
+
     # Error
     if ($error = mysqli_error($link)) {
       errorAgregarEmpresa($rfc);
@@ -81,7 +93,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>La empresa con RFC  <samp><?php echo $rfc ?></samp> ha sido agregada y está lista para usarse.</p>
+              <p>La empresa con RFC  <samp><?php  echo $rfc; ?></samp> ha sido agregada y está lista para usarse.</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="irA('empresas.php')">Continuar</button>
