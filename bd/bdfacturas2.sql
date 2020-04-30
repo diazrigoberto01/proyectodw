@@ -128,15 +128,4 @@ CREATE TABLE f_usoscfdi (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into f_usoscfdi(clave,descripcion) values('G01','Adquisicion de mercancias');
-insert into f_usoscfdi(clave,descripcion) values('G02','Devoluciones, descuentos o bonificaciones');
-insert into f_usoscfdi(clave,descripcion) values('G03','Gastos en general');
-insert into f_usoscfdi(clave,descripcion) values('I01','Construcciones');
-insert into f_usoscfdi(clave,descripcion) values('I02','Mobilario y equipo de oficina por inversiones');
-insert into f_usoscfdi(clave,descripcion) values('I03','Equipo de transporte');
-insert into f_usoscfdi(clave,descripcion) values('I04','Equipo de computo y accesorios');
-insert into f_usoscfdi(clave,descripcion) values('I05','Dados, troqueles, moldes, matrices y herramental');
-insert into f_usoscfdi(clave,descripcion) values('I06','Comunicaciones telefonicas');
-insert into f_usoscfdi(clave,descripcion) values('I07','Comunicaciones satelitales');
-insert into f_usoscfdi(clave,descripcion) values('I08','Otra maquinaria y equipo');
-insert into f_usoscfdi(clave,descripcion) values('P01','Por definir');
+
