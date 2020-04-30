@@ -1,0 +1,183 @@
+
+CREATE TABLE IF NOT EXISTS f_usuario (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  rfc VARCHAR(255) NOT NULL,
+  nombre VARCHAR(255) NOT NULL,
+  apellidos VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  pass VARCHAR(255) NOT NULL,
+  celular VARCHAR(255) NOT NULL,
+  tel_fijo VARCHAR(255) NULL DEFAULT NULL,
+  tipo VARCHAR(15) NULL DEFAULT NULL,
+  status VARCHAR(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+
+CREATE TABLE IF NOT EXISTS f_cliente (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  rfc VARCHAR(15) NOT NULL,
+  razon_social VARCHAR(150) NOT NULL,
+  calle VARCHAR(50) NOT NULL,
+  cp VARCHAR(5) NOT NULL,
+  estado VARCHAR(30) NOT NULL,
+  municipio VARCHAR(30) NOT NULL,
+  no_exterior VARCHAR(30) NOT NULL,
+  email VARCHAR(120) NOT NULL,
+  telefono VARCHAR(30) NOT NULL,
+  usuario_rfc VARCHAR(30) NULL DEFAULT NULL,
+  status VARCHAR(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+CREATE TABLE IF NOT EXISTS f_empresas (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  rfc VARCHAR(255) NOT NULL,
+  razon_social VARCHAR(255) NOT NULL,
+  nombre_comercial VARCHAR(255) NOT NULL,
+  contacto VARCHAR(255) NOT NULL,
+  telefono VARCHAR(255) NOT NULL,
+  celular VARCHAR(255) NULL DEFAULT NULL,
+  email VARCHAR(255) NOT NULL,
+  status CHAR(1) NULL DEFAULT NULL,
+  usuario_rfc VARCHAR(255) NULL DEFAULT NULL,
+  regimen_fiscal VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+
+CREATE TABLE IF NOT EXISTS f_direccion_empresa (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  pais VARCHAR(20) NOT NULL,
+  estado VARCHAR(30) NOT NULL,
+  municipio VARCHAR(50) NOT NULL,
+  localidad VARCHAR(50) NULL DEFAULT NULL,
+  cp DECIMAL(5,0) NOT NULL,
+  colonia VARCHAR(50) NOT NULL,
+  calle VARCHAR(30) NOT NULL,
+  n_exterior VARCHAR(50) NOT NULL,
+  n_interior VARCHAR(50) NULL DEFAULT NULL,
+  empresa_rfc VARCHAR(255) NOT NULL,
+  empresa_usuario_rfc VARCHAR(255) NOT NULL,
+  status VARCHAR(2) NOT NULL DEFAULT '1',
+  f_empresas_id INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_f_direccion_empresa_f_empresas1
+    FOREIGN KEY (f_empresas_id)
+    REFERENCES f_empresas (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS f_logo (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  imagen VARCHAR(255) NOT NULL,
+  nombre VARCHAR(255) NOT NULL,
+  fecha VARCHAR(20) NOT NULL,
+  empresa_rfc VARCHAR(255) NOT NULL,
+  status VARCHAR(2) NOT NULL DEFAULT '1',
+  f_empresas_id INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_f_logo_f_empresas
+    FOREIGN KEY (f_empresas_id)
+    REFERENCES f_empresas (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS f_factura (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  folio INT(11) NOT NULL,
+  rfc_emisor VARCHAR(255) NOT NULL,
+  direccion_emisor VARCHAR(255) NOT NULL,
+  lugar_expedicion VARCHAR(255) NOT NULL,
+  fecha_emision VARCHAR(255) NOT NULL,
+  rfc_receptor VARCHAR(255) NULL DEFAULT NULL,
+  metodo_pago VARCHAR(255) NOT NULL,
+  importe_total FLOAT NULL DEFAULT NULL,
+  empresa_usuario_rfc VARCHAR(255) NOT NULL,
+  iva INT(11) NULL DEFAULT NULL,
+  subtotal FLOAT NULL DEFAULT NULL,
+  uso_cfdi VARCHAR(255) NULL DEFAULT NULL,
+  cantidadPagos VARCHAR(100) NULL DEFAULT NULL,
+  status VARCHAR(2) NOT NULL DEFAULT '1',
+  f_empresas_id INT(10) UNSIGNED NOT NULL,
+  f_cliente_id INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_f_factura_f_empresas1
+    FOREIGN KEY (f_empresas_id)
+    REFERENCES f_empresas (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_f_factura_f_cliente1
+    FOREIGN KEY (f_cliente_id)
+    REFERENCES f_cliente (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS f_concepto (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  clave VARCHAR(255) NOT NULL,
+  descripcion VARCHAR(255) NOT NULL,
+  unidad_medida VARCHAR(255) NOT NULL,
+  precio FLOAT(7,2) NOT NULL,
+  status VARCHAR(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS f_concepto_facturado (
+  factura_folio VARCHAR(255) NOT NULL,
+  factura_empresa_rfc VARCHAR(255) NOT NULL,
+  concepto_clave VARCHAR(255) NOT NULL,
+  fecha VARCHAR(255) NOT NULL,
+  concepto_descripcion VARCHAR(255) NULL DEFAULT NULL,
+  concepto_um VARCHAR(30) NULL DEFAULT NULL,
+  concepto_cantidad FLOAT NULL DEFAULT NULL,
+  concepto_pu FLOAT NULL DEFAULT NULL,
+  concepto_subtotal FLOAT NULL DEFAULT NULL,
+  concepto_iva FLOAT NULL DEFAULT NULL,
+  concepto_total FLOAT NULL DEFAULT NULL,
+  f_concepto_id INT(11) NOT NULL,
+  f_factura_id INT(10) UNSIGNED NOT NULL,
+  CONSTRAINT fk_f_concepto_facturado_f_concepto1
+    FOREIGN KEY (f_concepto_id)
+    REFERENCES f_concepto (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_f_concepto_facturado_f_factura1
+    FOREIGN KEY (f_factura_id)
+    REFERENCES f_factura (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS f_usoscfdi (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  clave VARCHAR(30) NOT NULL,
+  descripcion VARCHAR(255) NOT NULL,
+  status VARCHAR(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+
+
