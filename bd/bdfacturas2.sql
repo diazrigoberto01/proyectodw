@@ -94,7 +94,7 @@ CREATE TABLE f_factura (
 
 
 
-CREATE TABLE f_concepto_facturad (
+CREATE TABLE f_concepto_facturado (
   factura_folio varchar(255) NOT NULL,
   factura_empresa_rfc varchar(255) NOT NULL,
   concepto_clave varchar(255) NOT NULL,
@@ -105,8 +105,7 @@ CREATE TABLE f_concepto_facturad (
   concepto_pu float DEFAULT NULL,
   concepto_subtotal float DEFAULT NULL,
   concepto_iva float DEFAULT NULL,
-  concepto_total float DEFAULT NULL,
-  status varchar(2) NOT NULL,
+  concepto_total float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
