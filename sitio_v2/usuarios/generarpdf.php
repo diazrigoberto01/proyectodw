@@ -35,21 +35,23 @@ $folio=$_POST["folio"];
 if(isset($_POST["nueva"])){
   $status="1";
   //obtener id de empresa
-  $obtenerIdE=mysqli_query($link,"SELECT id FROM f_empresas where rfc='$rfcEmisor'");
-  $idE=mysqli_fetc_array($obtenerIdE);
+  $obtenerIdE=mysqli_query($link,"SELECT id FROM f_empresas where rfc='$rfcEmisor'") or die(mysqli_error($link));
+  $idE=mysqli_fetch_array($obtenerIdE);
+  echo "obtener idE $idE[0]";
   //obtener id de cliente
-  $obtenerIdC=mysqli_query($link,"SELECT id FROM f_cliente  where rfc='$receptorRFC'");
+  $obtenerIdC=mysqli_query($link,"SELECT id FROM f_cliente  where rfc='$receptorRFC'")or die(mysqli_error($link));
   $idC=mysqli_fetch_array($obtenerIdC);
-
+  echo "obtenr idC $idC[0]";
   //hacer insert de factura
   $insertaFactura=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,direccion_emisor,lugar_expedicion,fecha_emision,
   rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos,status,f_empresas_id,f_cliente_id) 
   values('$folio','$rfcEmisor','$dirEmisor','$lugar','$fecha','$receptorRFC','$tipoPago','
-  $totalmasiva','123asd','$iva','$subtotal','$cfdi','$cantidadPagos','$status','$idE[0]',$idC[0])") or die(mysqli_error($link));
+  $totalmasiva','123asd','$iva','$subtotal','$cfdi','$cantidadPagos','$status','$idE[0]','$idC[0]')") or die(mysqli_error($link));
+  
   //obtenr id del ultimo folio creado
   $obtenerFolio=mysqli_query($link,"SELECT id from f_factura WHERE folio='$folio'") or die(mysqli_error($link));
-  $idF=mysqli_fecth_array($obtenerFolio);
-
+  $idF=mysqli_fetch_array($obtenerFolio);
+  echo "idF $idF[0]";
   
   for($i=1; $i<=$totalProductos; $i++){
     $num=strval($i);
@@ -68,8 +70,9 @@ if(isset($_POST["nueva"])){
       $ivaP=$total*0.16;
       $tmi=$total+$ivaP;
       //obtenr id de cada concepto
-      $obtenerIdConcepto=mysqli_query($link,"SELECT id from f_concpeto where clave='$clave'") or die(mysqli_error($link));
-      $idCon=mysqli_fecth_array($obtenerIdConcepto);
+      $obtenerIdConcepto=mysqli_query($link,"SELECT id from f_concepto where clave='$clave'") or die(mysqli_error($link));
+      $idCon=mysqli_fetch_array($obtenerIdConcepto);
+      echo "idCon $idCon[0]";
       //echo $des;
       $insertaConcepto=mysqli_query($link,"insert into f_concepto_facturado(factura_folio,factura_empresa_rfc,
       fecha,concepto_clave,concepto_descripcion,
