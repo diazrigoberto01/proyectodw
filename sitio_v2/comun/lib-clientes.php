@@ -17,11 +17,16 @@
     $estado = $_POST['estado'];
     $user_rfc = $_POST['usuario_rfc'];
     $status="1";
+    $ruta_logo = subirArchivo();
+    if ($ruta_logo == 'falla') {
+      errorSubirArchivo();
+      return false;
+    }
     # Conexión a la DB
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "INSERT INTO f_cliente(rfc, razon_social, email, telefono, calle, no_exterior, municipio, cp, estado,usuario_rfc,status) VALUES('$rfc', '$razon', '$email', '$telefono', '$calle', '$numero_exterior', '$municipio', '$cp', '$estado','$user_rfc','$status')");
+    $resultado = mysqli_query($link, "INSERT INTO f_cliente(rfc, razon_social, email, telefono, calle, no_exterior, municipio, cp, estado,usuario_rfc,status, logo) VALUES('$rfc', '$razon', '$email', '$telefono', '$calle', '$numero_exterior', '$municipio', '$cp', '$estado','$user_rfc', '$status', '$ruta_logo')");
     # Error
     if ($error = mysqli_error($link)) {
       errorAgregarCliente($rfc);
@@ -182,11 +187,16 @@
     $cp = $_POST['cp'];
     $estado = $_POST['estado'];
     $user_rfc = $_POST['usuario_rfc'];
+    $ruta_logo = subirArchivo();
+    if ($ruta_logo == 'falla') {
+      errorSubirArchivo();
+      return false;
+    }
     # Conexión a la DB
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "UPDATE f_cliente SET rfc='$rfc', razon_social='$razon', email='$email', telefono='$telefono', calle='$calle', municipio='$municipio', cp='$cp', estado='$estado' where id='$id'");
+    $resultado = mysqli_query($link, "UPDATE f_cliente SET rfc='$rfc', razon_social='$razon', email='$email', telefono='$telefono', calle='$calle', municipio='$municipio', cp='$cp', estado='$estado', logo='$ruta_logo' WHERE id='$id'");
     # Error
     if ($error = mysqli_error($link)) {
       errorModificarCliente($rfc);
@@ -250,6 +260,56 @@
     <script type="text/javascript">
       $(document).ready(function() {
         $("#exitoModificarClienteModal").modal('show');
+      })
+    </script>
+    <?php
+  }
+
+  function subirArchivo() {
+    $directorio = "../img/uploads/";
+    $archivo_destino = $directorio . basename($_FILES["logo"]["name"]);
+    $extension_archivo = strtolower(pathinfo($archivo_destino,PATHINFO_EXTENSION));
+    $revision = getimagesize($_FILES["logo"]["tmp_name"]);
+    if ($revision !== false) {
+      echo "<script>console.log('El archivo es una imagen.')</script>";
+    } else {
+      echo "<script>console.log('El archivo no es una imagen.')</script>";
+      return 'falla';
+    }
+    if (move_uploaded_file($_FILES["logo"]["tmp_name"], $archivo_destino)) {
+      echo "<script>console.log('El archivo se subió.')</script>";
+      return $archivo_destino;
+    } else {
+      $error = $_FILES["logo"]["error"];
+      echo "<script>console.log('Hubo un error subiendo el archivo. $error')</script>";
+      return 'falla';
+    }
+  }
+
+  function errorSubirArchivo() {
+    ?>
+    <script type="text/javascript" src="../comun/global.js"></script>
+    <div class="modal fade" id="errorSubirArchivoModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="errorSubirArchivoModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Error subiendo el logo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Ocurrió un error al tratar de subir el logo</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('empresas.php')">Continuar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#errorSubirArchivoModal").modal('show');
       })
     </script>
     <?php

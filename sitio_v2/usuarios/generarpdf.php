@@ -44,15 +44,15 @@ if(isset($_POST["nueva"])){
   echo "obtenr idC $idC[0]";
   //hacer insert de factura
   $insertaFactura=mysqli_query($link,"insert into f_factura(folio,rfc_emisor,direccion_emisor,lugar_expedicion,fecha_emision,
-  rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos,status,f_empresas_id,f_cliente_id) 
+  rfc_receptor,metodo_pago,importe_total,empresa_usuario_rfc,iva,subtotal,uso_cfdi,cantidadPagos,status,f_empresas_id,f_cliente_id)
   values('$folio','$rfcEmisor','$dirEmisor','$lugar','$fecha','$receptorRFC','$tipoPago','
   $totalmasiva','123asd','$iva','$subtotal','$cfdi','$cantidadPagos','$status','$idE[0]','$idC[0]')") or die(mysqli_error($link));
-  
+
   //obtenr id del ultimo folio creado
   $obtenerFolio=mysqli_query($link,"SELECT id from f_factura WHERE folio='$folio'") or die(mysqli_error($link));
   $idF=mysqli_fetch_array($obtenerFolio);
   echo "idF $idF[0]";
-  
+
   for($i=1; $i<=$totalProductos; $i++){
     $num=strval($i);
       $claven="clave".$num;
@@ -76,10 +76,10 @@ if(isset($_POST["nueva"])){
       //echo $des;
       $insertaConcepto=mysqli_query($link,"insert into f_concepto_facturado(factura_folio,factura_empresa_rfc,
       fecha,concepto_clave,concepto_descripcion,
-      concepto_um,concepto_cantidad,concepto_pu,concepto_subtotal,concepto_iva,concepto_total,f_concepto_id,f_factura_id) 
+      concepto_um,concepto_cantidad,concepto_pu,concepto_subtotal,concepto_iva,concepto_total,f_concepto_id,f_factura_id)
           values('$folio','$rfcEmisor','$fecha','$clave','$des','
       $um','$cantidad','$pu','$total','$iva','$tmi','$idCon[0]','$idF[0]')") or die(mysqli_error($link));
-  
+
   }
 }
 //añadir info a f_factura
@@ -88,7 +88,7 @@ if(isset($_POST["nueva"])){
 
 
 $encabezado="
-<table align='center'> 
+<table align='center'>
 
     <td>
     <img src='../img/mezclas.png' width='250px' heigth='250px'>
@@ -179,7 +179,7 @@ $emisor="
             $cantidadPagos
         </td>
         <th>Regimen Fiscal:</th>
-        <td> 
+        <td>
         $regimen
         </td>
     </tr>
@@ -200,12 +200,12 @@ $receptor="
       <tr>
         <td colspan='4'>
         Cliente: $nombreCliente
-          
+
         </td>
       </tr>
       <tr>
         <td colspan='4'>
-          Residencia Fiscal: 
+          Residencia Fiscal:
             $dirCliente
         </td>
       </tr>
@@ -220,7 +220,7 @@ $receptor="
           --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         </td>
       </tr>
-      
+
 </table>
 ";
 
@@ -309,13 +309,12 @@ return $tabla;
     $factura.=$emisor;
     $factura.=$receptor;
     $factura.=tabla($totalProductos,$subtotal,$iva,$totalmasiva);
-/*
+
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML($factura);
 $nombreF="factura".$folio."pdf";
 $mpdf->Output($nombreF,"D");
 
-*/
 echo "<script>
 location.href='facturas.php'
 </script>"

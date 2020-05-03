@@ -6,7 +6,7 @@
     header("Location: no-autorizado.php");
     die();
   }
-  if ($_GET) {
+  if ($_GET["op"]) {
     echo "<script>console.log('Claro que si, hay GET.');</script>";
     $operacion = $_GET["op"];
     $id = $_GET["id"];
@@ -186,7 +186,7 @@
                 <div class="form-row">
                   <div class="col-md-8 mb-3">
                     <label for="logo">Logo</label>
-                    <input type="file" class="form-control" name="logo" id="logo" placeholder="" value="<?php echo $row[12]?>" required>
+                    <input type="file" class="form-control" name="logo" id="logo" placeholder="" value="<?php echo $row[12]?>">
                   </div>
                 </div>
                 <div class="form-group">

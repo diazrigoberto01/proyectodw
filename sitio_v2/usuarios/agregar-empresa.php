@@ -186,7 +186,7 @@
                 <div class="form-row">
                   <div class="col-md-8 mb-3">
                     <label for="logo">Logo</label>
-                    <input type="file" class="form-control" name="logo" id="logo" placeholder="" required>
+                    <input type="file" class="form-control" name="logo" id="logo">
                   </div>
                 </div>
                 <div class="form-group">

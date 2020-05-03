@@ -25,7 +25,7 @@
         <?php
           include "sidebar.php";
           $link = conectarse();
-          $consulta = mysqli_query($link, "SELECT nombre_comercial, contacto, rfc, telefono, id FROM f_empresas where status='1'");
+          $consulta = mysqli_query($link, "SELECT nombre_comercial, contacto, rfc, telefono, id, logo FROM f_empresas WHERE status='1'");
           if ($error = mysqli_error($link)) {
             echo 'Error buscando los datos en la Base de Datos: '.$error;
             ?>
@@ -50,7 +50,7 @@
             <?php
               while ($row = mysqli_fetch_array($consulta)) {
                 printf('<tr>
-                <td>Imagen</td>
+                <td><img src="%s" alt="Logo" width="30px" height="30px"/></td>
                 <td> %s </td>
                 <td> %s </td>
                 <td> %s </td>
@@ -58,7 +58,7 @@
                 <td>
                 <a href="modificar-empresa.php?id='.$row[4].'&op=1">
                 <input type="button" class="btn btn-outline-secondary" value="Modificar">
-                </a>', $row[0], $row[1], $row[2], $row[3],$row[4]);
+                </a>', $row[5], $row[0], $row[1], $row[2], $row[3],$row[4]);
                 if ($_SESSION['tipo_usuario'] == "admin") {
                   printf('<a href="modificar-empresa.php?id='.$row[4].'&op=2">
                   <input type="button" class="btn btn-outline-danger" value="Eliminar">

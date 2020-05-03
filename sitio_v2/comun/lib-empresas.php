@@ -22,20 +22,22 @@
     $cp = $_POST['cp'];
     $rfc_user=$_POST['rfc_usuario'];
     $status="1";
-    //$nombreLogo=$_POST['nombreLogo'];
-    //$ubiImagen=$_POST['ubiImagen'];
-    //$fecha;
+    $ruta_logo = subirArchivo();
+    if ($ruta_logo == 'falla') {
+      errorSubirArchivo();
+      return false;
+    }
     # Conexión a la DB
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "INSERT INTO f_empresas(rfc, razon_social, nombre_comercial, contacto, telefono, email,celular,status,usuario_rfc,regimen_fiscal) VALUES('$rfc', '$razon', '$nombre_comercial', '$contacto', '$telefono', '$email','$telefono','$status','$rfc_user','$regimen')");
+    $resultado = mysqli_query($link, "INSERT INTO f_empresas(rfc, razon_social, nombre_comercial, contacto, telefono, email,celular,status,usuario_rfc,regimen_fiscal,logo) VALUES('$rfc', '$razon', '$nombre_comercial', '$contacto', '$telefono', '$email','$telefono','$status','$rfc_user','$regimen', $ruta_logo)");
     //obtener id de la ultima empresa añadida
     $obtenerid=mysqli_query($link,"SELECT id FROM f_empresas where rfc='$rfc'");
     $row=mysqli_fetch_array($obtenerid);
     $idE=$row[0];
-  
-    
+
+
     $resultado1=mysqli_query($link,"INSERT INTO f_direccion_empresa(calle,localidad,colonia,municipio,estado,pais,n_exterior,cp,empresa_rfc,empresa_usuario_rfc,f_empresas_id)
   values ('$calle','$localidad','$colonia','$municipio','$estado','$pais','$numero_exterior','$cp','$rfc','$rfc_user','$idE')");
     //falta agregar logo de empresa
@@ -203,18 +205,22 @@
       $calle = $_POST['calle'];
       $numero_exterior = $_POST['n_ext'];
       $cp = $_POST['cp'];
-      $rfc_user=$_POST['rfc_usuario'];
+      $ruta_logo = subirArchivo();
+      if ($ruta_logo == 'falla') {
+        errorSubirArchivo();
+        return false;
+      }
       # Conexión a la DB
       $link = conectarse();
       echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
       # DB Update
-      $resultado = mysqli_query($link, "UPDATE f_empresas SET nombre_comercial='$nombre_comercial', contacto='$contacto', rfc='$rfc', telefono='$telefono', email='$email' where id='$id'");
+      $resultado = mysqli_query($link, "UPDATE f_empresas SET nombre_comercial='$nombre_comercial', contacto='$contacto', rfc='$rfc', telefono='$telefono', email='$email', logo='$ruta_logo' where id='$id'");
       # Error
       if ($error = mysqli_error($link)) {
         errorModificarEmpresa($rfc, $error);
         return false;
       }
-      $resultado_direccion = mysqli_query($link, "UPDATE f_direccion_empresa set empresa_rfc='$rfc',calle='$calle',colonia='$localidad',municipio='$municipio',estado='$estado',pais='$pais',n_exterior='$n_ext',cp=$cp,localidad='$localidad'  where empresa_rfc='$row[2]'");
+      $resultado_direccion = mysqli_query($link, "UPDATE f_direccion_empresa set empresa_rfc='$rfc',calle='$calle',colonia='$localidad',municipio='$municipio',estado='$estado',pais='$pais',n_exterior='$numero_exterior',cp=$cp,localidad='$localidad'  where empresa_rfc='$rfc'");
       # Error
       if ($error = mysqli_error($link)) {
         errorModificarEmpresa($rfc, $error);
@@ -279,6 +285,56 @@
       <script type="text/javascript">
         $(document).ready(function() {
           $("#exitoModificarEmpresaModal").modal('show');
+        })
+      </script>
+      <?php
+    }
+
+    function subirArchivo() {
+      $directorio = "../img/uploads/";
+      $archivo_destino = $directorio . basename($_FILES["logo"]["name"]);
+      $extension_archivo = strtolower(pathinfo($archivo_destino,PATHINFO_EXTENSION));
+      $revision = getimagesize($_FILES["logo"]["tmp_name"]);
+      if ($revision !== false) {
+        echo "<script>console.log('El archivo es una imagen.')</script>";
+      } else {
+        echo "<script>console.log('El archivo no es una imagen.')</script>";
+        return 'falla';
+      }
+      if (move_uploaded_file($_FILES["logo"]["tmp_name"], $archivo_destino)) {
+        echo "<script>console.log('El archivo se subió.')</script>";
+        return $archivo_destino;
+      } else {
+        $error = $_FILES["logo"]["error"];
+        echo "<script>console.log('Hubo un error subiendo el archivo. $error')</script>";
+        return 'falla';
+      }
+    }
+
+    function errorSubirArchivo() {
+      ?>
+      <script type="text/javascript" src="../comun/global.js"></script>
+      <div class="modal fade" id="errorSubirArchivoModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="errorSubirArchivoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Error subiendo el logo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Ocurrió un error al tratar de subir el logo</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('empresas.php')">Continuar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $("#errorSubirArchivoModal").modal('show');
         })
       </script>
       <?php

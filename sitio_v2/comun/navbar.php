@@ -26,9 +26,16 @@
       ?>
         <div class="collapse navbar-collapse justify-content-end">
           <form class="form-inline" name="cierreSesion" action="cerrar-sesion.php" method="post">
-            <button type="button" class="btn btn-outline-light mr-2" name="usuarios" onclick="irA(<?php echo $path_absoluto ?>crear-factura.php)">
-              Ir al Dashboard
-            </button>
+            <a href="<?php
+              if ($nivel == 1) {
+                echo "crear-factura.php";
+              } else {
+                echo "usuarios/crear-factura.php";
+              }?>">
+              <button type="button" class="btn btn-outline-light mr-2" name="usuarios">
+                Ir al Dashboard
+              </button>
+            </a>
             <button type="submit" class="btn btn-outline-warning" name="cerrarSesion">
               Cerrar Sesion
             </button>
