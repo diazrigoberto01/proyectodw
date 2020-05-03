@@ -91,7 +91,7 @@ $encabezado="
 <table align='center'>
 
     <td>
-    <img src='../img/mezclas.png' width='250px' heigth='250px'>
+    <img src='$imagen' width='250px' heigth='250px'>
     </td>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
