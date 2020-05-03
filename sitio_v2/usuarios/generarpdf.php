@@ -312,7 +312,7 @@ return $tabla;
 
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML($factura);
-$nombreF="factura".$folio."pdf";
+$nombreF="factura".$folio.".pdf";
 $mpdf->Output($nombreF,"D");
 
 echo "<script>
