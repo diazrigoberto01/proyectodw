@@ -19,6 +19,13 @@
         document.factura.submit();
       }
     </script>
+    <style>
+      @media print {
+        .imprimir {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <?php
@@ -574,13 +581,13 @@
                 }
                 ?>
 
-                <input type="button" class="btn-success" value="Descargar" onclick="descargar()" >
+                <input type="button" class="btn-success imprimir" value="Descargar" onclick="window.print()" >
               </div>
               <div class="col-md-3">
-                  <input type="button" value="Regresar" class="btn-warning" onclick="history.go(-1)">
+                  <input type="button" value="Regresar" class="btn-warning imprimir" onclick="history.go(-1)">
               </div>
               <div class="col-md-3">
-              <a href="facturas.php"><input type="button" class='btn btn-primary' value="Ir a Facturas"></a>
+              <a href="facturas.php" class="imprimir"><input type="button" class='btn btn-primary imprimir' value="Ir a Facturas"></a>
               </div>
           </div>
 
