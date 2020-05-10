@@ -16,10 +16,11 @@
     $estado = $_POST['estado'];
     $municipio = $_POST['municipio'];
     $localidad = $_POST['localidad'];
+    $colonia=$_POST['colonia'];
     $calle = $_POST['calle'];
     $numero_exterior = $_POST['n_ext'];
     $cp = $_POST['cp'];
-    $rfc_user='';
+    $rfc_user=$_POST['rfc_usuario'];
     $status="1";
     $ruta_logo = subirArchivo();
     if ($ruta_logo == 'falla') {
@@ -30,7 +31,7 @@
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "INSERT INTO f_empresas(rfc, razon_social, nombre_comercial, contacto, telefono, email,celular,status,usuario_rfc,regimen_fiscal,logo) VALUES('$rfc', '$razon', '$nombre_comercial', '$contacto', '$telefono', '$email','$telefono','$status','$rfc_user','$regimen', $ruta_logo)");
+    $resultado = mysqli_query($link, "INSERT INTO f_empresas(rfc, razon_social, nombre_comercial, contacto, telefono, email,celular,status,usuario_rfc,regimen_fiscal,logo) VALUES('$rfc', '$razon', '$nombre_comercial', '$contacto', '$telefono', '$email','$telefono','$status','$rfc_user','$regimen', '$ruta_logo')");
     //obtener id de la ultima empresa añadida
     $obtenerid=mysqli_query($link,"SELECT id FROM f_empresas where rfc='$rfc'");
     $row=mysqli_fetch_array($obtenerid);
@@ -38,7 +39,7 @@
 
 
     $resultado1=mysqli_query($link,"INSERT INTO f_direccion_empresa(calle,localidad,colonia,municipio,estado,pais,n_exterior,cp,empresa_rfc,empresa_usuario_rfc,f_empresas_id)
-  values ('$calle','$localidad','','$municipio','$estado','$pais','$numero_exterior','$cp','$rfc','$rfc_user','$idE')");
+  values ('$calle','$localidad','$colonia','$municipio','$estado','$pais','$numero_exterior','$cp','$rfc','$rfc_user','$idE')");
     //falta agregar logo de empresa
     //$agregarLogo=mysqli_query($link,"INSERT INTO f_logo(nombre,imagen,fecha,empresa_rfc,f_empresas_id) values('$nombreLogo','$ubiImagen','$fecha','$rfc','$idE')")
 
