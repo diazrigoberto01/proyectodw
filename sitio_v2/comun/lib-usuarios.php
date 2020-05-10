@@ -24,7 +24,7 @@
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Insert
-    $resultado = mysqli_query($link, "INSERT INTO f_usuario(rfc, nombre, apellidos, email, pass, celular, tel_fijo, tipo,status)
+    $resultado = mysqli_query($link, "INSERT INTO f_usuario(rfc, nombre, apellidos, email, pass, celular, tel_fijo, tipo, status)
     VALUES ('$rfc', '$nombre', '$apellidos', '$email', '$contra', '$celular', '$telefono', '$tipo','$status')");
     # Error
     if ($error = mysqli_error($link)) {

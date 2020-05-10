@@ -16,11 +16,10 @@
     $estado = $_POST['estado'];
     $municipio = $_POST['municipio'];
     $localidad = $_POST['localidad'];
-    $colonia=$_POST['colonia'];
     $calle = $_POST['calle'];
     $numero_exterior = $_POST['n_ext'];
     $cp = $_POST['cp'];
-    $rfc_user=$_POST['rfc_usuario'];
+    $rfc_user='';
     $status="1";
     $ruta_logo = subirArchivo();
     if ($ruta_logo == 'falla') {
@@ -39,7 +38,7 @@
 
 
     $resultado1=mysqli_query($link,"INSERT INTO f_direccion_empresa(calle,localidad,colonia,municipio,estado,pais,n_exterior,cp,empresa_rfc,empresa_usuario_rfc,f_empresas_id)
-  values ('$calle','$localidad','$colonia','$municipio','$estado','$pais','$numero_exterior','$cp','$rfc','$rfc_user','$idE')");
+  values ('$calle','$localidad','','$municipio','$estado','$pais','$numero_exterior','$cp','$rfc','$rfc_user','$idE')");
     //falta agregar logo de empresa
     //$agregarLogo=mysqli_query($link,"INSERT INTO f_logo(nombre,imagen,fecha,empresa_rfc,f_empresas_id) values('$nombreLogo','$ubiImagen','$fecha','$rfc','$idE')")
 

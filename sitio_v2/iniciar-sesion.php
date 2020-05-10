@@ -17,10 +17,10 @@
     <?php
       require 'comun/navbar.php';
       if (!empty($_POST)) {
-        if(iniciarSesion($_POST[email], $_POST[password])) {
+        if(iniciarSesion($_POST['email'], $_POST['password'])) {
           header("Location: usuarios/crear-factura.php");
         } else {
-          errorIniciandoSesion($_POST[email]);
+          errorIniciandoSesion($_POST['email']);
         }
       }
       ?>

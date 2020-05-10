@@ -354,7 +354,7 @@
                 </tr>
 
                 <?php
-                    if($_POST['Buscar']){
+                    if(isset($_POST['Buscar'])){
                     $rfcEmisor=$_POST["rfcEmisor"];
                     $rfcCliente=$_POST["rfcCliente"];
                     printf("
@@ -376,7 +376,7 @@
                         <div class="col-md-12 row">
                             <div class="col-md-3"><p>Nombre Empresa:</p></div>
                             <?php
-                            if($_POST['Buscar']){
+                            if(isset($_POST['Buscar'])){
                                 $rfcEmisor= $_POST["rfcEmisor"];
                                 $getinfo=mysqli_query($link,"Select razon_social,regimen_fiscal from f_empresas where rfc='$rfcEmisor'") or die(mysqli_error($link));
                                 $infoEmisor=mysqli_fetch_array($getinfo);
@@ -407,7 +407,7 @@
                             </div>
 
                                 <?php
-                                if($_POST["Buscar"]){
+                                if(isset($_POST["Buscar"])){
                                 $rfcCliente=$_POST["rfcCliente"];
                                 $getCliente=mysqli_query($link,"SELECT razon_social,concat(calle,concat(' ',concat(no_exterior,concat(', ',concat(municipio,concat(', ',concat(estado,concat(', ',cp)))))))) as Direccion FROM f_cliente where rfc='$rfcCliente'") or die(mysqli_error($link));
                                 $infoCliente=mysqli_fetch_array($getCliente);

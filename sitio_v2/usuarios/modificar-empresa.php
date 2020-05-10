@@ -10,6 +10,8 @@
     echo "<script>console.log('Claro que si, hay GET.');</script>";
     $operacion = $_GET["op"];
     $id = $_GET["id"];
+  } else {
+    $operacion = 1;
   }
   $nivel = 1;
   require "../comun/recursos.php";

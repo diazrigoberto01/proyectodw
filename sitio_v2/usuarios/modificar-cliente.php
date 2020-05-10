@@ -6,9 +6,11 @@
     header("Location: no-autorizado.php");
     die();
   }
-  if ($_GET) {
+  if ($_GET["op"]) {
     $operacion = $_GET["op"];
     $id = $_GET["id"];
+  } else {
+    $operacion = 1;
   }
   $nivel = 1;
   require "../comun/recursos.php";

@@ -25,7 +25,7 @@
         <?php
           include "sidebar.php";
           $link = conectarse();
-          $consulta = mysqli_query($link,"SELECT concat(nombre, apellidos), email, rfc, celular, id FROM f_usuario where status='1'");
+          $consulta = mysqli_query($link,"SELECT concat(nombre, ' ', apellidos), email, rfc, celular, id FROM f_usuario where status='1'");
           if ($error = mysqli_error($link)) {
             echo 'Error buscando los datos en la Base de Datos: '.$error;
             ?>
@@ -39,7 +39,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Imagen</th>
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>RFC</th>
@@ -49,7 +48,6 @@
             <?php
               while ($row = mysqli_fetch_array($consulta)) {
                 printf('<tr>
-                <td>Imagen</td>
                 <td> %s </td>
                 <td> %s </td>
                 <td> %s </td>

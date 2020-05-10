@@ -74,7 +74,7 @@
     <!--Encabezado Factura-->
     <div class="col-md-12 row justify-content-center ">
       <div class=col-md-5>
-        <img  name="logo" src="<?php echo $razonSocial['logo'] ?>" alt="Logo <?php echo $razonSocial['razon_social'] ?>" width="60px" heigth="auto" />
+        <img  name="logo" src="<?php echo $razonSocial['logo'] ?>" alt="Logo <?php echo $razonSocial['razon_social'] ?>" width="150px" heigth="auto" />
         <input type="hidden" name="ubiImagen" value="<?php echo $razonSocial['logo'] ?>">
       </div>
       <div class="col-md-5">

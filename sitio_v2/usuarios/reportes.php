@@ -59,12 +59,18 @@
             if ($_POST) {
               $tipo = $_POST['tipo'];
               if ($tipo == "facturas") {
-                $consulta = mysqli_query($link, "SELECT folio, fecha_emision, rfc_emisor, rfc_receptor, metodo_pago, importe_total FROM f_factura ORDER BY id ASC LIMIT 10");
+                $consulta = mysqli_query($link, "SELECT sum(importe_total) FROM f_factura ORDER BY id DESC LIMIT 10");
                 if ($error = mysqli_error($link)) {
                   echo 'Error buscando los datos en la Base de Datos: '.$error;
                   die();
                 }
+                $datos = mysqli_fetch_array($consulta);
                 ?>
+                <tr>
+                  <td colspan="6">
+                    <h3>El monto facturado en las últimas 10 facturas es de <?php printf('$%.2f',$datos[0]) ?></h3>
+                  </td>
+                </tr>
                 <th>Folio</th>
                 <th>Fecha de emisión</th>
                 <th>RFC Emisor</th>
@@ -72,11 +78,12 @@
                 <th>Método de pago</th>
                 <th>Importe</th>
                 <?php
+                $consulta = mysqli_query($link, "SELECT folio, fecha_emision, rfc_emisor, rfc_receptor, metodo_pago, importe_total FROM f_factura ORDER BY id DESC LIMIT 10");
                 while ($datos = mysqli_fetch_array($consulta)) {
-                  printf('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%f</td></tr>', $datos[0], $datos[1], $datos[2], $datos[3], $datos[4], $datos[5]);
+                  printf('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>$ %.2f</td></tr>', $datos[0], $datos[1], $datos[2], $datos[3], $datos[4], $datos[5]);
                 }
               } else if ($tipo == "clientes") {
-                $consulta = mysqli_query($link, "SELECT rfc, razon_social, email, telefono, estado, municipio FROM f_cliente ORDER BY id ASC LIMIT 10");
+                $consulta = mysqli_query($link, "SELECT rfc, razon_social, email, telefono, estado, municipio FROM f_cliente ORDER BY id DESC LIMIT 10");
                 if ($error = mysqli_error($link)) {
                   echo 'Error buscando los datos en la Base de Datos: '.$error;
                   die();
@@ -93,7 +100,7 @@
                   printf('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>', $datos[0], $datos[1], $datos[2], $datos[3], $datos[4], $datos[5]);
                 }
               } else if ($tipo == "empresas") {
-                $consulta = mysqli_query($link, "SELECT rfc, razon_social, nombre_comercial, contacto, email, telefono FROM f_empresas ORDER BY id ASC LIMIT 10");
+                $consulta = mysqli_query($link, "SELECT rfc, razon_social, nombre_comercial, contacto, email, telefono FROM f_empresas ORDER BY id DESC LIMIT 10");
                 if ($error = mysqli_error($link)) {
                   echo 'Error buscando los datos en la Base de Datos: '.$error;
                   die();
@@ -111,17 +118,17 @@
                 }
               }
             } else {
-              $consulta_facturas = mysqli_query($link, "SELECT folio, fecha_emision, rfc_emisor, rfc_receptor, metodo_pago, importe_total FROM f_factura ORDER BY id ASC LIMIT 3");
+              $consulta_facturas = mysqli_query($link, "SELECT folio, fecha_emision, rfc_emisor, rfc_receptor, metodo_pago, importe_total FROM f_factura ORDER BY id DESC LIMIT 3");
               if ($error = mysqli_error($link)) {
                 echo 'Error buscando los datos en la Base de Datos: '.$error;
                 die();
               }
-              $consulta_clientes = mysqli_query($link, "SELECT rfc, razon_social, email, telefono, estado, municipio FROM f_cliente ORDER BY id ASC LIMIT 3");
+              $consulta_clientes = mysqli_query($link, "SELECT rfc, razon_social, email, telefono, estado, municipio FROM f_cliente ORDER BY id DESC LIMIT 3");
               if ($error = mysqli_error($link)) {
                 echo 'Error buscando los datos en la Base de Datos: '.$error;
                 die();
               }
-              $consulta_empresas = mysqli_query($link, "SELECT rfc, razon_social, nombre_comercial, contacto, email, telefono FROM f_empresas ORDER BY id ASC LIMIT 3");
+              $consulta_empresas = mysqli_query($link, "SELECT rfc, razon_social, nombre_comercial, contacto, email, telefono FROM f_empresas ORDER BY id DESC LIMIT 3");
               if ($error = mysqli_error($link)) {
                 echo 'Error buscando los datos en la Base de Datos: '.$error;
                 die();
@@ -138,7 +145,7 @@
               </tr>
               <?php
               while ($datos = mysqli_fetch_array($consulta_facturas)) {
-                printf('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%f</td></tr>', $datos[0], $datos[1], $datos[2], $datos[3], $datos[4], $datos[5]);
+                printf('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>$ %.2f</td></tr>', $datos[0], $datos[1], $datos[2], $datos[3], $datos[4], $datos[5]);
               }
               ?>
               <th colspan="6" style="text-align: center">Últimos clientes</th>

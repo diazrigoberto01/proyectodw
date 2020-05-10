@@ -10,21 +10,21 @@
     $link = conectarse();
     echo '<script>console.log("Conexión con la Base de Datos conseguida.")</script>'; // Debugging
     # DB Delete
-    $consulta = mysqli_query($link, "SELECT folio FROM f_factura WHERE id=$id");
+    $consulta = mysqli_query($link, "SELECT folio FROM f_factura WHERE folio=$id");
     $row = mysqli_fetch_array($consulta);
     $folio = $row["folio"];
     //cambiar por update status
-    $resultado = mysqli_query($link, "UPDATE  f_factura set status='0' WHERE folio=$folio");
+    $resultado = mysqli_query($link, "UPDATE f_factura SET status='0' WHERE folio=$id");
     # Error
     if ($error = mysqli_error($link)) {
-      errorEliminarFactura($folio);
+      errorEliminarFactura($folio, $error);
       return false;
     }
     # Éxito
     exitoEliminarFactura($folio);
   }
 
-  function errorEliminarFactura($folio) {
+  function errorEliminarFactura($folio, $error) {
     ?>
     <script type="text/javascript" src="../comun/global.js"></script>
     <div class="modal fade" id="errorEliminarFacturaModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="errorEliminarFacturaModalLabel" aria-hidden="true">
@@ -39,9 +39,10 @@
           <div class="modal-body">
             <p>Ocurrió un error al tratar de eliminar la factura con folio  <samp><?php echo $folio ?></samp>.</p>
             <p>Por favor verifique que todos los datos estén correctos y vuelva a intentarlo.</p>
+            <?php echo $error ?>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('clientes.php')">Continuar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('facturas.php')">Continuar</button>
           </div>
         </div>
       </div>
@@ -61,16 +62,16 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Factura eliminada con éxito</h5>
+            <h5 class="modal-title">Factura cancelada con éxito</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>La factura con folio  <samp><?php echo $folio ?></samp> ha sido eliminada.</p>
+            <p>La factura con folio  <samp><?php echo $folio ?></samp> ha sido cancelada.</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="irA('clientes.php')">Continuar</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="irA('facturas.php')">Continuar</button>
           </div>
         </div>
       </div>
@@ -127,7 +128,7 @@
             <p>Por favor verifique que todos los datos estén correctos y vuelva a intentarlo.</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('clientes.php')">Continuar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="irA('facturas.php')">Continuar</button>
           </div>
         </div>
       </div>
@@ -156,7 +157,7 @@
             <p>El cliente con RFC  <samp><?php echo $rfc ?></samp> ha sido modificado y está listo para usarse.</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="irA('clientes.php')">Continuar</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="irA('facturas.php')">Continuar</button>
           </div>
         </div>
       </div>

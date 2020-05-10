@@ -6,6 +6,7 @@
     header("Location: no-autorizado.php");
     die();
   }
+  $nivel = 1;
   require "../comun/recursos.php";
   require "../comun/lib-usuarios.php";
   if ($_GET) {
@@ -17,8 +18,8 @@
     }
   }
   $nivel = 1;
-  
-  
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">

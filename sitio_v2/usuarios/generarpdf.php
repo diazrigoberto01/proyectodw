@@ -6,6 +6,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
   header("Location: no-autorizado.php");
   die();
 }
+$nivel = 1;
 include "../comun/recursos.php";
 require_once '../vendor/autoload.php';
 $link=conectarse();
@@ -35,11 +36,11 @@ $folio=$_POST["folio"];
 if(isset($_POST["nueva"])){
   $status="1";
   //obtener id de empresa
-  $obtenerIdE=mysqli_query($link,"SELECT id FROM f_empresas where rfc='$rfcEmisor'") or die(mysqli_error($link));
+  $obtenerIdE=mysqli_query($link,"SELECT id FROM f_empresas WHERE rfc='$rfcEmisor'") or die(mysqli_error($link));
   $idE=mysqli_fetch_array($obtenerIdE);
   echo "obtener idE $idE[0]";
   //obtener id de cliente
-  $obtenerIdC=mysqli_query($link,"SELECT id FROM f_cliente  where rfc='$receptorRFC'")or die(mysqli_error($link));
+  $obtenerIdC=mysqli_query($link,"SELECT id FROM f_cliente WHERE rfc='$receptorRFC'") or die(mysqli_error($link));
   $idC=mysqli_fetch_array($obtenerIdC);
   echo "obtenr idC $idC[0]";
   //hacer insert de factura
@@ -91,7 +92,7 @@ $encabezado="
 <table align='center'>
 
     <td>
-    <img src='$imagen' width='250px' heigth='250px'>
+    <img src='$imagen' width='150px' heigth='auto'>
     </td>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
