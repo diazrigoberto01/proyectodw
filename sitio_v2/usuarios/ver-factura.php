@@ -1,12 +1,11 @@
 <?php
-# Código viejo en su totalidad
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
-if (!isset($_SESSION['tipo_usuario'])) {
-  header("Location: no-autorizado.php");
-  die();
-}
+  if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
+  if (!isset($_SESSION['tipo_usuario'])) {
+    header("Location: no-autorizado.php");
+    die();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,51 +21,76 @@ if (!isset($_SESSION['tipo_usuario'])) {
     </script>
   </head>
   <body>
-    <script>
-      function descargar(){
-        alert("Su descarga comenzara en unos segundos")
-        document.factura.submit();
-      }
-    </script>
     <?php
-    include "../comun/conexion.php";
+    include "../comun/recursos.php";
     $link=conectarse();
 
     //datos de la factura
+    //identificar si es post(nuevafactura) o get(factura anterior)
+      if(!isset($_GET['id'])){
+        //echo "POST";
+        $rfcEmisor=$_POST["rfcEmp"];
+        $rfcReceptor=$_POST["rfcRec"];
+        $nombreEmpresa=$_POST["nomEmp"];
+        $regimen=$_POST["regimen"];
+        $nombreCliente=$_POST["nombreCliente"];
+        $direccionCliente=$_POST["direccionCliente"];
+        $cfdi=$_POST["cfdi"];
+        $fecha=date("Y-m-d");
+        $fecha2=date("d-m-Y");
 
-      //datos del emisor
-      $rfcEmisor=$_POST["rfcEmp"];
-      $rfcReceptor=$_POST["rfcRec"];
-      $nombreEmpresa=$_POST["nomEmp"];
-      $regimen=$_POST["regimen"];
-      $nombreCliente=$_POST["nombreCliente"];
-      $direccionCliente=$_POST["direccionCliente"];
-      $cfdi=$_POST["cfdi"];
-      $fecha=date("Y-m-d");
-      $lugar=$_POST["lugar"];
-      $totalProductos=$_POST["cproductos"];
-      $tipoPago=$_POST["tipoPago"];
-      $cantidadPagos=$_POST["cantidadPagos"];
-      $dire=mysqli_query($link,"SELECT calle FROM f_direccion_empresa where empresa_rfc='$rfcEmisor' ") or die(mysqli_error($link));
-      $info=mysqli_fetch_array($dire);
-      $buscarfolio=mysqli_query($link,"Select folio from f_factura order by folio desc limit 1") or die(mysqli_error($link));
-      $folio=mysqli_fetch_array($buscarfolio);
-      $folio[0]=$folio[0]+1;
-      $subtotal=0;
-
+        $lugar=$_POST["lugar"];
+        $totalProductos=$_POST["cproductos"];
+        $tipoPago=$_POST["tipoPago"];
+        $cantidadPagos=$_POST["cantidadPagos"];
+        //obtener logo con el rfc
+        $obtenerlogo=mysqli_query($link,"Select logo from f_empresas where rfc='$rfcEmisor' ")or die(mysqli_error($link));
+        $rutalogo = mysqli_fetch_array($obtenerlogo);
+        $dire=mysqli_query($link,"SELECT calle FROM f_direccion_empresa where empresa_rfc='$rfcEmisor' ") or die(mysqli_error($link));
+        $info=mysqli_fetch_array($dire);
+        $buscarfolio=mysqli_query($link,"Select folio from f_factura order by folio desc limit 1") or die(mysqli_error($link));
+        $folio=mysqli_fetch_array($buscarfolio);
+        $folio[0]=$folio[0]+1;
+        $subtotal=0;
+      }
+      if(isset($_GET['id'])){
+        //echo "GET";
+        $nivel = 1;
+        $id=$_GET["id"];
+        $consulta=mysqli_query($link,"Select fecha_emision,folio,lugar_expedicion,rfc_receptor,
+        rfc_emisor,importe_total,direccion_emisor,metodo_pago,cantidadPagos,uso_cfdi,subtotal,iva,status from f_factura where folio='$id' ") or die(mysqli_error($link));
+        $row = mysqli_fetch_array($consulta);
+        //obtener logo
+        $emisorC=mysqli_query($link,"Select razon_social,regimen_fiscal,logo from f_empresas where rfc='$row[4]' ") or die(mysqli_error($link));
+        
+        $razonSocial = mysqli_fetch_array($emisorC);
+        $cliente=mysqli_query($link,"Select razon_social,concat(calle,concat(',',concat(no_exterior,concat(municipio,concat(estado,'.'))))) from f_cliente where rfc='$row[3]' ") or die(mysqli_error($link));
+        $info = mysqli_fetch_array($cliente);
+      }
+      
       
 
 
     ?>
     <form name="factura" action="generarpdf.php" method="POST"> 
-    <table align="center">
-      <td><img  name="logo" src="../img/emp1.png" alt="" value="../img/emp1.png" />
-        <input type="hidden" name="ubiImagen" value="../img/emp1.png">
-    </td>
+<div class="container-fluid mt-8">
 
-      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td>
+    <!--Encabezado Factura-->
+    <div class="col-md-12 row justify-content-center ">
+      <div class=col-md-5>
+        <img  name="logo" src="<?php if(!isset($_GET['id'])){
+                echo $rutalogo[0];
+              }elseif(isset($_GET)){
+                echo $razonSocial[2];
+              };?>" alt="Logo"  width="40%" heigth="auto" />
+        <input type="hidden" name="ubiImagen" value="<?php 
+        if(!isset($_GET['id'])){
+                echo $rutalogo;
+              }elseif(isset($_GET)){
+                echo $razonSocial[2];
+              };?>">
+      </div>
+      <div class="col-md-5">
         <table align="right">
           <tr>
             <td>
@@ -90,8 +114,15 @@ if (!isset($_SESSION['tipo_usuario'])) {
             <td>Serie:A</td>
             <td>Folio:
               <?php
-              echo $folio[0];
-              echo"<input type='hidden' name='folio' value='$folio[0]' readonly>";
+              if(!isset($_GET['id'])){
+                echo $folio[0];
+                echo"<input type='hidden'  name='folio' value='$folio[0]' readonly>";
+              }elseif(isset($_GET)){
+                echo $row[1];
+                echo "<input type='hidden' name='folio' value='$row[1]' readonly>";
+
+              }
+             
               ?>
                             </td>
           </tr>
@@ -105,197 +136,320 @@ if (!isset($_SESSION['tipo_usuario'])) {
           <tr>
             <td>
             <?php
-              echo $fecha;
+            if(!isset($_GET['id'])){
+              echo $fecha2;
               echo"<input type='hidden' name='fecha' value='$fecha' readonly>";
+
+            }elseif(isset($_GET)){
+              
+              $dateFromMysql=strtotime($row[0]);
+              $myFormatForView = date("d/m/y", $dateFromMysql);
+              echo $myFormatForView;
+              echo"<input type='hidden' name='fecha' value='$row[0]' readonly>";
+            }
+              
             ?>
             </td>
             <td>
             <?php
+            if(!isset($_GET['id'])){
               echo"
-               <input type='text' name='lugar' value='$lugar' readonly>
+               <input type='text' class='form-control' name='lugar' value='$lugar' readonly>
               ";
+            }elseif(isset($_GET)){
+              echo"
+              <input type='text' class='form-control' name='lugar' value='$row[2]' readonly>";
+                            
+            }
+              
             ?>
             </td>
+            <?php
+              if(isset($_GET['id'])){
+                if($row[12]== 0){
+                  printf("<td>
+
+                  <button type='button' class='btn btn-danger' disable>Cancelada</button>
+                  </td>");
+                }
+              }
+             
+              ?>
           </tr>
         </table>
-      </td>
-    </table>
-
-    <table align="left">
-      <tr>
-        <td colspan="3">
+      </div>
+    </div>
+  <!--Encabezado Emisor-->
+  <div class="container-fluid">
+    <div class="col-md-12 row">
+      <div class="col-md-4">
           <?php
-          echo"
-          <input type='text' name='emisorRFC' value='$rfcEmisor' readonly>
-          ";
-          ?>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Emisor:
-          <?php
+          if(!isset($_GET['id'])){
             echo"
-            <input type='text' name='nombreEmisor' value='$nombreEmpresa' readonly>
-            ";
-          ?>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="6">
-          Direccion:
-        <?php
-          echo"
-          <input type='text' name='dirEmisor' size='70' value='$info[0]' readonly>
+          <input type='text' class='form-control' name='emisorRFC' value='$rfcEmisor' readonly>
           ";
-          ?>
-          </td>
-      </tr>
-
-      <tr>
-        <th>Metodo de Pago:</th>
-        <td>
-        <?php
-          switch($tipoPago){
-            case "Tarjeta": echo"
-            <input type='text' name='tipoPago' value='$tipoPago' readonly>
-            ";
-          break;
-          case "Transferencia": echo"
-            <input type='text' name='tipoPago' value='$tipoPago' readonly>
-            ";
-          break;
-          case "Efectivo": echo"
-            <input type='text' name='tipoPago' value='$tipoPago' readonly>
-            ";
-          break;
-
-
+          }elseif(isset($_GET)){
+            echo"<input type='text' class='form-control' name='emisorRFC' value='$row[4]' readonly>";
           }
           
           ?>
+      </div>
+    </div>
 
-
-
-
-        </td>
-        <th>
-          Forma de Pago:
-        </th>
-        <td>
-        <?php
-          echo"
-          <input type='text' name='formaPago' value='$tipoPago' readonly>
-          ";
-          ?>
-        </td>
-        <th>Moneda:</th>
-        <td>Peso Mexicano MXN</td>
-      </tr>
-      <tr>
-        <th>Condicion de Pago:</th>
-        <td>
+      <div class="col-md-12 row ">
+        <div class="col-md-4">
+          Emisor:
           <?php
+          if(!isset($_GET['id'])){
+            echo"
+            <input type='text' name='nombreEmisor' class='form-control' value='$nombreEmpresa' readonly>
+            ";
+
+          }elseif(isset($_GET)){
+            echo "
+            <input type='text' class='form-control' name='nombreEmisor' value='$razonSocial[0]' readonly>
+            ";
+          }
+           
+          ?>
+        </div>
+      </div>
+
+      <div class="col-md-12 row">
+        <div class="col-md-6">
+          Direccion:
+        <?php
+        if(!isset($_GET['id'])){
+          echo"
+          <input type='text'  class='form-control' name='dirEmisor' size='70' value='$info[0]' readonly>
+          ";
+
+        }elseif(isset($_GET)){
+          echo"
+          <input type='text' class='form-control' name='dirEmisor' size='70' value='$row[6]' readonly>";
+        }
+          
+          ?>
+          </div>
+      </div>
+
+      <div class="col-md-12 row mt-2">
+        <div class="col-md-2">Metodo de Pago:</div>
+        <div class="col-md-2">
+        <?php
+        if(!isset($_GET['id'])){
+          switch($tipoPago){
+            case "Tarjeta": echo"
+            <input type='text' name='tipoPago' class='form-control'  value='$tipoPago' readonly>";
+            break;
+            case "Transferencia": echo"
+            <input type='text' name='tipoPago' class='form-control' value='$tipoPago' readonly>";
+            break;
+            case "Efectivo": echo"
+            <input type='text' name='tipoPago' class='form-control' value='$tipoPago' readonly>";
+            break;
+            }
+
+        }elseif(isset($_GET)){
+          switch($row[7]){
+            case "Tarjeta": echo"
+             <input type='text' class='form-control' name='tipoPago' value='$row[7]' readonly>";
+                 break;
+            case "Transferencia": echo"
+                <input type='text' class='form-control' name='tipoPago' value='$row[7]' readonly>";
+             break;
+            case "Efectivo": echo"
+             <input type='text' class='form-control' name='tipoPago' value='$row[7]' readonly>";
+               break;
+            }
+        }
+          
+          
+          ?>
+        </div>
+        <div class="col-md-2">
+          Forma de Pago:
+        </div>
+        <div class="col-md-2">
+        <?php
+        if(!isset($_GET['id'])){
+          echo"
+          <input type='text' name='formaPago' class='form-control' value='$tipoPago' readonly>";
+
+        }elseif(isset($_GET)){
+
+          echo "<input type='text' class='form-control' name='formaPago' value='$row[7]' readonly> ";
+        }
+          
+          ?>
+        </div>
+        <div class="col-md-2">Moneda:</div>
+        <div class="col-md-2">Peso Mexicano MXN</div>
+      </div>
+
+      <div class="col-md-12 row mt-2">
+        <div class="col-md-2">Condicion de Pago:</div>
+        <div class="col-md-4">
+          <?php
+          if(!isset($_GET['id'])){
             switch($cantidadPagos){
               case 0: echo"
-                <input type='text' name='cantidadPagos' value='Pago unico' readonly>
+                <input type='text'  class='form-control' name='cantidadPagos' value='Pago unico' readonly>
                 ";
                 break;
 
               case 1: echo"
-              <input type='text' name='cantidadPagos' value='Pago unico' readonly>
+              <input type='text'  class='form-control' name='cantidadPagos' value='Pago unico' readonly>
               ";
               break;
               case 2: echo"
-              <input type='text' name='cantidadPagos' value='1 mes' readonly>
+              <input type='text' class='form-control' name='cantidadPagos' value='1 mes' readonly>
               ";
               break;
               case 3: echo"
-                <input type='text' name='cantidadPagos' value='3 meses' readonly>
+                <input type='text' class='form-control' name='cantidadPagos' value='3 meses' readonly>
               ";
               break;
               case 4: echo"
-              <input type='text' name='cantidadPagos' value='6 meses' readonly>
+              <input type='text' class='form-control' name='cantidadPagos' value='6 meses' readonly>
               ";
               break;
+              default:
+              echo"<input type='text' name='cantidadPagos' class='form-control' value='Pago unico' readonly>";
               }
-            ?>
-        </td>
-        <th>Regimen Fiscal:</th>
-        <td> <?php
-          echo"
-          <input type='text' name='regimen' value='$regimen' readonly>
-          ";
-          ?></td>
-      </tr>
-      <tr>
-        <td colspan="6">
-          --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        </td>
-      </tr>
-    </table>
 
-    <table>
-      <tr>
-        <td colspan="4">Facturado a (receptor):
-        <?php
-          echo"
-          <input type='text' name='receptorRFC' value='$rfcReceptor' readonly>
-          ";
+          }elseif(isset($_GET)){
+            switch($row[8]){
+              case "Pago Unico": echo"
+                  <input type='text' name='cantidadPagos' class='form-control' value='Pago unico' readonly>";
+                  break;
+              case "Pago Unico": echo"
+                  <input type='text' name='cantidadPagos' class='form-control'  value='Pago unico' readonly>";
+                  break;
+              case "1 mes": echo"
+                  <input type='text' name='cantidadPagos' class='form-control' value='1 mes' readonly>";
+                  break;
+              case "3 meses": echo"
+                  <input type='text' name='cantidadPagos' class='form-control' value='3 meses' readonly>";
+                  break;
+              case "6 meses": echo"
+                  <input type='text' name='cantidadPagos' class='form-control' value='6 meses' readonly>";
+                  break;
+              default:
+              echo"<input type='text' name='cantidadPagos' class='form-control' value='Pago unico' readonly>";
+                  }
+
+          }
+            
+            ?>
+        </div>
+        <div class="col-md-2">Regimen Fiscal:</div>
+        <div class="col-md-4"> 
+          <?php
+          if(!isset($_GET['id'])){
+            echo "<input type='text' class='form-control' name='regimen' value='$regimen' readonly>";
+          }elseif(isset($_GET)){
+            echo"<input type='text' class='form-control' name='regimen' value='$razonSocial[1]' readonly>";
+          }
+          
           ?>
-           </td>
-      </tr>
-      <tr>
-        <td colspan="4">
-        <?php
-          echo"
-          <input type='text' name='nombreCliente' size='35' value='$nombreCliente' readonly>
-          ";
+        </div>
+      </div>
+
+      <div class="col-md-12 row">
+            <hr width="100%" style="color: #000">
+      </div>
+  </div>
+    
+  <!--Encabezado Receptor-->
+  <div class="container-fluid">
+
+      <div class="col-md-12 row">
+        <div class="col-md-4">Facturado a (receptor):
+          <?php
+          if(!isset($_GET['id'])){
+            echo"<input type='text' class='form-control' name='receptorRFC' value='$rfcReceptor' readonly>";
+          }elseif(isset($_GET)){
+            echo"
+            <input type='text' class='form-control' name='receptorRFC' value='$row[3]' readonly>";
+        
+          }
+          
+          ?>
+        </div>
+      </div>
+
+      <div class="col-md-12 row">
+        <div class="col-md-4 ">
+          Facturado a:
+          <?php
+          if(!isset($_GET['id'])){
+            echo "<input type='text' class='form-control' name='nombreCliente' size='35' value='$nombreCliente' readonly>";
+
+          }elseif(isset($_GET)){
+            echo"
+            <input type='text'  class='form-control' name='nombreCliente' size='35' value='$info[0]' readonly>
+            ";
+          }
+          
           ?>
           
-        </td>
-      </tr>
-      <tr>
-        <td colspan="4">
+        </div>
+      </div>
+
+      <div class="col-md-12 row">
+        <div  class="col-md-4">
           Residencia Fiscal: 
-        <?php
-          echo"
-          <input type='text' name='dirCliente'  size='75' value='$direccionCliente' readonly>
+          <?php
+          if(!isset($_GET['id'])){
+            echo "<input type='text'  class='form-control' name='dirCliente'  size='75' value='$direccionCliente' readonly>";
+          }elseif(isset($_GET)){
+            echo"
+          <input type='text' name='dirCliente' class='form-control' size='75' value='$info[1]' readonly>
           ";
+          } 
+          
           ?>
-        </td>
-      </tr>
-      <tr>
-        <th>Uso de CFDI:</th>
-        <td>
-        <?php
-          echo"
-          <input type='text' name='cfdi' size='70' value='$cfdi' readonly>
-          ";
-          ?>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="6">
-          --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        </td>
-      </tr>
+        </div>
+      </div>
+
+      <div class="col-md-12 row">
+        <div class="col-md-4">Uso de CFDI:</div>
+        <div class="col-md-8">
+          <?php
+          if(!isset($_GET['id'])){
+            echo "<input type='text'  class='form-control' name='cfdi' size='70' value='$cfdi' readonly>";
+
+          }elseif(isset($_GET)){
+            echo"
+            <input type='text'  class='form-control' name='cfdi' size='70' value='$row[9]' readonly>
+            ";
+          }
+            ?>
+        </div>
+      </div>
+
+      <div class="col-md-12 row">
+            <hr width="100%" style="color: #000">
+      </div>
+  </div>
+    
+
+    <div class="container-fluid">
+      <div class="col-md-12 row justify-content-center">
+        <div class="col-md-1">Clave &nbsp;</div>
+        <div class="col-md-4">Descripcion &nbsp;</div>
+        <div class="col-md-1">Unidad &nbsp;</div>
+        <div class="col-md-2">Precio Unitario &nbsp;</div>
+        <div class="col-md-2">Cantidad &nbsp;</div>
+        <div class="col-md-2">Importe</div>
+      </div>
+      <!-- PARTE dinamica -->
       
-    </table>
 
-    <table align="center">
-      <tr>
-        <th>Clave &nbsp;</th>
-        <th>Descripcion &nbsp;</th>
-        <th>Unidad &nbsp;</th>
-        <th>Precio Unitario &nbsp;</th>
-        <th>Cantidad &nbsp;</th>
-        <th>Importe</th>
-      </tr>
-    <!-- PARTE dinamica -->
-
-        <?php
-      for($i=1; $i<=$totalProductos; $i++){
+      <?php
+      if(!isset($_GET['id'])){
+        for($i=1; $i<=$totalProductos; $i++){
           $num=strval($i);
           $claven="clave".$num;
           $descn="descripcion".$num;
@@ -310,79 +464,154 @@ if (!isset($_SESSION['tipo_usuario'])) {
           $pu=$_POST[$pun];
           $total=$_POST[$totaln];
 
-          printf("<tr>
-          <td><input name='$claven' value='$clave' readonly></td>
-          <td><input name='$descn' value='$des' size=60 reandonly></td>
-          <td><input name='$umn' value='$um' reandonly></td>
-          <td><input name='$pun' value='$pu' reandonly></td>
-          <td><input name='$cantidadn' value='$cantidad' reandonly></td>
-          <td><input name='$totaln' value='$total' reandonly></td>
+          printf("
+          <div class='col-md-12 row'>
+            <div class='col-md-1 form-control'><input type='hidden' name='$claven' value='$clave' readonly>$clave</div>
+            <div class='col-md-4 form-control'><input type='hidden' name='$descn' value='$des' readonly>$des</div>
+            <div class='col-md-1 form-control'><input type='hidden' name='$umn' value='$um' reandonly>$um</div>
+            <div class='col-md-2 form-control'><input type='hidden' name='$pun' value='$pu' reandonly>$pu</div>
+            <div class='col-md-2 form-control'><input type='hidden' name='$cantidadn' value='$cantidad' reandonly>$cantidad</div>
+            <div class='col-md-2 form-control'><input type='hidden' name='$totaln' value='$total' reandonly>$total</div>
 
-          </tr>
+          </div>
 
           ");
           $subtotal=$subtotal+$total;
           }
-        ?>
-        <tr></tr>
-        <tr></tr>
-        <tr>
-        <td colspan="6">
-        <table align="right">
-            <tr>
-              <td>
-                Subtotal:
-              </td>
-              <td>
-              <?php
-          echo"
-          <input type='text' name='subtotal' size=10 value='$subtotal' readonly>
-          ";
-          ?>
-              </td>
-
-            </tr>
-            <tr>
-              <td>
-                +IVA(16%):
-              </td>
-              <td>
-              <?php
-              $ivapc=$subtotal*0.16;
-          echo"
-          <input type='text' name='iva' size=10 value='$ivapc' readonly>
-          ";
-          ?>
-              </td>
-            </tr>
-            <tr>
-              <td>Total:</td>
-              <td>
-              <?php
-              $totalmasiva=$subtotal+$ivapc;
-                echo"
-                <input type='text' name='totalmasiva' size=10 value='$totalmasiva' readonly>
-                ";
-              ?>
-              </td>
-            </tr>
         
-        <tr>
-          <td>
-            <input type="hidden" name="totalproductos" value="<?php  echo $totalProductos ?>">
-            <input type="button" value="Descargar" onclick="descargar()" >
-          </td>
-          <td>
-          <input type="button" value="Regresar" onclick="history.go(-1)">
-          </td>
-        </tr>
+      }elseif(isset($_GET)){
+        $servicios=mysqli_query($link,"Select concepto_clave,concepto_descripcion,concepto_um,concepto_pu,
+        concepto_cantidad,concepto_subtotal from f_concepto_facturado where factura_folio='$row[1]'") or die(mysqli_error($link));
+        $totalProductos=mysqli_num_rows($servicios);
+        $i=1;
+        while ($servicio = mysqli_fetch_array($servicios)) {
+            
+ 
+            $claven="clave".strval($i);
+            $descn="descripcion".strval($i);
+            $umn="um".strval($i);
+            $pun="pu".strval($i);
+            $cantidadn="cantidad".strval($i);
+            $totaln="total".strval($i);
+            
+ 
+ 
+ 
+         printf("<div class='col-md-12 row'>
+         <div class='col-md-1 form-control'><input type='hidden' name='$claven' value='$servicio[0]' readonly>%s</div>
+         <div class='col-md-4 form-control'><input type='hidden' name='$descn' value='$servicio[1]' readonly>%s</div>
+         <div class='col-md-1 form-control'><input type='hidden' name='$umn' value='$servicio[2]' reandonly>%s</div>
+         <div class='col-md-2 form-control'><input type='hidden' name='$pun' value='$servicio[3]' reandonly>%d</div>
+         <div class='col-md-2 form-control'><input type='hidden' name='$cantidadn' value='$servicio[4]' reandonly>%d</div>
+         <div class='col-md-2 form-control'><input type='hidden' name='$totaln' value='$servicio[5]' reandonly>$%d</div>
+         </div>",$servicio[0], $servicio[1], $servicio[2], $servicio[3], $servicio[4],$servicio[5]);
+       $i++;
+     }
 
-          </table>
-        </td>
 
-        </tr>
-    </table>
-         
+      }
+        
+        ?>
+        <div class='col-md-12 row'></div>
+        <div class='col-md-12 row'></div>
+        <div class="col-md-12 row justify-content-end ">
+          <div class="col-md-6" >
+            <!--Parte final Factura-->
+            <div class="container-fluid  mt-4" >
+            
+              <div class="col-md-12 row justify-content-end mt-2" >
+                <div class="col-md-3">
+                  Subtotal:
+                </div>
+                <div class="col-md-3">
+                  <?php
+                  if(!isset($_GET['id'])){
+                    echo"
+                    <input type='text' class='form-control' name='subtotal' size=10 value='$subtotal' readonly>";
+                  }elseif(isset($_GET)){
+                    echo"
+                            <input type='text' class='form-control' name='subtotal' size=10 value='$row[10]' readonly>
+                        ";
+
+                  }
+                    
+                  ?>
+                </div>
+              </div>
+
+
+              <div class="col-md-12 row justify-content-end mt-2">
+                <div class="col-md-3">
+                  +IVA(16%):
+                </div>
+                <div class="col-md-3">
+                  <?php
+                  if(!isset($_GET['id'])){
+                    $ivapc=$subtotal*0.16;
+                    echo"<input type='text'  class='form-control' name='iva' size=10 value='$ivapc' readonly>";
+                  }elseif(isset($_GET)){
+                    echo"
+                        <input type='text' class='form-control' name='iva' size=10 value='$row[11]' readonly>
+                        ";
+                  }
+                    
+                    ?>
+                </div>
+              </div>
+
+
+              <div class="col-md-12 row justify-content-end mt-2">
+                <div class="col-md-3">Total:</div>
+                <div class="col-md-3">
+                  <?php
+                  if(!isset($_GET['id'])){
+                    $totalmasiva=$subtotal+$ivapc;
+                  echo"<input type='text'  class='form-control' name='totalmasiva' size=10 value='$totalmasiva' readonly>";
+
+                  }elseif(isset($_GET)){
+                    echo "
+                <input type='text' name='totalmasiva' class='form-control' size=10 value='$row[5]' readonly>
+                ";
+                  }
+                    
+                  ?>
+                </div>
+              </div>
+        
+            <div class="col-md-12 row justify-content-end mt-2">
+              <div class="col-md-3">
+                <input type="hidden" name="totalproductos" value="<?php 
+                echo $totalProductos 
+                 ?>">
+                 <!--Diferenciar nuevas facturas de las anteriores para generar pdf-->
+                <?php
+                if(!isset($_GET['id'])){
+                  echo "<input type='hidden' name='nueva' value='si'>";
+                }
+                ?>
+                
+                <input type="button" class="btn-success" value="Descargar" onclick="descargar()" >
+              </div>
+              <div class="col-md-3">
+                  <input type="button" value="Regresar" class="btn-warning" onclick="history.go(-1)">
+              </div>
+              <div class="col-md-3">
+              <a href="facturas.php"><input type="button" class='btn btn-primary' value="Ir a Facturas"></a>
+              </div>
+          </div>
+
+          
+          
+          
+        </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+</div>
         
     </form>
     <?php
